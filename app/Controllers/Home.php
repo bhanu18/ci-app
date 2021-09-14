@@ -21,8 +21,6 @@ class Home extends BaseController
 
 	public function index()
 	{
-
-		
         $userModel = new UserModel();
 
         if($this->user_id == '') return $this->response->redirect(site_url("/user"));

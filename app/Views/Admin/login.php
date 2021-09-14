@@ -19,11 +19,11 @@
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
+      <a href="<?php echo site_url('admin/auth') ?>" class="h1"><b>Admin</b>LTE</a>
+    </div>
     <?php if(isset($errors)): ?>
       <div class="alert alert-danger"><?php echo $errors; ?></div>
       <?php endif;?>
-      <a href="<?php echo site_url('admin/auth') ?>" class="h1"><b>Admin</b>LTE</a>
-    </div>
     <div class="card-body">
       <p class="login-box-msg">Sign in to start your admin session</p>
 

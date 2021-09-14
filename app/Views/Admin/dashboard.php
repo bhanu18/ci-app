@@ -6,6 +6,9 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Users</h3>
+                        <?php if(session()->get('msg')): ?>
+                            <div class="alert alert-success" role="alert"> <?php echo session()->get('msg'); ?></div>
+                            <?php endif; ?>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -30,15 +33,15 @@
                                     <td><?php echo $user['role']; ?> </td>
                                     <td><?php echo $user['Group_name']; ?> </td>
                                     <td><a class="btn btn-primary"
-                                            href="<?php echo site_url('admin/edit/').$user['user_id'];?>">Edit</a> <a
+                                            href="<?php echo site_url('user/edit/').$user['user_id'];?>">Edit</a> <a
                                             class="btn btn-danger"
-                                            href="<?php echo site_url('admin/delete/').$user['user_id'];?>">Delete</a>
+                                            href="<?php echo site_url('user/delete/').$user['user_id'];?>">Delete</a>
                                     </td>
                                 </tr>
                                 <?php endforeach;?>
                                 <?php endif; ?>
                             </tbody>
-                            <tfoot>
+                            <!-- <tfoot>
                                 <tr>
                                     <th>First Name</th>
                                     <th>Last Name</th>
@@ -47,7 +50,7 @@
                                     <th>Group name</th>
                                     <th>Action</th>
                                 </tr>
-                            </tfoot>
+                            </tfoot> -->
                         </table>
                     </div>
                     <!-- /.card-body -->
@@ -59,21 +62,21 @@
         <!-- /.row -->
     </div>
     <!-- /.container-fluid -->
-    <div class="container-fluid">
-        <div class="row">
+    <!-- <div class="container-fluid">
+        <div class="row"> -->
             <!-- left column -->
-            <div class="col-md-6">
+            <!-- <div class="col-md-6"> -->
                 <!-- general form elements -->
-                <div class="card">
+                <!-- <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Add User</h3>
-                    </div>
+                    </div> -->
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <?php if(isset($validation)):?>
-                      <div class="alert alert-primary"><?php echo $validation->listErrors(); ?></div>
+                    <!-- <?php if(isset($validation)):?>
+                      <div class="alert alert-danger"><?php //echo $validation->listErrors(); ?></div>
                       <?php endif;?>
-                    <form action="<?php echo site_url('Admin/addUser');?>" method="post">
+                    <form action="<?php //echo site_url('user/add');?>" method="post">
                         <div class="card-body">
                             <div class="form-group">
                                 <label>First Name</label>
@@ -100,7 +103,7 @@
                                 <select class="custom-select" name="role">
                                     <?php if(isset($roles)):?>
                                     <?php foreach($roles as $role):?>
-                                    <option value="<?php echo $role['id'];?>"><?php echo $role['role'];?></option>
+                                    <option value="<?php //echo $role['id'];?>"><?php //echo $role['role'];?></option>
                                     <?php endforeach;?>
                                     <?php endif;?>
                                 </select>
@@ -110,16 +113,16 @@
                                 <select class="form-control" name="group">
                                 <?php if(isset($groups)):?>
                                 <?php foreach($groups as $group):?>
-                                    <option value="<?php echo $group['id'];?>"><?php echo $group['Group_name'];?>
+                                    <option value="<?php //echo $group['id'];?>"><?php //echo $group['Group_name'];?>
                                     </option>
                                     <?php endforeach;?>
                                 <?php endif;?>
                                 </select>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- /.card-body -->
 
-                        <div class="card-footer">
+                        <!-- <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
@@ -130,18 +133,18 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Add User Group</h3>
-                    </div>
+                    </div> -->
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form action="<?php echo site_url('Admin/addUser');?>" method="post">
+                    <!-- <form action="<?php //echo site_url('Admin/addUser');?>" method="post">
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Group Name</label>
                                 <input type="text" class="form-control" id="exampleInputEmail1"
                                     placeholder="Enter email" value="">
-                            </div>
+                            </div> -->
                         <!-- /.card-body -->
-                        <div class="card-footer">
+                        <!-- <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
@@ -150,23 +153,23 @@
             <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Add User Roles</h3>
-                    </div>
+                    </div> -->
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form action="<?php echo site_url('Admin/addgroup');?>" method="post">
+                    <!-- <form action="<?php //echo site_url('Admin/addgroup');?>" method="post">
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Role Name</label>
                                 <input type="text" class="form-control" id="exampleInputEmail1"
                                     placeholder="Enter email" value="">
-                            </div>
+                            </div> -->
                         <!-- /.card-body -->
-                        <div class="card-footer">
+                        <!-- <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
                 </div>
-        </div>
+        </div> -->
 </section>
 <!-- /.content -->
 </div>

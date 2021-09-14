@@ -23,7 +23,7 @@
             <a href="<?php echo site_url('user');?>"><b>Admin</b>LTE</a>
         </div>
         <?php if(session()->get('msg')): ?>
-        <div class="alert alert-danger mb-2" role="alert"><?php session()->get('msg'); ?></div>
+        <div class="alert alert-danger mb-2" role="alert"><?php echo session()->get('msg'); ?></div>
         <?php endif;?>
         <?php if(isset($errors)): ?>
         <div class="alert alert-danger mb-2" role="alert"><?php echo $errors; ?></div>

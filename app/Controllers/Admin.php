@@ -123,7 +123,12 @@ class Admin extends BaseController
 
     public function update(){
 
+        $user = new UserModel();
+
+        $id = $this->request->getvar('User_id');
+
         $data = [
+
             'firstname' => $this->request->getVar('firstname'),
             'lastname' => $this->request->getVar('lastname'),
             'email' => $this->request->getVar('email'),
@@ -131,7 +136,7 @@ class Admin extends BaseController
             'group_id'=> $this->request->getVar('group_id'),
         ];
 
-        $user->insert($data);
+        $user->update($id, $data);
         return $this->response->redirect(site_url('dashboard'));
     }
 

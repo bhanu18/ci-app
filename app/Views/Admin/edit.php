@@ -10,10 +10,11 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form action="<?php echo site_url('admin/update');?>" method="post">
+                    <form action="<?php echo site_url('user/update');?>" method="post">
                         <div class="card-body">
                             <?php if(isset($users)):?>
                             <?php foreach($users as $user):?>
+                                <input hidden type="text" value="<?php echo $user['user_id']; ?>" >
                             <div class="form-group">
                                 <label>First Name</label>
                                 <input type="text" class="form-control" id="exampleInputEmail1"

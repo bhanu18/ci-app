@@ -44,7 +44,7 @@ class UserModel extends Model{
     public function showSingleUser($id){
         $db = \Config\Database::connect();
         $builder = $db->table('users');
-        $builder->select('user_id,firstname, lastname, email' );
+        $builder->select('user_id,firstname, lastname, email, role_id, group_id' );
         $builder->where('user_id',$id);
         $query = $builder->get();
         $result = $query->getResultArray();

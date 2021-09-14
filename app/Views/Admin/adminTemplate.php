@@ -187,7 +187,7 @@
           <img src="/Asset/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block"><?php echo session()->get('user_name');?></a>
         </div>
       </div>
       <!-- SidebarSearch Form -->
@@ -211,29 +211,58 @@
             <a href="" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Dashboard
+                ME
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo site_url('/');?>" class="nav-link">
+                <a href="<?php echo site_url('dashboard');?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dashboard</p>
                 </a>
               </li>
               <!-- <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="<?php echo site_url('/user/add');?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v2</p>
+                  <p>Add User</p>
+                </a>
+              </li> -->
+             <li class="nav-item">
+                <a href="<?php echo site_url('/user/profile');?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View Profile</p>
+                </a>
+              </li> 
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Add/Edit
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo site_url('dashboard');?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>View Users</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="<?php echo site_url('/user/add');?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v3</p>
+                  <p>Add User</p>
                 </a>
-              </li> -->
+              </li>
+             <li class="nav-item">
+                <a href="<?php echo site_url('/user/edit');?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Edit User</p>
+                </a>
+              </li> 
             </ul>
           </li>
           
@@ -251,13 +280,15 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Dashboard</h1>
+            <?php if(isset($title)): ?>
+            <h1><?php echo $title; ?></h1>
+            <?php endif; ?>
           </div>
           <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
+            <!-- <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item active">Dashboard</li>
-            </ol>
+            </ol> -->
           </div>
         </div>
       </div><!-- /.container-fluid -->

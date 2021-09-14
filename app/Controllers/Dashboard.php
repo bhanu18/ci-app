@@ -31,6 +31,7 @@ class Dashboard extends BaseController{
         $data['users'] = $userModel->displayUser();
         $data['roles'] =$userModel->showRoles();
         $data['groups'] = $userModel->showGroup();
+        $data['title'] = 'Dashboard';
         $data['base'] = view('Admin/dashboard',$data);
         return view('admin/adminTemplate',$data);
         }else{
