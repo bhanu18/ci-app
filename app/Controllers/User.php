@@ -120,7 +120,7 @@ class User extends BaseController{
             ];
             if($user->update($id,$data)){
             session()->setFlashdata('msg',"password change");
-            return $this->response->redirect(site_url('user'));
+            return redirect()->to('/user');
             }else{
                 $data['errors'] = 'Could not change password';
                 return view('login', $data);
