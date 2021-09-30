@@ -247,11 +247,12 @@ class User extends BaseController{
         return $this->response->redirect(site_url('dashboard'));
     }
 
-    public function edit($id){
+    public function edit(){
 
         $user = new UserModel();
-  
-         $data['users'] = $user->showSingleUser($id);
+
+         $data['user'] = $user->displayUser();
+         $data['users'] = $user->showSingleUser($q);
          $data['roles'] = $user->showRoles();
          $data['groups'] = $user->showGroup();
          $data['base'] = view('admin/edit',$data);

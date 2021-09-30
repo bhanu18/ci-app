@@ -10,6 +10,16 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
+
+                    <select name="users" onchange="showUser(this.value)"> 
+                    <?php if(isset($user)):?>
+                        <?php foreach($user as $users):?>
+                        <option value="<?php echo $users['user_id']; ?>"><?php echo $users['firstname'];?></option>
+                        <?php endforeach;?>
+                        <?php endif;?>
+
+                    </select>
+
                     <form action="<?php echo site_url('user/update');?>" method="post">
                         <div class="card-body">
                             <?php if(isset($users)):?>
