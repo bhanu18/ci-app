@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 use App\Models\UserModel;
+use App\Models\ProductModel;
 
 class Home extends BaseController
 {
@@ -22,9 +23,11 @@ class Home extends BaseController
 	public function index()
 	{
         $userModel = new UserModel();
+		$product = new ProductModel();
 
         if($this->user_id == '') return $this->response->redirect(site_url("/user"));
-		$data['base'] = view('home');
+		$data['products'] = $product->findall();
+		$data['base'] = view('home',$data);
 		return view('usertemplate',$data);
 	}
 }

@@ -22,30 +22,38 @@
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">You forgot your password? Here you can easily retrieve a new password.</p>
+      <p class="login-box-msg">Here you can easily reset a new password.</p>
 
-      <form action="<?php echo site_url('admin/verifyUser');?>" method="post">
-        <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email" name="email">
+      <form action="<?php echo site_url('user/resetPassword');?>" method="post">
+       <div class="input-group mb-3">
+          <input type="password" class="form-control" placeholder="Password">
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" placeholder="Confirm Password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-12">
-            <button type="submit" class="btn btn-primary btn-block">Request new password</button>
+            <button type="submit" class="btn btn-primary btn-block">Change password</button>
           </div>
           <!-- /.col -->
         </div>
       </form>
 
-      <p class="mt-3 mb-1">
+      <!-- <p class="mt-3 mb-1">
         <a href="<?php echo site_url('user');?>">Login</a>
-      </p>
-      <p class="mb-0">
-        <a href="<?php echo site_url('user/register');?>" class="text-center">Register a new membership</a>
+      </p> -->
+      <p class="mb-0 mt-3">
+        <a href="<?php echo site_url('dashboard');?>" class="text-center">Back to Dashboard</a>
       </p>
     </div>
     <!-- /.login-card-body -->

@@ -350,19 +350,19 @@
                                         <input type="text" class="form-control" id="inputName2" placeholder="Name">
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                <!-- <div class="form-group row">
                                     <label for="inputExperience" class="col-sm-2 col-form-label">Experience</label>
                                     <div class="col-sm-10">
                                         <textarea class="form-control" id="inputExperience"
                                             placeholder="Experience"></textarea>
                                     </div>
-                                </div>
-                                <div class="form-group row">
+                                </div> -->
+                                <!-- <div class="form-group row">
                                     <label for="inputSkills" class="col-sm-2 col-form-label">Skills</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="form-group row">
                                     <div class="offset-sm-2 col-sm-10">
                                         <div class="checkbox">
@@ -379,6 +379,11 @@
                                     </div>
                                 </div>
                             </form>
+                            <div class="form-group row">
+                                    <div class="offset-sm-2 col-sm-10">
+                                        <a href="<?php echo site_url('user/resetPassword'); ?>" class="btn btn-primary">Change Password</a>
+                                    </div>
+                                </div>
                         </div>
                         <!-- /.tab-pane -->
                     </div>
