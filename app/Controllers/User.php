@@ -328,5 +328,24 @@ class User extends BaseController{
             echo 'fail';
         }
     }
+
+    public function addGroup(){
+        if($this->request->getMethod() == "Post"){
+            $db = \Config\Database::connect();
+            $builder = $db->table('Groups');
+            $data = [
+                'Group_name' => $this->request->getVar('Group_name'),
+            ];
+
+            $this->session = session();
+            $this->session->setFlashdata('msg', 'Group is added');
+            $builder->insert($data);
+            return redirect()->to('dashboard');
+
+        }else{
+            $data['base'] = view('admin/addGroup');
+            return view('admin/adminTemplate',$data);
+        }
+    }
 }
 ?>
