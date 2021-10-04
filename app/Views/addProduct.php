@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container">
     <!-- general form elements -->
     <div class="card card-primary">
     <?php if(session()->get('msg')): ?>

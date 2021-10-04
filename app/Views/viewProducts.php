@@ -5,7 +5,7 @@
                     <div class="card-header">
                         <h3 class="card-title">Products</h3>
                         <?php if(session()->get('msg')): ?>
-                            <div class="alert alert-success" role="alert"> <?php echo session()->get('msg'); ?></div>
+                            <div class="alert alert-success" role="alert"><?php echo session()->get('msg'); ?></div>
                             <?php endif; ?>
                     </div>
                     <!-- /.card-header -->

@@ -71,20 +71,18 @@ class Product extends BaseController
 	public function edit($id){
 		$product = new ProductModel();
 
-		$data['product'] = $product->where($id)->first();
+		$data['product'] = $product->where('ID',$id)->first();
 		$data['base'] = view('editProduct',$data);
 		return view('admin/admintemplate',$data);
 	}
 
-	public function update($id){
+	public function update(){
 
 		$product = new ProductModel();
 
-		if($this->request->getMethod() == 'POST'){
+		if($this->request->getMethod() == 'Post'){
 			$data = [
-
-			'id' => $this->request->getVar('id'),
-			'name' => $this->request->getVar('name'),
+			'name' => $this->request->getVar('Name'),
 			'Quantity' => $this->request->getVar('Quantity'),
 			'Price' => $this->request->getVar('Price')
 			];

@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container">
     <!-- general form elements -->
     <div class="card card-primary">
         <?php if(session()->get('msg')): ?>
@@ -7,28 +7,28 @@
         <div class="card-header">
             <h3 class="card-title">Edit Products</h3>
         </div>
-        <?php if(isset($product)): ?>
-        <?php foreach($product as $single):?>
         <!-- /.card-header -->
         <!-- form start -->
-        <form action='<?php echo site_url('product/update'); ?>' method="POST">
+        <form action='<?php echo site_url('product/update'); ?>' method="Post">
+                <input type="hidden" class="form-control" id="exampleInputEmail1" name="ID"
+                        value="<?php echo $product['ID'];?>">
             <div class="card-body">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Product Name</label>
                     <input type="text" class="form-control" id="exampleInputEmail1" name="name"
-                        value="<?php echo $single['Name'];?>">
+                        value="<?php echo $product['Name'];?>">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Quantity</label>
-                    <input type="number" class="form-control" id="exampleInputPassword1" name="Quantity">
-                    value="<?php echo $single['Quaantity'];?>"
+                    <input type="number" class="form-control" id="exampleInputPassword1" name="Quantity"
+                        value="<?php echo $product['Quantity'];?>">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Price</label>
                     <input type="text" class="form-control" id="exampleInputPassword1" name="Price"
-                        value="<?php echo $single['Price'];?>">
+                        value="<?php echo $product['Price'];?>">
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="exampleInputFile">File input</label>
                     <div class="input-group">
                         <div class="custom-file">
@@ -39,15 +39,13 @@
                             <span class="input-group-text">Upload</span>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Check me out</label>
                 </div>
             </div>
             <!-- /.card-body -->
-            <?php endforeach;?>
-            <?php endif;?>
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
