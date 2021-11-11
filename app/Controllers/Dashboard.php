@@ -2,6 +2,8 @@
 
 use App\Models\AdminModel;
 use App\Models\UserModel;
+use App\Models\productModel;
+use App\Models\SalesModel;
 use Controller\Codeigniter;
 
 class Dashboard extends BaseController{
@@ -22,6 +24,8 @@ class Dashboard extends BaseController{
     public function index(){
 
         $userModel = new UserModel();
+        $SalesModel = new SalesModel();
+        $Productmodel = new ProductModel();
 
         if($this->user_id == '') return $this->response->redirect(site_url("/user"));
 
@@ -29,8 +33,8 @@ class Dashboard extends BaseController{
         if($row[0]['role_id'] == '1'){
         $userModel = new UserModel();
         $data['users'] = $userModel->displayUser();
-        $data['roles'] =$userModel->showRoles();
-        $data['groups'] = $userModel->showGroup();
+        $data['sale'] = $SalesModel->displaySales();
+        $data['products'] = $Productmodel->findall();
         $data['title'] = 'Dashboard';
         $data['base'] = view('Admin/dashboard',$data);
         return view('admin/adminTemplate',$data);

@@ -30,9 +30,9 @@
                                 <td><?php echo $sales['date'];?></td>
                                 <td><?php echo $sales['sale_quantity'];?></td>
                                 <td><?php echo $sales['sale_price'];?></td>
-                                <td><a href="<?php echo base_url('sales/edit/'.$sales['sale_id']);?>"
+                                <td><a href="<?php echo base_url('sale/edit/'.$sales['sale_id']);?>"
                                         class="btn btn-primary">edit</a>
-                                    <a href="<?php echo base_url('sales/delete/'.$sales['sale_id']);?>"
+                                    <a href="<?php echo base_url('sale/delete/'.$sales['sale_id']);?>"
                                         class="btn btn-danger">delete</a>
                                 </td>
                             </tr>

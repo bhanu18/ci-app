@@ -32,8 +32,8 @@ class SalesModel extends Model{
     public function edit($id){
         $db = \Config\Database::connect();
         $builder = $db->table('item_sales');
-        $builder->select('sale_id, name, date, sale_quantity, sale_price');
-        $builder->join('product', 'product.Id = items_sale.prod_id');
+        $builder->select('sale_id, name, date, sale_quantity,  size, sale_price');
+        $builder->join('products', 'products.ID = item_sales.prod_id');
         $builder->where('sale_id', $id);
         $query = $builder->get();
         return $result = $query->getResultArray();

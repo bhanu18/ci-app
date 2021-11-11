@@ -5,16 +5,18 @@
         <div class="alert alert-success" role="alert"> <?php echo session()->get('msg'); ?></div>
         <?php endif; ?>
         <div class="card-header">
-            <h3 class="card-title">Add Sale</h3>
+            <h3 class="card-title">Edit Sale</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form action='<?php echo site_url('sale/add'); ?>' method="post">
+        <form action='<?php echo site_url('sale/update'); ?>' method="post">
+        <?php if($sales): 
+            foreach($sales as $sale):?>
             <div class="card-body">
                 <div class="form-group">
                     <label>Product</label>
-                    <select class="form-control" name="product" id="supplier-select">
-                        <option value="">Select a Product </option>
+                    <select class="form-control" name="product" id="supplier-select" value="<?php echo $sale['name'];?>" readonly>
+                        <option value="">Current Product -- <?php echo $sale['name'];?></option>
                         <?php if($product):?>
                         <?php foreach($product as $products):?>
                         <option value="<?php echo $products['ID'];?>" name="product"><?php echo $products['Name'];?>
@@ -23,17 +25,22 @@
                         <?php endif;?>
                     </select>
                 </div>
+                <input type="hidden" name="sale-id" value="<?php echo $sale['sale_id'];?>">
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="text" readonly name="Date" class="form-control" id=""  value="<?php echo $sale['date'];?>">
+                </div>
                 <div class="form-group">
                     <label>Sale Quantity</label>
-                    <input type="number" name="quantity" class="form-control" id="">
+                    <input type="number" readonly name="quantity" class="form-control" id=""  value="<?php echo $sale['sale_quantity'];?>">
                 </div>
                 <div class="form-group">
                     <label>Size</label>
-                    <input type="text" name="size" class="form-control" id="">
+                    <input type="text" readonly name="size" class="form-control" id=""  value="<?php echo $sale['size'];?>">
                 </div>
                 <div class="form-group">
                     <label>Sale Price</label>
-                    <input type="text" name="price" class="form-control" id="">
+                    <input type="text" name="price" class="form-control" id=""  value="<?php echo $sale['sale_price'];?>">
                 </div>
                 <!-- <div class="form-group">
                     <label for="exampleInputFile">File input</label>
@@ -60,3 +67,6 @@
         </form>
     </div>
 </div>
+
+<?php endforeach; ?>
+<?php endif;?>

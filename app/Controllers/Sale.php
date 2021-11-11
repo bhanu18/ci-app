@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use Controller\Codeigniter;
 use App\Models\SalesModel;
+use App\Models\ProductModel;
 
 class sale extends BaseController{
 
@@ -31,66 +32,79 @@ class sale extends BaseController{
 
    public function create(){
 
-       $Productmodel = new Productmodel(); 
+       $Productmodel = new ProductModel(); 
        $data['product'] = $Productmodel->orderby('Id')->findall();
        $data['title'] = 'Add/Edit Sale';
        $data['base'] = view('add-sale', $data);
-       return view('admin/adminTemplate',$data);
-       
+       return view('admin/adminTemplate',$data);    
      }
-
 
    public function add(){
        $SalesModel = new SalesModel();
-       $data = [
-           'prod_id' => $this->request->getVar('product'),
-           'sale_quantity' => $this->request->getVar('quantity'),
-           'size' => $this->request->getVar('size'),
-           'sale_price' => $this->request->getVar('price'),
-       ];
-       if($SalesModel->insert($data)){
-       $Productmodel = new Productmodel();
-       $db = \Config\Database::connect();
-       $id = $this->request->getVar('product');
-       $quantity = $this->request->getVar('quantity');
-       $query = $db->query("SELECT * from product WHERE id ='".$id."'"); // get row from product
-       $row = $query->getRowArray();
-       $row_quan = $row['Quantiy'];
-           $row_quan -= $quantity; // minus the sale quantity from the product quantity
-           $query = $db->query("UPDATE product SET quantiy = ".$row_quan." WHERE Id = '".$id."'");
-           return $this->response->redirect(site_url('/sales'));
-       }else{
-           $message['error'] = "Cannot enter data";
-           return view("add-sale", $message);
+       $Productmodel = new ProductModel();
+
+       if($this->request->getMethod() == 'post'){
+        $data = [
+            'prod_id' => $this->request->getVar('product'),
+            'sale_quantity' => $this->request->getVar('quantity'),
+            'size' => $this->request->getVar('size'),
+            'sale_price' => $this->request->getVar('price'),
+        ];
+
+        $SalesModel->insert($data);
+        $quantity = $Productmodel->find($this->request->getVar('product'));
+        $quan = $quantity['Quantity'];
+        $quan -= $this->request->getVar('quantity');
+        $data = [
+            'Quantity' => $quan,
+        ];
+        $Productmodel->update($this->request->getVar('product'),$data);
+        $this->session = session();
+        $this->session->setFlashdata('msg', 'Sale Added');
+        return redirect()->to('/sale');
        }
+
+       $data['product'] = $Productmodel->findall();
+       $data['base'] = view('add-sale',$data);
+       return view('admin/adminTemplate',$data);
    }
 
    public function edit($id){
-       $SalesModel = new SalesModel();
-       // $data['isedit'] = $isEdit;
-       $data['title']= 'Edit Sale';
-       $data['sale']= $SalesModel->edit($id);
-       $data['base']= view('edit-sale', $data);
-       return view('admin/adminTemplate', $data);
+
+    $SalesModel = new SalesModel();
+    $Productmodel = new ProductModel();
+
+    $data['sales']= $SalesModel->edit($id);
+    $data['product'] = $Productmodel->findall();
+    $data['base']= view('edit-sale', $data);
+    return view('admin/adminTemplate', $data);
    }
 
-
-   public function update($id){ 
+   public function update(){ 
        $SalesModel = new SalesModel();
+       $Productmodel = new ProductModel();
 
+       $id = $this->request->getVar('sale_id');
+
+       if($this->request->getMethod() == "post"){
        $data = [
            'sale_quantity' => $this->request->getVar('quantity'),
            'sale_price' => $this->request->getVar('price'),
        ];
 
        $SalesModel->update($id,$data);
-       return $this->response->redirect(site_url('sales'));
+       $this->session = session();
+       $this->session->setFlashdata('msg', 'Sale updated');
+       return $this->response->redirect(site_url('sale'));
+
+    }
+
    }
 
    public function delete($id){
        $SalesModel = new SalesModel();
        $SalesModel->deleteSale($id);
-       return $this->response->redirect(site_url('sales'));
+       return $this->response->redirect(site_url('sale'));
    }
 
 }
