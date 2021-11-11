@@ -27,7 +27,6 @@ class User extends BaseController{
         helper(['form']);
         echo view('login');
     }
-
     public function login(){
         
         helper(['form']);
