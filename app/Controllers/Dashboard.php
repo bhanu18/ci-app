@@ -4,6 +4,7 @@ use App\Models\AdminModel;
 use App\Models\UserModel;
 use App\Models\productModel;
 use App\Models\SalesModel;
+use App\Models\CalendarModel;
 use Controller\Codeigniter;
 
 class Dashboard extends BaseController{
@@ -26,15 +27,16 @@ class Dashboard extends BaseController{
         $userModel = new UserModel();
         $SalesModel = new SalesModel();
         $Productmodel = new ProductModel();
+        $calendarModel = new CalendarModel();
 
         if($this->user_id == '') return $this->response->redirect(site_url("/user"));
 
         $row = $userModel->VerifyUserRole($this->user_id);
         if($row[0]['role_id'] == '1'){
         $userModel = new UserModel();
-        $data['users'] = $userModel->displayUser();
         $data['sale'] = $SalesModel->displaySales();
         $data['products'] = $Productmodel->findall();
+        $data['calendar'] = $calendarModel->DailySales();
         $data['title'] = 'Dashboard';
         $data['base'] = view('Admin/dashboard',$data);
         return view('admin/adminTemplate',$data);

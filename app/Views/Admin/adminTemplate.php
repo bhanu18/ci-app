@@ -17,6 +17,8 @@
   <link rel="stylesheet" href="/Asset/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
   <!-- iCheck -->
   <link rel="stylesheet" href="/Asset/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+   <!-- fullCalendar -->
+   <link rel="stylesheet" href="/Asset/plugins/fullcalendar/main.css">
   <!-- JQVMap -->
   <link rel="stylesheet" href="Asset/plugins/jqvmap/jqvmap.min.css">
   <!-- Theme style -->
@@ -378,5 +380,8 @@
 <script src="/Asset/plugins/fullcalendar/main.js"></script>
 <!-- AdminLTE for demo purposes -->
 <!-- <script src="/Asset/dist/js/demo.js"></script> -->
+<!-- fullCalendar 2.2.5 -->
+<script src="/Asset/plugins/moment/moment.min.js"></script>
+<script src="/Asset/plugins/fullcalendar/main.js"></script>
 </body>
 </html>
