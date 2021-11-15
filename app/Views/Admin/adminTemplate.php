@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="/Asset/plugins/fontawesome-free/css/all.min.css">
+  <!-- fullCalendar -->
+  <link rel="stylesheet" href="/Asset/plugins/fullcalendar/main.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bootstrap 4 -->
@@ -367,8 +369,13 @@
 <script src="/Asset/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="/Asset/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- jQuery UI -->
+<script src="/Asset/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/Asset/dist/js/adminlte.min.js"></script>
+<!-- fullCalendar 2.2.5 -->
+<script src="/Asset/plugins/moment/moment.min.js"></script>
+<script src="/Asset/plugins/fullcalendar/main.js"></script>
 <!-- AdminLTE for demo purposes -->
 <!-- <script src="/Asset/dist/js/demo.js"></script> -->
 </body>
