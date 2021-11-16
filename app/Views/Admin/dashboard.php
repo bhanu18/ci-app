@@ -215,16 +215,15 @@ $(function() {
                 allDay: true
 
                 },
-                {
-                title: 'All Day Event',
-                start: new Date(y, m, 1),
-                backgroundColor: '#f56954', //red
-                borderColor: '#f56954', //red
-                allDay: true
-            },
-
                 <?php endforeach;?>
                 <?php endif; ?>
+                // {
+            //     title: 'All Day Event',
+            //     start: new Date(y, m, 1),
+            //     backgroundColor: '#f56954', //red
+            //     borderColor: '#f56954', //red
+            //     allDay: true
+            // },
             // {
             //     title: 'Long Event',
             //     start: new Date(y, m, d - 5),
