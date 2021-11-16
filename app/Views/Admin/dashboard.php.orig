@@ -214,14 +214,58 @@ $(function() {
         //Random default events
         events: [
             <?php if($calendar):
+<<<<<<< HEAD
+                foreach ($calendar as $sale):?> {
+                title: '<?php echo $sale->total_sales; ?>',
+                start: new Date('<?php echo $sale->date ;?>'),
+                backgroundColor: '#f39c12',
+||||||| eb69031
+                foreach ($calendar as $sale):?>
+                {
+                    title:'<?php echo $sale->total_sales; ?>',
+                    start: new Date(<?php echo $sale->date ;?>),
+                    end: new Date(<?php echo $sale->date ;?>),
+                    backgroundColor: '#f39c12',
+                    borderColor: '#f56954', //red
+                    allDay: true
+
+                },
+                {
+                title: 'All Day Event',
+                start: new Date(y, m, 1),
+                backgroundColor: '#f56954', //red
+                borderColor: '#f56954', //red
+=======
                 foreach ($calendar as $sale):?>
                 {
                 title:'<?php echo $sale->total_sales; ?>',
                 start: '<?php echo $sale->date; ?>',
                 backgroundColor: '#f56954', //red
                 borderColor: '#f56954', //red
+>>>>>>> b8de6bbeaf0b0ad49d759e2e6d1faed45a52046e
                 allDay: true
+<<<<<<< HEAD
 
+            },
+            //     {
+            //     title: 'All Day Event',
+            //     start: new Date(y, m, 1),
+            //     backgroundColor: '#f56954', //red
+            //     borderColor: '#f56954', //red
+            //     allDay: true
+            // },
+||||||| eb69031
+            },
+=======
+>>>>>>> b8de6bbeaf0b0ad49d759e2e6d1faed45a52046e
+
+<<<<<<< HEAD
+            <?php endforeach;?>
+            <?php endif; ?>
+||||||| eb69031
+                <?php endforeach;?>
+                <?php endif; ?>
+=======
                 },
                 <?php endforeach;?>
                 <?php endif; ?>
@@ -232,6 +276,7 @@ $(function() {
             //     borderColor: '#f56954', //red
             //     allDay: true
             // },
+>>>>>>> b8de6bbeaf0b0ad49d759e2e6d1faed45a52046e
             // {
             //     title: 'Long Event',
             //     start: new Date(y, m, d - 5),
