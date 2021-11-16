@@ -32,10 +32,10 @@ class Database extends Config
 	 */
 	public $default = [
 		'DSN'      => '',
-		'hostname' => '',
-		'username' => '',
-		'password' => "",
-		'database' => "",
+		'hostname' => 'sale-db.mysql.database.azure.com',
+		'username' => 'bhanu23@sale-db',
+		'password' => "uNique1290@",
+		'database' => "newapp",
 		'DBDriver' => 'MySQLi',
 		'DBPrefix' => '',
 		'pConnect' => false,
