@@ -208,12 +208,11 @@ $(function() {
             <?php if($calendar):
                 foreach ($calendar as $sale):?>
                 {
-                    title:'<?php echo $sale->total_sales; ?>',
-                    start: new Date(<?php echo $sale->date ;?>),
-                    end: new Date(<?php echo $sale->date ;?>),
-                    backgroundColor: '#f39c12',
-                    borderColor: '#f56954', //red
-                    allDay: true
+                title:'<?php echo $sale->total_sales; ?>',
+                start: '<?php echo $sale->date; ?>',
+                backgroundColor: '#f56954', //red
+                borderColor: '#f56954', //red
+                allDay: true
 
                 },
                 {
