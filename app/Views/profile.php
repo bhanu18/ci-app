@@ -8,9 +8,9 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="/Asset/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="/public/Asset/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="/Asset/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="/public/Asset/dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -22,7 +22,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="/Asset/index3.html" class="nav-link">Home</a>
+        <a href="/public/Asset/index3.html" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
@@ -63,7 +63,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="/Asset/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <img src="/public/Asset/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Brad Diesel
@@ -79,7 +79,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="/Asset/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="/public/Asset/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   John Pierce
@@ -95,7 +95,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="/Asset/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="/public/Asset/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Nora Silvester
@@ -155,8 +155,8 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="/Asset/index3.html" class="brand-link">
-      <img src="/Asset/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <a href="/public/Asset/index3.html" class="brand-link">
+      <img src="/public/Asset/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">AdminLTE 3</span>
     </a>
 
@@ -165,7 +165,7 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="/Asset/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="/public/Asset/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">Alexander Pierce</a>
@@ -199,19 +199,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/Asset/index.html" class="nav-link">
+                <a href="/public/Asset/index.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dashboard v1</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/Asset/index2.html" class="nav-link">
+                <a href="/public/Asset/index2.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dashboard v2</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/Asset/index3.html" class="nav-link">
+                <a href="/public/Asset/index3.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dashboard v3</p>
                 </a>
@@ -256,7 +256,7 @@
               <div class="card-body box-profile">
                 <div class="text-center">
                   <img class="profile-user-img img-fluid img-circle"
-                       src="/Asset/dist/img/user4-128x128.jpg"
+                       src="/public/Asset/dist/img/user4-128x128.jpg"
                        alt="User profile picture">
                 </div>
 
@@ -339,7 +339,7 @@
                     <!-- Post -->
                     <div class="post">
                       <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="/Asset/dist/img/user1-128x128.jpg" alt="user image">
+                        <img class="img-circle img-bordered-sm" src="/public/Asset/dist/img/user1-128x128.jpg" alt="user image">
                         <span class="username">
                           <a href="#">Jonathan Burke Jr.</a>
                           <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
@@ -372,7 +372,7 @@
                     <!-- Post -->
                     <div class="post clearfix">
                       <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="/Asset/dist/img/user7-128x128.jpg" alt="User Image">
+                        <img class="img-circle img-bordered-sm" src="/public/Asset/dist/img/user7-128x128.jpg" alt="User Image">
                         <span class="username">
                           <a href="#">Sarah Ross</a>
                           <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
@@ -402,7 +402,7 @@
                     <!-- Post -->
                     <div class="post">
                       <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="/Asset/dist/img/user6-128x128.jpg" alt="User Image">
+                        <img class="img-circle img-bordered-sm" src="/public/Asset/dist/img/user6-128x128.jpg" alt="User Image">
                         <span class="username">
                           <a href="#">Adam Jones</a>
                           <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
@@ -412,19 +412,19 @@
                       <!-- /.user-block -->
                       <div class="row mb-3">
                         <div class="col-sm-6">
-                          <img class="img-fluid" src="/Asset/dist/img/photo1.png" alt="Photo">
+                          <img class="img-fluid" src="/public/Asset/dist/img/photo1.png" alt="Photo">
                         </div>
                         <!-- /.col -->
                         <div class="col-sm-6">
                           <div class="row">
                             <div class="col-sm-6">
-                              <img class="img-fluid mb-3" src="/Asset/dist/img/photo2.png" alt="Photo">
-                              <img class="img-fluid" src="/Asset/dist/img/photo3.jpg" alt="Photo">
+                              <img class="img-fluid mb-3" src="/public/Asset/dist/img/photo2.png" alt="Photo">
+                              <img class="img-fluid" src="/public/Asset/dist/img/photo3.jpg" alt="Photo">
                             </div>
                             <!-- /.col -->
                             <div class="col-sm-6">
-                              <img class="img-fluid mb-3" src="/Asset/dist/img/photo4.jpg" alt="Photo">
-                              <img class="img-fluid" src="/Asset/dist/img/photo1.png" alt="Photo">
+                              <img class="img-fluid mb-3" src="/public/Asset/dist/img/photo4.jpg" alt="Photo">
+                              <img class="img-fluid" src="/public/Asset/dist/img/photo1.png" alt="Photo">
                             </div>
                             <!-- /.col -->
                           </div>
@@ -624,12 +624,12 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="/Asset/plugins/jquery/jquery.min.js"></script>
+<script src="/public/Asset/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="/Asset/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/public/Asset/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
-<script src="/Asset/dist/js/adminlte.min.js"></script>
+<script src="/public/Asset/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="/Asset/dist/js/demo.js"></script>
+<script src="/public/Asset/dist/js/demo.js"></script>
 </body>
 </html>
