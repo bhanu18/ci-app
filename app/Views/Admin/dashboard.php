@@ -2,9 +2,7 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
-                <div class="card col-md-6 col-sm-12">
-            <div class="col-6">
+            <div class="col-md-6 col-sm-12">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Sales</h3>
@@ -34,10 +32,18 @@
                                     <td><?php echo $sales['date'];?></td>
                                     <td><?php echo $sales['sale_quantity'];?></td>
                                     <td><?php echo $sales['sale_price'];?></td>
-                                    <td><a href="<?php echo base_url('sale/edit/'.$sales['sale_id']);?>"
-                                            class="btn btn-primary">edit</a>
-                                        <a href="<?php echo base_url('sale/delete/'.$sales['sale_id']);?>"
-                                            class="btn btn-danger">delete</a>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default dropdown-toggle dropdown-icon"
+                                                data-toggle="dropdown">
+                                                <span class="sr-only">Toggle Dropdown</span>
+                                            </button>
+                                            <div class="dropdown-menu" role="menu">
+                                                <a href="<?php echo base_url('sale/edit/'.$sales['sale_id']);?>"
+                                                    class="dropdown-item">edit</a>
+                                                <a href="<?php echo base_url('sale/delete/'.$sales['sale_id']);?>"
+                                                    class="dropdown-item">delete</a>
+                                            </div>
                                     </td>
                                 </tr>
                                 <?php endforeach;?>
@@ -59,8 +65,8 @@
                 </div>
 
             </div>
-            <div class="col-6">
-            <div class="card">
+            <div class="col-md-6 col-sm-12">
+                <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Products</h3>
                         <?php if(session()->get('msg')): ?>
@@ -69,7 +75,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                    <table id="example2" class="table table-bordered table-hover">
+                        <table id="example2" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -114,26 +120,18 @@
             <!-- row ending -->
         </div>
         <!-- /.col -->
-
-
-        <div class="card card-primary">
-            <div class="card-body  p-0">
-                <div id="calendar"></div>
-            </div>
-        </div>
-        <!-- /.col -->
         <div class="row justify-content-center">
-        <div class="col-8">
-            <div class="card card-primary">
-                <div class="card-body p-0">
-                    <!-- THE CALENDAR -->
-                    <div id="calendar"></div>
+            <div class="col-md-8 col-sm-12">
+                <div class="card card-primary">
+                    <div class="card-body p-0">
+                        <!-- THE CALENDAR -->
+                        <div id="calendar"></div>
+                    </div>
+                    <!-- /.card-body -->
                 </div>
-                <!-- /.card-body -->
+                <!-- /.card -->
             </div>
-            <!-- /.card -->
         </div>
-    </div>
     </div>
     <!-- /.row -->
     </div>
@@ -186,7 +184,6 @@ $(function() {
     // var Draggable = FullCalendar.Draggable;
 
     var containerEl = document.getElementById('external-events');
-    // var checkbox = document.getElementById('drop-remove');
     var checkbox = document.getElementById('drop-remove');
     var calendarEl = document.getElementById('calendar');
 
@@ -194,15 +191,6 @@ $(function() {
     // -----------------------------------------------------------------
 
     // new Draggable(containerEl, {
-    //   itemSelector: '.external-event',
-    //   eventData: function(eventEl) {
-    //     return {
-    //       title: eventEl.innerText,
-    //       backgroundColor: window.getComputedStyle( eventEl ,null).getPropertyValue('background-color'),
-    //       borderColor: window.getComputedStyle( eventEl ,null).getPropertyValue('background-color'),
-    //       textColor: window.getComputedStyle( eventEl ,null).getPropertyValue('color'),
-    //     };
-    //   }
     //     itemSelector: '.external-event',
     //     eventData: function(eventEl) {
     //         return {
@@ -224,77 +212,25 @@ $(function() {
         },
         themeSystem: 'bootstrap',
         //Random default events
-        events: [{
         events: [
             <?php if($calendar):
-                foreach ($calendar as $sale):?>
-                {
-                    title:'<?php echo $sale->total_sales; ?>',
-                    start: new Date(<?php echo $sale->date ;?>),
-                    end: new Date(<?php echo $sale->date ;?>),
-                    backgroundColor: '#f39c12',
-                    borderColor: '#f56954', //red
-                    allDay: true
-
-                },
-                {
-                title: 'All Day Event',
-                start: new Date(y, m, 1),
-                backgroundColor: '#f56954', //red
-                borderColor: '#f56954', //red
+                foreach ($calendar as $sale):?> {
+                title: '<?php echo $sale->total_sales; ?>',
+                start: new Date('<?php echo $sale->date ;?>'),
+                backgroundColor: '#f39c12',
                 allDay: true
-            },
-            {
-                title: 'Long Event',
-                start: new Date(y, m, d - 5),
-                end: new Date(y, m, d - 2),
-                backgroundColor: '#f39c12', //yellow
-                borderColor: '#f39c12' //yellow
-            },
-            {
-                title: 'Meeting',
-                start: new Date(y, m, d, 10, 30),
-                allDay: false,
-                backgroundColor: '#0073b7', //Blue
-                borderColor: '#0073b7' //Blue
-            },
-            {
-                title: 'Lunch',
-                start: new Date(y, m, d, 12, 0),
-                end: new Date(y, m, d, 14, 0),
-                allDay: false,
-                backgroundColor: '#00c0ef', //Info (aqua)
-                borderColor: '#00c0ef' //Info (aqua)
-            },
-            {
-                title: 'Birthday Party',
-                start: new Date(y, m, d + 1, 19, 0),
-                end: new Date(y, m, d + 1, 22, 30),
-                allDay: false,
-                backgroundColor: '#00a65a', //Success (green)
-                borderColor: '#00a65a' //Success (green)
-            },
-            {
-                title: 'Click for Google',
-                start: new Date(y, m, 28),
-                end: new Date(y, m, 29),
-                url: 'https://www.google.com/',
-                backgroundColor: '#3c8dbc', //Primary (light-blue)
-                borderColor: '#3c8dbc' //Primary (light-blue)
-            }
-        ],
-        editable: true,
-        droppable: true, // this allows things to be dropped onto the calendar !!!
-        drop: function(info) {
-            // is the "remove after drop" checkbox checked?
-            if (checkbox.checked) {
-                // if so, remove the element from the "Draggable Events" list
-                info.draggedEl.parentNode.removeChild(info.draggedEl);
-            }
-        }
 
-                <?php endforeach;?>
-                <?php endif; ?>
+            },
+            //     {
+            //     title: 'All Day Event',
+            //     start: new Date(y, m, 1),
+            //     backgroundColor: '#f56954', //red
+            //     borderColor: '#f56954', //red
+            //     allDay: true
+            // },
+
+            <?php endforeach;?>
+            <?php endif; ?>
             // {
             //     title: 'Long Event',
             //     start: new Date(y, m, d - 5),
