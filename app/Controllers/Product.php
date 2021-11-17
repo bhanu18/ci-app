@@ -80,22 +80,21 @@ class Product extends BaseController
 
 		$product = new ProductModel();
 
-		if($this->request->getMethod() == 'Post'){
+		if($this->request->getMethod() == 'post'){
 			$data = [
 			'name' => $this->request->getVar('Name'),
 			'Quantity' => $this->request->getVar('Quantity'),
 			'Price' => $this->request->getVar('Price')
 			];
-
-			$product->update($id,$data);
+			$id = $this->request->getVar('ID');
+			$product->update($id, $data);
 			$this->session = session();
             $this->session->setFlashdata('msg', 'Product is Updated');
-			return redirect()-to('product');
+			return redirect()->to('/product');
 		}else{
 		$this->session = session();
         $this->session->setFlashdata('msg', 'Product is not Updated');
-		$data['base'] = view('editProduct');
-		return view('Admin/adminTemplate',$data);
+		return redirect()->to('/product');
 		}
 	}
 
@@ -103,7 +102,7 @@ class Product extends BaseController
 		$product = new ProductModel();
 
 		$product->delete($id);
-		return redirect()-to('product');
+		return redirect()->to('product');
 	}
       
 	public function check(){
