@@ -236,8 +236,8 @@ class User extends BaseController{
         $data['roles'] = $user->showRoles();
         $data['groups'] = $user->showGroup();
         $data['title'] = 'Add User';
-        $data['base'] = view('admin/adduser',$data);
-        return view('admin/adminTemplate',$data);
+        $data['base'] = view('Admin/adduser',$data);
+        return view('Admin/adminTemplate',$data);
     }
     }
 
@@ -255,8 +255,8 @@ class User extends BaseController{
         }else{
          $data['profile'] = $user->showProfile($id);
          $data['title'] = 'Profile';
-        $data['base'] = view('admin/Profile',$data);
-        return view('admin/adminTemplate',$data);
+        $data['base'] = view('Admin/Profile',$data);
+        return view('Admin/adminTemplate',$data);
         }
     }
 
@@ -274,7 +274,7 @@ class User extends BaseController{
          $data['users'] = $user->showSingleUser($id);
          $data['roles'] = $user->showRoles();
          $data['groups'] = $user->showGroup();
-         $data['base'] = view('admin/edit',$data);
+         $data['base'] = view('Admin/edit',$data);
          return view('Admin/adminTemplate',$data);
   
       }
@@ -342,8 +342,8 @@ class User extends BaseController{
             return redirect()->to('dashboard');
 
         }else{
-            $data['base'] = view('admin/addGroup');
-            return view('admin/adminTemplate',$data);
+            $data['base'] = view('Admin/addGroup');
+            return view('Admin/adminTemplate',$data);
         }
     }
 }

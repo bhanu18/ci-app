@@ -39,12 +39,12 @@ class Dashboard extends BaseController{
         $data['calendar'] = $calendarModel->DailySales();
         $data['title'] = 'Dashboard';
         $data['base'] = view('Admin/dashboard',$data);
-        return view('admin/adminTemplate',$data);
+        return view('Admin/adminTemplate',$data);
         }else{
             $data['base'] = '<div class="alert alert-danger" role="alert">
             Unauthorize access
           </div>';
-          return view('admin/adminTemplate',$data);
+          return view('Admin/adminTemplate',$data);
         }
     }
 

@@ -56,12 +56,12 @@ class Admin extends BaseController
                 else{
 
 					$data['errors'] = 'No user';
-                    return view('admin/login',$data);
+                    return view('Admin/login',$data);
 
 				}	
             }
             else{
-                return view('admin/login',$data);
+                return view('Admin/login',$data);
             }
     }
     public function logout(){
@@ -100,8 +100,8 @@ class Admin extends BaseController
         return $this->response->redirect(site_url('Dashboard'));
     }else{
         $data['validation'] = $this->validator;
-        $data['base'] = view('admin/dashboard', $data);
-        return view('admin/adminTemplate', $data);
+        $data['base'] = view('Admin/dashboard', $data);
+        return view('Admin/adminTemplate', $data);
     }
     }
 
@@ -116,7 +116,7 @@ class Admin extends BaseController
        $data['users'] = $user->showSingleUser($id);
        $data['roles'] = $user->showRoles();
        $data['groups'] =$user->showGroup();
-       $data['base'] = view('admin/edit',$data);
+       $data['base'] = view('Admin/edit',$data);
        return view('Admin/adminTemplate',$data);
 
     }
@@ -147,7 +147,7 @@ class Admin extends BaseController
     }
     public function forgotPassword(){
         helper(['form']);
-        echo view('admin/resetPassword');
+        echo view('Admin/resetPassword');
         
     }
     public function verifyUser(){

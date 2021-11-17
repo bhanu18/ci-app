@@ -36,7 +36,7 @@ class sale extends BaseController{
        $data['product'] = $Productmodel->orderby('Id')->findall();
        $data['title'] = 'Add/Edit Sale';
        $data['base'] = view('add-sale', $data);
-       return view('admin/adminTemplate',$data);    
+       return view('Admin/adminTemplate',$data);    
      }
 
    public function add(){
@@ -66,7 +66,7 @@ class sale extends BaseController{
 
        $data['product'] = $Productmodel->findall();
        $data['base'] = view('add-sale',$data);
-       return view('admin/adminTemplate',$data);
+       return view('Admin/adminTemplate',$data);
    }
 
    public function edit($id){
@@ -77,7 +77,7 @@ class sale extends BaseController{
     $data['sales']= $SalesModel->edit($id);
     $data['product'] = $Productmodel->findall();
     $data['base']= view('edit-sale', $data);
-    return view('admin/adminTemplate', $data);
+    return view('Admin/adminTemplate', $data);
    }
 
    public function update(){ 

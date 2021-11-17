@@ -31,7 +31,7 @@ class Product extends BaseController
 		if($role[0]['role_id'] == 1){
 		$data['products'] = $product->findall();
 		$data['base'] = view('viewProducts',$data);
-		return view('admin/adminTemplate',$data);
+		return view('Admin/adminTemplate',$data);
 		}else{
 			echo '<div class="alert alert-danger"> Unauthorize Access</div>';
 		}
@@ -59,12 +59,12 @@ class Product extends BaseController
 			$this->session = session();
 			$this->session->setFlashdata('msg', 'Product is not Added');
 			$data['base'] = view('addProduct');
-			return view('admin/adminTemplate',$data);
+			return view('Admin/adminTemplate',$data);
 			}
 	}else{
 		//echo 'Display add';
 		$data['base'] = view('addProduct');
-		return view('admin/adminTemplate',$data);
+		return view('Admin/adminTemplate',$data);
 	}
 	}
 
@@ -73,7 +73,7 @@ class Product extends BaseController
 
 		$data['product'] = $product->where('ID',$id)->first();
 		$data['base'] = view('editProduct',$data);
-		return view('admin/admintemplate',$data);
+		return view('Admin/admintemplate',$data);
 	}
 
 	public function update(){
@@ -95,7 +95,7 @@ class Product extends BaseController
 		$this->session = session();
         $this->session->setFlashdata('msg', 'Product is not Updated');
 		$data['base'] = view('editProduct');
-		return view('admin/adminTemplate',$data);
+		return view('Admin/adminTemplate',$data);
 		}
 	}
 
