@@ -251,7 +251,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo site_url('dashboard');?>" class="nav-link">
+                <a href="<?php echo site_url('user/view');?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>View Users</p>
                 </a>
