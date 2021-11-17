@@ -30,11 +30,30 @@ class Database extends Config
 	 *
 	 * @var array
 	 */
+	// public $default = [
+	// 	'DSN'      => '',
+	// 	'hostname' => 'sale-db.mysql.database.azure.com',
+	// 	'username' => 'bhanu23@sale-db',
+	// 	'password' => "uNique1290@",
+	// 	'database' => "newapp",
+	// 	'DBDriver' => 'MySQLi',
+	// 	'DBPrefix' => '',
+	// 	'pConnect' => false,
+	// 	'DBDebug'  => (ENVIRONMENT !== 'production'),
+	// 	'charset'  => 'utf8',
+	// 	'DBCollat' => 'utf8_general_ci',
+	// 	'swapPre'  => '',
+	// 	'encrypt'  => false,
+	// 	'compress' => false,
+	// 	'strictOn' => false,
+	// 	'failover' => [],
+	// 	'port'     => 3306,
+	// ];
 	public $default = [
 		'DSN'      => '',
-		'hostname' => 'sale-db.mysql.database.azure.com',
-		'username' => 'bhanu23@sale-db',
-		'password' => "uNique1290@",
+		'hostname' => 'localhost',
+		'username' => 'root',
+		'password' => "",
 		'database' => "newapp",
 		'DBDriver' => 'MySQLi',
 		'DBPrefix' => '',

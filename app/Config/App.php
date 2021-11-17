@@ -23,8 +23,8 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
-	// public $baseURL = 'https://ci-newapp.azurewebsites.net';
-	 public $baseURL = 'https://paulapp.azurewebsites.net';
+	//  public $baseURL = 'https://paulapp.azurewebsites.net';
+	public $baseURL = 'https://localhost:8080';
 
 	/**
 	 * --------------------------------------------------------------------------
@@ -37,7 +37,7 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $indexPage = 'index.php';
+	public $indexPage = '';
 
 	/**
 	 * --------------------------------------------------------------------------
