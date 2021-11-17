@@ -27,7 +27,7 @@ class sale extends BaseController{
         $data['title'] = 'Sales';
         $data['sale'] = $SalesModel->displaySales();
         $data['base'] = view('viewSales',$data);
-        return view('admin/adminTemplate',$data);
+        return view('Admin/adminTemplate',$data);
    }
 
    public function create(){

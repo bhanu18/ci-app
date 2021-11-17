@@ -73,7 +73,7 @@ class Product extends BaseController
 
 		$data['product'] = $product->where('ID',$id)->first();
 		$data['base'] = view('editProduct',$data);
-		return view('Admin/admintemplate',$data);
+		return view('Admin/adminTemplate',$data);
 	}
 
 	public function update(){

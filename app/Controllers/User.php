@@ -255,7 +255,7 @@ class User extends BaseController{
         }else{
          $data['profile'] = $user->showProfile($id);
          $data['title'] = 'Profile';
-        $data['base'] = view('Admin/Profile',$data);
+        $data['base'] = view('Admin/profile',$data);
         return view('Admin/adminTemplate',$data);
         }
     }
