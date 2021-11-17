@@ -2,7 +2,7 @@
 
 use App\Models\AdminModel;
 use App\Models\UserModel;
-use App\Models\productModel;
+use App\Models\ProductModel;
 use App\Models\SalesModel;
 use App\Models\CalendarModel;
 use Controller\Codeigniter;
