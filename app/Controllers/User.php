@@ -241,6 +241,13 @@ class User extends BaseController{
     }
     }
 
+    public function view(){
+        $user = new UserModel();
+
+        $data['users'] = $user->displayUser();
+        $data['base'] = view('Admin/view-user',$data);
+        return view('Admin/adminTemplate',$data);
+    }
     public function profile(){
 
         $id = $this->user_id;
