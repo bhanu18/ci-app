@@ -73,6 +73,8 @@ class User extends BaseController{
 
 				}	
             }
+
+            return view('login');
     }
     public function logout(){
 

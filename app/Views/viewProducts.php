@@ -15,7 +15,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
-                                    <th>Quantiy</th>
+                                    <th>Quantity</th>
                                     <th>Price</th>
                                     <th>Action</th>
                                 </tr>

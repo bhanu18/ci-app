@@ -84,18 +84,59 @@ class sale extends BaseController{
        $SalesModel = new SalesModel();
        $Productmodel = new ProductModel();
 
-       $id = $this->request->getVar('sale_id');
+       $id = $this->request->getVar('sale-id');
 
        if($this->request->getMethod() == "post"){
+
        $data = [
            'sale_quantity' => $this->request->getVar('quantity'),
            'sale_price' => $this->request->getVar('price'),
        ];
 
-       $SalesModel->update($id,$data);
-       $this->session = session();
-       $this->session->setFlashdata('msg', 'Sale updated');
-       return $this->response->redirect(site_url('sale'));
+       $current_sale_quantity = $SalesModel->get_sale_quantity($id);
+
+    //    print_r($current_sale_quantity);
+    //    die;
+
+       if($this->request->getVar('quantity') > $current_sale_quantity[0]['sale_quantity']){
+
+           $difference =  $this->request->getVar('quantity') - $current_sale_quantity[0]['sale_quantity']; // finding the diff between current sale quantity and updated sale quantity
+        //    echo $difference;
+        //    die;
+           $quantity = $Productmodel->find($current_sale_quantity[0]['prod_id']);
+           $current_product_quantity = $quantity['Quantity']; 
+           $current_product_quantity -= $difference; // minus the diff to current product quantity
+           $prod_data = [
+            'Quantity' => $current_product_quantity,
+           ];
+           $SalesModel->update($id,$data);
+           $Productmodel->update($current_sale_quantity[0]['prod_id'], $prod_data);
+           $this->session = session();
+           $this->session->setFlashdata('msg', 'Sale updated');
+           return $this->response->redirect(site_url('sale'));
+       }
+       elseif($this->request->getVar('quantity') < $current_sale_quantity[0]['sale_quantity']){
+
+        $minus_diff = $current_sale_quantity[0]['sale_quantity'] - $this->request->getVar('quantity'); // finding the diff between current sale quantity and updated sale quantity
+        // echo $minus_diff;
+        // die;
+        $prod_quantity = $Productmodel->find($current_sale_quantity[0]['prod_id']);
+        $current_prod_quantity = $prod_quantity['Quantity'];
+        $current_prod_quantity += $minus_diff; // plus the diff to current product quantity
+        $product_update_data = [
+            'Quantity' => $current_prod_quantity,
+        ];
+        $SalesModel->update($id,$data);
+        $Productmodel->update($current_sale_quantity[0]['prod_id'], $product_update_data);
+        $this->session = session();
+        $this->session->setFlashdata('msg', 'Sale updated');
+        return $this->response->redirect(site_url('sale'));
+    }
+       else{
+           $this->session = session();
+           $this->session->setFlashdata('msg', 'Sale not updated');
+           return $this->response->redirect(site_url('sale'));
+       }
 
     }
 
@@ -103,8 +144,27 @@ class sale extends BaseController{
 
    public function delete($id){
        $SalesModel = new SalesModel();
+       $Productmodel = new ProductModel();
+
+       $current_sale_quantity = $SalesModel->get_sale_quantity($id);
+       $quantity = $Productmodel->find($current_sale_quantity[0]['prod_id']);
+       $updated_quantity = $quantity['Quantity'];
+       $updated_quantity += $current_sale_quantity[0]['sale_quantity']; // add the current sale quantity to product quantity
+       $data = [
+           "Quantity" => $updated_quantity,
+       ];
+       $Productmodel->update($current_sale_quantity[0]['prod_id'], $data);
        $SalesModel->deleteSale($id);
+       $this->session = session();
+       $this->session->setFlashdata('msg', 'Sale deleted');
        return $this->response->redirect(site_url('sale'));
+   }
+
+   function test($id){
+    $SalesModel = new SalesModel();
+    $current_sale_quantity = $SalesModel->get_sale_quantity($id);
+
+    print_r($current_sale_quantity);
    }
 
 }

@@ -141,7 +141,7 @@
 <!-- /.content -->
 </div>
 <!-- jQuery -->
-<script src="<?php echo site_url('public/Asset/plugins/jquery/jquery.min.js');?>"></script>
+<script src="<?php echo site_url('Asset/plugins/jquery/jquery.min.js');?>"></script>
 <!-- Page specific script -->
 <script>
 $(function() {

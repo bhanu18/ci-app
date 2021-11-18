@@ -32,7 +32,7 @@
                 </div>
                 <div class="form-group">
                     <label>Sale Quantity</label>
-                    <input type="number" readonly name="quantity" class="form-control" id=""  value="<?php echo $sale['sale_quantity'];?>">
+                    <input type="number" name="quantity" class="form-control" id=""  value="<?php echo $sale['sale_quantity'];?>">
                 </div>
                 <div class="form-group">
                     <label>Size</label>
