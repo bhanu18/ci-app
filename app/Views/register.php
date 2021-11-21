@@ -10,11 +10,11 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="/Asset/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="public/Asset/plugins/fontawesome-free/css/all.min.css">
     <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="/Asset/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <link rel="stylesheet" href="public/Asset/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="/Asset/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="public/Asset/dist/css/adminlte.min.css">
 </head>
 
 <body class="hold-transition register-page">
@@ -113,11 +113,11 @@
     <!-- /.register-box -->
 
     <!-- jQuery -->
-    <script src="/Asset/plugins/jquery/jquery.min.js"></script>
+    <script src="public/Asset/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
-    <script src="/Asset/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="public/Asset/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="/Asset/dist/js/adminlte.min.js"></script>
+    <script src="public/Asset/dist/js/adminlte.min.js"></script>
 </body>
 
 </html>
