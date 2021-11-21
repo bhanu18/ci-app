@@ -228,7 +228,7 @@ class User extends BaseController{
             $user->insert($data);
             $this->session = session();
             $this->session->setFlashdata('msg', 'User is added');
-            return redirect()->to('/dashboard');
+            return redirect()->to('/user/view');
         }
         else{
             $data['validation'] = $this->validator;
@@ -272,7 +272,7 @@ class User extends BaseController{
     public function delete($id){
         $user = new UserModel();
        $user->where('user_id',$id)->delete($id);
-        return $this->response->redirect(site_url('dashboard'));
+        return $this->response->redirect(site_url('user/view'));
     }
 
     public function edit($id){

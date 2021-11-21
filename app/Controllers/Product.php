@@ -39,6 +39,9 @@ class Product extends BaseController
 
 
 	public function add(){
+
+		if($this->user_id == '') return $this->response->redirect(site_url("/user"));
+
 		$product = new ProductModel();
 
 		if($this->request->getMethod() == 'post'){
@@ -69,6 +72,8 @@ class Product extends BaseController
 	}
 
 	public function edit($id){
+		if($this->user_id == '') return $this->response->redirect(site_url("/user"));
+
 		$product = new ProductModel();
 
 		$data['product'] = $product->where('ID',$id)->first();
@@ -77,6 +82,8 @@ class Product extends BaseController
 	}
 
 	public function update(){
+
+		if($this->user_id == '') return $this->response->redirect(site_url("/user"));
 
 		$product = new ProductModel();
 
@@ -99,19 +106,22 @@ class Product extends BaseController
 	}
 
 	public function delete($id){
+
+		if($this->user_id == '') return $this->response->redirect(site_url("/user"));
+
 		$product = new ProductModel();
 
 		$product->delete($id);
 		return redirect()->to('product');
 	}
       
-	public function check(){
+	// public function check(){
 
-		$userModel = new UserModel();
-		$role = $userModel->showSingleUser($this->user_id);
+	// 	$userModel = new UserModel();
+	// 	$role = $userModel->showSingleUser($this->user_id);
 
-		print_r($role);
-	}
+	// 	print_r($role);
+	// }
 
 
 }

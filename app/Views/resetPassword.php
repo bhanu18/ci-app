@@ -48,9 +48,9 @@
       <p class="mt-3 mb-1">
         <a href="<?php echo site_url('user');?>">Login</a>
       </p>
-      <p class="mb-0">
+      <!-- <p class="mb-0">
         <a href="<?php echo site_url('user/register');?>" class="text-center">Register a new membership</a>
-      </p>
+      </p> -->
     </div>
     <!-- /.login-card-body -->
   </div>

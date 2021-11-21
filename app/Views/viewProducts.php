@@ -7,6 +7,9 @@
                         <?php if(session()->get('msg')): ?>
                             <div class="alert alert-success" role="alert"><?php echo session()->get('msg'); ?></div>
                             <?php endif; ?>
+                            <div class="card-tools">
+                        <a href="<<?php echo site_url('/products/add');?>" class="btn btn-primary float-right"><i class="fas fa-plus"></i> Add Sale</a>
+                        </div>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">

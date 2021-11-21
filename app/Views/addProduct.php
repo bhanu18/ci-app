@@ -13,15 +13,15 @@
             <div class="card-body">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Product Name</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" name="name">
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="name" required>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Quantity</label>
-                    <input type="number" class="form-control" id="exampleInputPassword1" name="Quantity">
+                    <input type="number" class="form-control" id="exampleInputPassword1" name="Quantity" required>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Price</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" name="Price">
+                    <input type="text" class="form-control" id="exampleInputPassword1" name="Price" required>
                 </div>
                 <!-- <div class="form-group">
                     <label for="exampleInputFile">File input</label>
@@ -35,10 +35,10 @@
                         </div>
                     </div>
                 </div> -->
-                <div class="form-check">
+                <!-- <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
+                </div> -->
             </div>
             <!-- /.card-body -->
 

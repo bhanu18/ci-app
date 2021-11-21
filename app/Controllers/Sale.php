@@ -101,11 +101,12 @@ class sale extends BaseController{
        if($this->request->getVar('quantity') > $current_sale_quantity[0]['sale_quantity']){
 
            $difference =  $this->request->getVar('quantity') - $current_sale_quantity[0]['sale_quantity']; // finding the diff between current sale quantity and updated sale quantity
-        //    echo $difference;
-        //    die;
+        //    echo $difference."<br>";
            $quantity = $Productmodel->find($current_sale_quantity[0]['prod_id']);
            $current_product_quantity = $quantity['Quantity']; 
-           $current_product_quantity -= $difference; // minus the diff to current product quantity
+           $current_product_quantity += $difference; // minus the diff to current product quantity
+        //    echo $current_product_quantity;
+        //    die;
            $prod_data = [
             'Quantity' => $current_product_quantity,
            ];
@@ -118,11 +119,14 @@ class sale extends BaseController{
        elseif($this->request->getVar('quantity') < $current_sale_quantity[0]['sale_quantity']){
 
         $minus_diff = $current_sale_quantity[0]['sale_quantity'] - $this->request->getVar('quantity'); // finding the diff between current sale quantity and updated sale quantity
-        // echo $minus_diff;
-        // die;
+        // echo $minus_diff.'<br>';
         $prod_quantity = $Productmodel->find($current_sale_quantity[0]['prod_id']);
         $current_prod_quantity = $prod_quantity['Quantity'];
-        $current_prod_quantity += $minus_diff; // plus the diff to current product quantity
+        $current_prod_quantity -= $minus_diff; // plus the diff to current product quantity
+
+        // echo $current_prod_quantity;
+        // die;
+
         $product_update_data = [
             'Quantity' => $current_prod_quantity,
         ];
@@ -160,12 +164,12 @@ class sale extends BaseController{
        return $this->response->redirect(site_url('sale'));
    }
 
-   function test($id){
-    $SalesModel = new SalesModel();
-    $current_sale_quantity = $SalesModel->get_sale_quantity($id);
+//    function test($id){
+//     $SalesModel = new SalesModel();
+//     $current_sale_quantity = $SalesModel->get_sale_quantity($id);
 
-    print_r($current_sale_quantity);
-   }
+//     print_r($current_sale_quantity);
+//    }
 
 }
 

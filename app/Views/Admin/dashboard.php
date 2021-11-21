@@ -9,10 +9,13 @@
                         <?php if(session()->get('msg')): ?>
                         <div class="alert alert-success" role="alert"><?php echo session()->get('msg'); ?></div>
                         <?php endif; ?>
+                        <div class="card-tools">
+                        <a href="<?php echo site_url('/sale/add');?>" class="btn btn-primary float-right"><i class="fas fa-plus"></i> Add Sale</a>
+                        </div>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body">
-                        <table id="example2" class="table table-bordered table-hover">
+                    <div class="card-body table-responsive">
+                        <table id="example2" class="table table-head-fixed text-nowrap">
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
@@ -72,6 +75,9 @@
                         <?php if(session()->get('msg')): ?>
                         <div class="alert alert-success" role="alert"><?php echo session()->get('msg'); ?></div>
                         <?php endif; ?>
+                        <div class="card-tools">
+                        <a href="<<?php echo site_url('/products/add');?>" class="btn btn-primary float-right"><i class="fas fa-plus"></i> Add Sale</a>
+                        </div>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -93,10 +99,18 @@
                                     <td><?php echo $product['Name']; ?> </td>
                                     <td><?php echo $product['Quantity']; ?> </td>
                                     <td><?php echo $product['Price']; ?> </td>
-                                    <td><a class="btn btn-primary"
+                                    <td>
+                                    <div class="btn-group">
+                                            <button type="button" class="btn btn-default dropdown-toggle dropdown-icon"
+                                                data-toggle="dropdown">
+                                                <span class="sr-only">Toggle Dropdown</span>
+                                            </button>    
+                                            <div class="dropdown-menu" role="menu">
+                                    <a class="btn btn-primary dropdown-item"
                                             href="<?php echo site_url('product/edit/').$product['ID'];?>">Edit</a> <a
-                                            class="btn btn-danger"
+                                            class="btn btn-danger dropdown-item"
                                             href="<?php echo site_url('product/delete/').$product['ID'];?>">Delete</a>
+                                </div>
                                     </td>
                                 </tr>
                                 <?php endforeach;?>

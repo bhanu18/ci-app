@@ -1,8 +1,8 @@
-<div class="row">
+<!-- <div class="row">
     <div class="col-lg-6">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">Products</h5>
 
                 <p class="card-text">
                     Some quick example text to build on the card title and make up the bulk of the card's
@@ -26,10 +26,10 @@
                 <a href="#" class="card-link">Another link</a>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- /.card
           /.col-md-6 -->
-    <div class="col-lg-6">
+    <!-- <div class="col-lg-6">
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title m-0">Featured</h5>
@@ -53,16 +53,16 @@
                 <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- /.col-md-6 -->
-</div> 
+<!-- </div>  -->
 <!-- /.row -->
 <div class="container-fluid">
         <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Users</h3>
+                        <h3 class="card-title">Products</h3>
                         <?php if(session()->get('msg')): ?>
                             <div class="alert alert-success" role="alert"> <?php echo session()->get('msg'); ?></div>
                             <?php endif; ?>
@@ -76,7 +76,6 @@
                                     <th>Name</th>
                                     <th>Quantiy</th>
                                     <th>Price</th>
-                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -87,11 +86,11 @@
                                     <td><?php echo $product['Name']; ?> </td>
                                     <td><?php echo $product['Quantity']; ?> </td>
                                     <td><?php echo $product['Price']; ?> </td>
-                                    <td><a class="btn btn-primary"
+                                    <!-- <td><a class="btn btn-primary"
                                             href="<?php echo site_url('product/edit/').$product['ID'];?>">Edit</a> <a
                                             class="btn btn-danger"
                                             href="<?php echo site_url('product/delete/').$product['ID'];?>">Delete</a>
-                                    </td>
+                                    </td> -->
                                 </tr>
                                 <?php endforeach;?>
                                 <?php endif; ?>
