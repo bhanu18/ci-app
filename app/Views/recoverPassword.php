@@ -10,11 +10,11 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="<?php echo site_url('Asset/plugins/fontawesome-free/css/all.min.css');?>">
+    <link rel="stylesheet" href="<?php echo site_url('public/Asset/plugins/fontawesome-free/css/all.min.css');?>">
     <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="<?php echo site_url('Asset/plugins/icheck-bootstrap/icheck-bootstrap.min.css');?>">
+    <link rel="stylesheet" href="<?php echo site_url('public/Asset/plugins/icheck-bootstrap/icheck-bootstrap.min.css');?>">
     <!-- Theme style -->
-    <link rel="stylesheet" href="<?php echo site_url('Asset/dist/css/adminlte.min.css');?>">
+    <link rel="stylesheet" href="<?php echo site_url('public/Asset/dist/css/adminlte.min.css');?>">
 </head>
 
 <body class="hold-transition login-page">
@@ -66,11 +66,11 @@
     </div>
     <!-- /.login-box -->
     <!-- jQuery -->
-    <script src="<?php echo site_url('Asset/plugins/jquery/jquery.min.js');?>"></script>
+    <script src="<?php echo site_url('public/Asset/plugins/jquery/jquery.min.js');?>"></script>
     <!-- Bootstrap 4 -->
-    <script src="<?php echo site_url('Asset/plugins/bootstrap/js/bootstrap.bundle.min.js');?>"></script>
+    <script src="<?php echo site_url('public/Asset/plugins/bootstrap/js/bootstrap.bundle.min.js');?>"></script>
     <!-- AdminLTE App -->
-    <script src="<?php echo site_url('Asset/dist/js/adminlte.min.js');?>"></script>
+    <script src="<?php echo site_url('public/Asset/dist/js/adminlte.min.js');?>"></script>
 </body>
 
 </html>
