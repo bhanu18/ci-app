@@ -30,11 +30,30 @@ class Database extends Config
 	 *
 	 * @var array
 	 */
+	// public $default = [
+	// 	'DSN'      => '',
+	// 	'hostname' => 'saleinvdb.mysql.database.azure.com',
+	// 	'username' => 'bhanu23@saleinvdb',
+	// 	'password' => "uNique1290@",
+	// 	'database' => "newapp",
+	// 	'DBDriver' => 'MySQLi',
+	// 	'DBPrefix' => '',
+	// 	'pConnect' => false,
+	// 	'DBDebug'  => (ENVIRONMENT !== 'production'),
+	// 	'charset'  => 'utf8',
+	// 	'DBCollat' => 'utf8_general_ci',
+	// 	'swapPre'  => '',
+	// 	'encrypt'  => false,
+	// 	'compress' => false,
+	// 	'strictOn' => false,
+	// 	'failover' => [],
+	// 	'port'     => 3306,
+	// ];
 	public $default = [
 		'DSN'      => '',
-		'hostname' => 'saleinvdb.mysql.database.azure.com',
-		'username' => 'bhanu23@saleinvdb',
-		'password' => "uNique1290@",
+		'hostname' => 'saledb.cmv2gp5vlvfr.ap-southeast-1.rds.amazonaws.com',
+		'username' => 'admin',
+		'password' => "uNique1290",
 		'database' => "newapp",
 		'DBDriver' => 'MySQLi',
 		'DBPrefix' => '',
