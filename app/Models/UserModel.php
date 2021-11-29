@@ -12,7 +12,7 @@ class UserModel extends Model{
 
     protected $useAutoIncrement = true;
 
-    protected $allowedFields = ['firstname', 'lastname', 'email', 'password','role_id', 'group_id'];
+    protected $allowedFields = ['firstname', 'lastname', 'email', 'password','role_id', 'group_id', 'token'];
 
     protected $validationMessages = [
         'email'        => [
@@ -109,6 +109,17 @@ class UserModel extends Model{
         $query = $builder->get();
         $result = $query->getResultArray();
         return $result;
+        }
+
+        function get_token($token){
+        $db = \Config\Database::connect();
+        $builder = $db->table('users');
+        $builder->select("user_id");
+        $builder->where('token', $token);
+        $query = $builder->get();
+        $result = $query->getResultArray();
+        return $result;
+
         }
 
 
