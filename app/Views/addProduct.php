@@ -9,7 +9,7 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form action='<?php echo site_url('product/add'); ?>' method="Post">
+        <form action='<?php echo site_url('product/add'); ?>' method="Post" onsubmit="validateProduct()">
             <div class="card-body">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Product Name</label>
@@ -48,3 +48,11 @@
         </form>
     </div>
 </div>
+
+<script>
+
+    function validateProduct(){
+        confirm("Do you want to submit the form?");
+
+    }
+    </script>    

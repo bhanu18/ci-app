@@ -7,9 +7,7 @@
                         <?php if(session()->get('msg')): ?>
                             <div class="alert alert-success" role="alert"><?php echo session()->get('msg'); ?></div>
                             <?php endif; ?>
-                            <div class="card-tools">
-                        <a href="<<?php echo site_url('/products/add');?>" class="btn btn-primary float-right"><i class="fas fa-plus"></i> Add Sale</a>
-                        </div>
+                            <div class="card-tools"><a class="btn btn-primary" href="<?php echo site_url('/product/add');?>">Add Product</a></div>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive">
@@ -33,23 +31,12 @@
                                     <td><?php echo $product['Price']; ?> </td>
                                     <td><a class="btn btn-primary"
                                             href="<?php echo site_url('product/edit/').$product['ID'];?>">Edit</a> <a
-                                            class="btn btn-danger"
-                                            href="<?php echo site_url('product/delete/').$product['ID'];?>">Delete</a>
+                                            class="btn btn-danger" onclick="doDelete(<?php echo $product['ID'];?>)">Delete</a>
                                     </td>
                                 </tr>
                                 <?php endforeach;?>
                                 <?php endif; ?>
                             </tbody>
-                            <!-- <tfoot>
-                                <tr>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Email</th>
-                                    <th>Role</th>
-                                    <th>Group name</th>
-                                    <th>Action</th>
-                                </tr>
-                            </tfoot> -->
                         </table>
                     </div>
                     <!-- /.card-body -->
@@ -61,3 +48,19 @@
         <!-- /.row -->
     </div>
     <!-- /.container-fluid -->
+    <script>
+
+        function doDelete(id){
+            if(confirm('Do you want to delete this product?')){
+                $.ajax({
+                    url: "<?php echo site_url('product/delete/')?>"+id,
+                    dataType: 'json',
+                    data:{},
+                    success: function(res){
+
+                    }
+                });
+                alert('The product is deleted');
+            }
+        }
+    </script>

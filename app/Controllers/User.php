@@ -11,6 +11,7 @@ class User extends BaseController{
 
     protected $user_id;
 	protected $user_name;
+    protected $user_role;
 
 	public function __construct(){
 
@@ -19,6 +20,7 @@ class User extends BaseController{
 
     $this->user_id = $this->session->get('user_id');
     $this->user_name = $this->session->get('user_email');
+    $this->user_role = $this->session->get('user_role');
 
     }
 
@@ -47,6 +49,7 @@ class User extends BaseController{
             $user_name = $row['firstname'];
 			$user_email = $row['email'];
 			$user_password = $row['password'];
+            $user_role = $row['role_id'];
 
             if(md5($password) == $user_password){
 
@@ -54,6 +57,7 @@ class User extends BaseController{
 							'user_id'  	=> $user_id,
                             'user_name' => $user_name,
 							'user_email'    => $user_email,
+                            'user_role' => $user_role,
                             'logged_in' => TRUE
 						];
 						$this->session->set($sessdata);
@@ -140,20 +144,22 @@ class User extends BaseController{
 
             $token = mt_rand();
 
-            $email = \Config\Services::email();
-            $email->setFrom('bhanuvidh@windowslive.com', 'Annu');
-            $email->setTo($emailID);
-            $email->setSubject('Password Rest for forgot Password');
-            $email->setMessage('Dear '.$emailID.'<br> To reset you reset your Password click on this link '.site_url('user/changePassword/'.$token));
-            $email->send();
+            $data = [
+                'token' => $token,
+            ];
+            $user->update($id, $data);
 
-            // $data = [
-            //     'token' => $token,
-            // ];
-            // $user->update($id, $data);
+            $email = \Config\Services::email();
+            $email->setFrom('bmansinghani@gmail.com', 'Annu');
+            $email->setTo($emailID);
+            $email->setSubject('Password Reset for forgot Password');
+            $email->setMessage('Dear '.$emailID.'</br> To reset you reset your Password click on this link '.site_url('user/changePassword/'.$token));
+            $email->send();
             // return $this->response->redirect(site_url('user/changePassword/'.$token));
-            echo "<script>alert('Email sent');</script>";
-            return $this->response->redirect(site_url('user/login'));
+
+            $this->session = session();
+            $this->session->setFlashdata('msg', 'Reset password email is sent');
+            return $this->response->redirect(site_url('user'));
         }else{
             $data['errors'] = 'Email not found';
             return view('resetPassword',$data);
@@ -166,8 +172,12 @@ class User extends BaseController{
         $data = [];
         // helper(['form', 'url']);
 
-        if($id == "") return $this->response->redirect(site_url('user'));
-            if($this->request->getMethod() == 'post'){
+        $user = new UserModel();
+
+       $id = $user->get_token($token);
+
+
+        if($this->request->getMethod() == 'post'){
             $rules = [
             'password' => 'required|min_length[8]|max_length[255]',
             'passConf' => 'matches[password]',
@@ -178,7 +188,7 @@ class User extends BaseController{
             $data = [
                 'password' => md5($this->request->getVar('password')),
             ];
-            if($user->update($id,$data)){
+            if($user->update($id[0]['user_id'],$data)){
             session()->setFlashdata('msg',"password change");
             return redirect()->to('/user');
             }else{
@@ -308,7 +318,6 @@ class User extends BaseController{
 
     //   public function emailCheck(){
     //     $email = new \SendGrid\Mail\Mail(); 
-    //     $email->setFrom("test@example.com", "Example User");
     //     $email->setSubject("Sending with SendGrid is Fun");
     //     $email->addTo("test@example.com", "Example User");
     //     $email->addContent("text/plain", "and easy to do anywhere, even with PHP");
@@ -354,6 +363,15 @@ class User extends BaseController{
             $data['base'] = view('Admin/addGroup');
             return view('Admin/adminTemplate',$data);
         }
+    }
+    public function test($token){
+
+        $user = new UserModel();
+
+        $id = $user->get_token($token);
+
+        print_r($id);
+        die;
     }
 }
 ?>

@@ -8,27 +8,29 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="<?php echo site_url('public/Asset/plugins/fontawesome-free/css/all.min.css'); ?>">
+  <link rel="stylesheet" href="<?php echo site_url('/Asset/plugins/fontawesome-free/css/all.min.css'); ?>">
+  <!-- Datatable --> 
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
   <!-- fullCalendar -->
-  <link rel="stylesheet" href="<?php echo site_url('public/Asset/plugins/fullcalendar/main.css'); ?>">
+  <link rel="stylesheet" href="<?php echo site_url('/Asset/plugins/fullcalendar/main.css'); ?>">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bootstrap 4 -->
-  <link rel="stylesheet" href="<?php echo site_url('public/Asset/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css'); ?>">
+  <link rel="stylesheet" href="<?php echo site_url('/Asset/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css'); ?>">
   <!-- iCheck -->
-  <link rel="stylesheet" href="<?php echo site_url('public/Asset/plugins/icheck-bootstrap/icheck-bootstrap.min.css'); ?>">
+  <link rel="stylesheet" href="<?php echo site_url('/Asset/plugins/icheck-bootstrap/icheck-bootstrap.min.css'); ?>">
    <!-- fullCalendar -->
-   <link rel="stylesheet" href="<?php echo site_url('public/Asset/plugins/fullcalendar/main.css'); ?>">
+   <link rel="stylesheet" href="<?php echo site_url('/Asset/plugins/fullcalendar/main.css'); ?>">
   <!-- JQVMap -->
-  <link rel="stylesheet" href="<?php echo site_url('public/Asset/plugins/jqvmap/jqvmap.min.css'); ?>">
+  <link rel="stylesheet" href="<?php echo site_url('/Asset/plugins/jqvmap/jqvmap.min.css'); ?>">
   <!-- Theme style -->
-  <link rel="stylesheet" href="<?php echo site_url('public/Asset/dist/css/adminlte.min.css'); ?>">
+  <link rel="stylesheet" href="<?php echo site_url('/Asset/dist/css/adminlte.min.css'); ?>">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="<?php echo site_url('public/Asset/plugins/overlayScrollbars/css/OverlayScrollbars.min.css'); ?>">
+  <link rel="stylesheet" href="<?php echo site_url('/Asset/plugins/overlayScrollbars/css/OverlayScrollbars.min.css'); ?>">
   <!-- Daterange picker -->
-  <link rel="stylesheet" href="<?php echo site_url('public/Asset/plugins/daterangepicker/daterangepicker.css'); ?>">
+  <link rel="stylesheet" href="<?php echo site_url('/Asset/plugins/daterangepicker/daterangepicker.css'); ?>">
   <!-- summernote -->
-  <link rel="stylesheet" href="<?php echo site_url('public/Asset/plugins/summernote/summernote-bs4.min.css'); ?>">
+  <link rel="stylesheet" href="<?php echo site_url('/Asset/plugins/summernote/summernote-bs4.min.css'); ?>">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -179,8 +181,8 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="" class="brand-link">
-      <img src="<?php echo site_url('public/Asset/dist/img/AdminLTELogo.png');?>" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">A&A Collection</span>
+      <img src="<?php echo site_url('Asset/dist/img/AdminLTELogo.png');?>" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">AdminLTE 3</span>
     </a>
 
     <!-- Sidebar -->
@@ -188,7 +190,7 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="<?php echo site_url('public/Asset/dist/img/user2-160x160.jpg');?>" class="img-circle elevation-2" alt="User Image">
+          <img src="<?php echo site_url('Asset/dist/img/user2-160x160.jpg');?>" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="<?php echo site_url('users/profile'); ?>" class="d-block"><?php echo session()->get('user_name');?></a>
@@ -366,22 +368,19 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
 <!-- jQuery -->
-<script src="<?php echo site_url('public/Asset/plugins/jquery/jquery.min.js'); ?>"></script>
+<script src="<?php echo site_url('/Asset/plugins/jquery/jquery.min.js'); ?>"></script>
+<!-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script> -->
+<script src="<?php echo site_url('/Asset/plugins/datatables/jquery.dataTables.min.js');?>"></script>
 <!-- Bootstrap 4 -->
-<script src="<?php echo site_url('public/Asset/plugins/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
+<script src="<?php echo site_url('/Asset/plugins/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
 <!-- jQuery UI -->
-<script src="<?php echo site_url('public/Asset/plugins/jquery-ui/jquery-ui.min.js'); ?>"></script>
+<script src="<?php echo site_url('/Asset/plugins/jquery-ui/jquery-ui.min.js'); ?>"></script>
 <!-- AdminLTE App -->
-<script src="<?php echo site_url('public/Asset/dist/js/adminlte.min.js'); ?>"></script>
+<script src="<?php echo site_url('/Asset/dist/js/adminlte.min.js'); ?>"></script>
 <!-- fullCalendar 2.2.5 -->
-<script src="<?php echo site_url('public/Asset/plugins/moment/moment.min.js'); ?>"></script>
-<script src="<?php echo site_url('public/Asset/plugins/fullcalendar/main.js'); ?>"></script>
-<!-- AdminLTE for demo purposes -->
-<!-- <script src="public/Asset/dist/js/demo.js"></script> -->
-<!-- fullCalendar 2.2.5 -->
-<script src="<?php echo site_url('public/Asset/plugins/moment/moment.min.js'); ?>"></script>
-<script src="<?php echo site_url('public/Asset/plugins/fullcalendar/main.js'); ?>"></script>
+<script src="<?php echo site_url('/Asset/plugins/moment/moment.min.js'); ?>"></script>
+<script src="<?php echo site_url('/Asset/plugins/fullcalendar/main.js'); ?>"></script>
+
 </body>
 </html>

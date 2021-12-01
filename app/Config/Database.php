@@ -30,25 +30,25 @@ class Database extends Config
 	 *
 	 * @var array
 	 */
-	public $default = [
-		'DSN'      => '',
-		'hostname' => 'saleinvdb.mysql.database.azure.com',
-		'username' => 'bhanu23@saleinvdb',
-		'password' => "uNique1290@",
-		'database' => "newapp",
-		'DBDriver' => 'MySQLi',
-		'DBPrefix' => '',
-		'pConnect' => false,
-		'DBDebug'  => (ENVIRONMENT !== 'production'),
-		'charset'  => 'utf8',
-		'DBCollat' => 'utf8_general_ci',
-		'swapPre'  => '',
-		'encrypt'  => false,
-		'compress' => false,
-		'strictOn' => false,
-		'failover' => [],
-		'port'     => 3306,
-	];
+	// public $default = [
+	// 	'DSN'      => '',
+	// 	'hostname' => 'saleinvdb.mysql.database.azure.com',
+	// 	'username' => 'bhanu23@saleinvdb',
+	// 	'password' => "uNique1290@",
+	// 	'database' => "newapp",
+	// 	'DBDriver' => 'MySQLi',
+	// 	'DBPrefix' => '',
+	// 	'pConnect' => false,
+	// 	'DBDebug'  => (ENVIRONMENT !== 'production'),
+	// 	'charset'  => 'utf8',
+	// 	'DBCollat' => 'utf8_general_ci',
+	// 	'swapPre'  => '',
+	// 	'encrypt'  => false,
+	// 	'compress' => false,
+	// 	'strictOn' => false,
+	// 	'failover' => [],
+	// 	'port'     => 3306,
+	// ];
 	// public $default = [
 	// 	'DSN'      => '',
 	// 	'hostname' => 'saledb.cmv2gp5vlvfr.ap-southeast-1.rds.amazonaws.com',
@@ -68,40 +68,14 @@ class Database extends Config
 	// 	'failover' => [],
 	// 	'port'     => 3306,
 	// ];
-	// public $default = [
-	// 	'DSN'      => '',
-	// 	'hostname' => 'localhost',
-	// 	'username' => 'root',
-	// 	'password' => "",
-	// 	'database' => "newapp",
-	// 	'DBDriver' => 'MySQLi',
-	// 	'DBPrefix' => '',
-	// 	'pConnect' => false,
-	// 	'DBDebug'  => (ENVIRONMENT !== 'production'),
-	// 	'charset'  => 'utf8',
-	// 	'DBCollat' => 'utf8_general_ci',
-	// 	'swapPre'  => '',
-	// 	'encrypt'  => false,
-	// 	'compress' => false,
-	// 	'strictOn' => false,
-	// 	'failover' => [],
-	// 	'port'     => 3306,
-	// ];
-
-	/**
-	 * This database connection is used when
-	 * running PHPUnit database tests.
-	 *
-	 * @var array
-	 */
-	public $tests = [
+	public $default = [
 		'DSN'      => '',
-		'hostname' => '127.0.0.1',
-		'username' => '',
-		'password' => '',
-		'database' => ':memory:',
-		'DBDriver' => 'SQLite3',
-		'DBPrefix' => 'db_',  // Needed to ensure we're working correctly with prefixes live. DO NOT REMOVE FOR CI DEVS
+		'hostname' => 'localhost',
+		'username' => 'root',
+		'password' => "",
+		'database' => "newapp",
+		'DBDriver' => 'MySQLi',
+		'DBPrefix' => '',
 		'pConnect' => false,
 		'DBDebug'  => (ENVIRONMENT !== 'production'),
 		'charset'  => 'utf8',
@@ -113,6 +87,32 @@ class Database extends Config
 		'failover' => [],
 		'port'     => 3306,
 	];
+
+	// /**
+	//  * This database connection is used when
+	//  * running PHPUnit database tests.
+	//  *
+	//  * @var array
+	//  */
+	// public $tests = [
+	// 	'DSN'      => '',
+	// 	'hostname' => '127.0.0.1',
+	// 	'username' => '',
+	// 	'password' => '',
+	// 	'database' => ':memory:',
+	// 	'DBDriver' => 'SQLite3',
+	// 	'DBPrefix' => 'db_',  // Needed to ensure we're working correctly with prefixes live. DO NOT REMOVE FOR CI DEVS
+	// 	'pConnect' => false,
+	// 	'DBDebug'  => (ENVIRONMENT !== 'production'),
+	// 	'charset'  => 'utf8',
+	// 	'DBCollat' => 'utf8_general_ci',
+	// 	'swapPre'  => '',
+	// 	'encrypt'  => false,
+	// 	'compress' => false,
+	// 	'strictOn' => false,
+	// 	'failover' => [],
+	// 	'port'     => 3306,
+	// ];
 
 	//--------------------------------------------------------------------
 
