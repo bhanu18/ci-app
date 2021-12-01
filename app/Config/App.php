@@ -23,16 +23,8 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
-<<<<<<< HEAD
-	 public $baseURL = 'https://saleninv.herokuapp.com/';
-	// public $baseURL = 'http://localhost:8080';
-||||||| 3d32b13
-	 public $baseURL = 'https://saleninv.herokuapp.com/';
-	// public $baseURL = 'https://localhost:8080';
-=======
 	//  public $baseURL = 'https://saleninv.herokuapp.com/';
 	public $baseURL = 'http://localhost:8080';
->>>>>>> 0e411c54e11254e144483851835fb8d383d7f3f6
 
 	/**
 	 * --------------------------------------------------------------------------
