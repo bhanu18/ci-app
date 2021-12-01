@@ -9,6 +9,7 @@ class Product extends BaseController
 
 	protected $user_id;
 	protected $user_name;
+	protected $user_role;
 
 	public function __construct(){
 
@@ -17,6 +18,7 @@ class Product extends BaseController
 
     $this->user_id = $this->session->get('user_id');
     $this->user_name = $this->session->get('user_email');
+	$this->user_role = $this->session->get('user_role');
 
     }
 
@@ -35,6 +37,22 @@ class Product extends BaseController
 		}else{
 			echo '<div class="alert alert-danger"> Unauthorize Access</div>';
 		}
+	}
+
+	public function load(){
+
+		userAdminCheck($this->user_role); 
+		 
+		$data['base'] = view('products-view');
+		return view('Admin/adminTemplate',$data);
+	}
+
+	public function view(){
+		$product = new ProductModel();
+
+		$product_data = $product->findall();
+
+		echo json_encode($product_data);
 	}
 
 
@@ -98,20 +116,22 @@ class Product extends BaseController
 		}
 	}
 
-	public function delete($id){
+	public function delete($id = ''){
+
+		if($this->user_role != 1) return view('errors/html/error_404');
 		$product = new ProductModel();
 
 		$product->delete($id);
 		return redirect()->to('product');
 	}
       
-	public function check(){
+	// public function check(){
 
-		$userModel = new UserModel();
-		$role = $userModel->showSingleUser($this->user_id);
+	// 	$userModel = new UserModel();
+	// 	$role = $userModel->showSingleUser($this->user_id);
 
-		print_r($role);
-	}
+	// 	print_r($role);
+	// }
 
 
 }

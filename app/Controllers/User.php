@@ -11,6 +11,7 @@ class User extends BaseController{
 
     protected $user_id;
 	protected $user_name;
+    protected $user_role;
 
 	public function __construct(){
 
@@ -19,6 +20,7 @@ class User extends BaseController{
 
     $this->user_id = $this->session->get('user_id');
     $this->user_name = $this->session->get('user_email');
+    $this->user_role = $this->session->get('user_role');
 
     }
 
@@ -47,6 +49,7 @@ class User extends BaseController{
             $user_name = $row['firstname'];
 			$user_email = $row['email'];
 			$user_password = $row['password'];
+            $user_role = $row['role_id'];
 
             if(md5($password) == $user_password){
 
@@ -54,6 +57,7 @@ class User extends BaseController{
 							'user_id'  	=> $user_id,
                             'user_name' => $user_name,
 							'user_email'    => $user_email,
+                            'user_role' => $user_role,
                             'logged_in' => TRUE
 						];
 						$this->session->set($sessdata);

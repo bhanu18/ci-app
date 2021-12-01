@@ -9,19 +9,19 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form action='<?php echo site_url('product/add'); ?>' method="Post">
+        <form action='<?php echo site_url('product/add'); ?>' method="Post" onsubmit="validateProduct()">
             <div class="card-body">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Product Name</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" name="name">
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="name" required>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Quantity</label>
-                    <input type="number" class="form-control" id="exampleInputPassword1" name="Quantity">
+                    <input type="number" class="form-control" id="exampleInputPassword1" name="Quantity" required>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Price</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" name="Price">
+                    <input type="text" class="form-control" id="exampleInputPassword1" name="Price" required>
                 </div>
                 <!-- <div class="form-group">
                     <label for="exampleInputFile">File input</label>
@@ -48,3 +48,11 @@
         </form>
     </div>
 </div>
+
+<script>
+
+    function validateProduct(){
+        confirm("Do you want to submit the form?");
+
+    }
+    </script>    
