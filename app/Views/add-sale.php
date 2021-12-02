@@ -13,7 +13,7 @@
             <div class="card-body">
                 <div class="form-group">
                     <label>Product</label>
-                    <select class="form-control" name="product" id="supplier-select">
+                    <select class="form-control" name="product" id="supplier-select" required>
                         <option value="">Select a Product </option>
                         <?php if($product):?>
                         <?php foreach($product as $products):?>
@@ -22,18 +22,19 @@
                         <?php endforeach;?>
                         <?php endif;?>
                     </select>
+                    <span id="select-product-error" class="error invalid-feedback">Please select a product</span>
                 </div>
                 <div class="form-group">
                     <label>Sale Quantity</label>
-                    <input type="number" name="quantity" class="form-control" id="">
+                    <input type="number" name="quantity" class="form-control" id="" required>
                 </div>
                 <div class="form-group">
                     <label>Size</label>
-                    <input type="text" name="size" class="form-control" id="">
+                    <input type="text" name="size" class="form-control" id="" required>
                 </div>
-                <div class="form-group">
+                <div class="form-group" aria-describedby="price-error">
                     <label>Sale Price</label>
-                    <input type="text" name="price" class="form-control" id="">
+                    <input type="text" name="price" class="form-control" id="" required>
                 </div>
                 <!-- <div class="form-group">
                     <label for="exampleInputFile">File input</label>
@@ -47,10 +48,10 @@
                         </div>
                     </div>
                 </div> -->
-                <div class="form-check">
+                <!-- <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
+                </div> -->
             </div>
             <!-- /.card-body -->
 

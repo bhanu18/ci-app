@@ -57,6 +57,9 @@ class Product extends BaseController
 
 
 	public function add(){
+
+		if($this->user_id == '') return $this->response->redirect(site_url("/user"));
+
 		$product = new ProductModel();
 
 		if($this->request->getMethod() == 'post'){
@@ -87,6 +90,8 @@ class Product extends BaseController
 	}
 
 	public function edit($id){
+		if($this->user_id == '') return $this->response->redirect(site_url("/user"));
+
 		$product = new ProductModel();
 
 		$data['product'] = $product->where('ID',$id)->first();
@@ -95,6 +100,8 @@ class Product extends BaseController
 	}
 
 	public function update(){
+
+		if($this->user_id == '') return $this->response->redirect(site_url("/user"));
 
 		$product = new ProductModel();
 

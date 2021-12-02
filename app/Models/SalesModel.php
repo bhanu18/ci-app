@@ -38,10 +38,13 @@ class SalesModel extends Model{
         $query = $builder->get();
         return $result = $query->getResultArray();
     }
-    // public function insert(){
-
-    //     //return json_encode($data);
-    //     $SalesModel->insert($data);
-    // }
+    public function get_sale_quantity($id){
+        $db = \Config\Database::connect();
+        $builder = $db->table('item_sales');
+        $builder->select('prod_id, sale_quantity');
+        $builder->where('sale_id', $id);
+        $query = $builder->get();
+        return $result = $query->getResultArray();
+    }
 }
 ?>

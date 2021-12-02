@@ -4,23 +4,23 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Log in</title>
+    <title>A&A Collection | Log in</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="<?php echo site_url('/public/Asset/plugins/fontawesome-free/css/all.min.css');?>">
+    <link rel="stylesheet" href="<?php echo site_url('/Asset/plugins/fontawesome-free/css/all.min.css');?>">
     <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="<?php echo site_url('/public/Asset/plugins/icheck-bootstrap/icheck-bootstrap.min.css');?>">
+    <link rel="stylesheet" href="<?php echo site_url('/Asset/plugins/icheck-bootstrap/icheck-bootstrap.min.css');?>">
     <!-- Theme style -->
-    <link rel="stylesheet" href="<?php echo site_url('/public/Asset/dist/css/adminlte.min.css');?>">
+    <link rel="stylesheet" href="<?php echo site_url('/Asset/dist/css/adminlte.min.css');?>">
 </head>
 
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="<?php echo site_url('user');?>"><b>Admin</b>LTE</a>
+            <a href="<?php echo site_url('user');?>"><b>A&A</b> Collection</a>
         </div>
         <?php if(session()->get('msg')): ?>
         <div class="alert alert-danger mb-2" role="alert"><?php echo session()->get('msg'); ?></div>
@@ -94,11 +94,11 @@
     <!-- /.login-box -->
 
     <!-- jQuery -->
-    <script src="<?php echo site_url('/public/Asset/plugins/jquery/jquery.min.js');?>"></script>
+    <script src="<?php echo site_url('/Asset/plugins/jquery/jquery.min.js');?>"></script>
     <!-- Bootstrap 4 -->
-    <script src="<?php echo site_url('/public/Asset/plugins/bootstrap/js/bootstrap.bundle.min.js');?>"></script>
+    <script src="<?php echo site_url('/Asset/plugins/bootstrap/js/bootstrap.bundle.min.js');?>"></script>
     <!-- AdminLTE App -->
-    <script src="<?php echo site_url('/public/Asset/dist/js/adminlte.min.js');?>"></script>
+    <script src="<?php echo site_url('/Asset/dist/js/adminlte.min.js');?>"></script>
 </body>
 
 </html>
