@@ -384,5 +384,12 @@
 <!-- fullCalendar 2.2.5 -->
 <script src="<?php echo site_url('/Asset/plugins/moment/moment.min.js'); ?>"></script>
 <script src="<?php echo site_url('/Asset/plugins/fullcalendar/main.js'); ?>"></script>
+<script>
+
+  $(document).ready(function (){
+    $("#product-table").DataTable();
+    $("#sale-table").DataTable();
+  })
+  </script>
 </body>
 </html>

@@ -11,7 +11,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="example2" class="table table-bordered table-hover">
+                        <table id="product-table" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>ID</th>
