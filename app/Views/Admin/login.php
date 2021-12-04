@@ -19,7 +19,7 @@
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="<?php echo site_url('admin/auth') ?>" class="h1"><b>Admin</b>LTE</a>
+      <a href="<?php echo site_url('admin/auth') ?>" class="h1"><b>A&A</b> Collection</a>
     </div>
     <?php if(isset($errors)): ?>
       <div class="alert alert-danger"><?php echo $errors; ?></div>

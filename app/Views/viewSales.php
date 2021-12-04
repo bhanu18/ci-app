@@ -35,8 +35,7 @@
                                 <td><?php echo $sales['sale_price'];?></td>
                                 <td><a href="<?php echo base_url('sale/edit/'.$sales['sale_id']);?>"
                                         class="btn btn-primary">edit</a>
-                                    <a href="<?php echo base_url('sale/delete/'.$sales['sale_id']);?>"
-                                        class="btn btn-danger">delete</a>
+                                    <a class="btn btn-danger" onclick="doDelete(<?php echo $sales['sale_id'];?>)" >delete</a>
                                 </td>
                             </tr>
                             <?php endforeach;?>
@@ -63,3 +62,18 @@
     <!-- /.row -->
 </div>
 <!-- /.container-fluid -->
+<script>
+    function doDelete(id){
+        if(confirm('Do you want delete this sale')){
+            $.ajax({
+                url: "<?php echo site_url('sale/delete/');?>"+id,
+                dataType: 'json',
+                data:{},
+                success: function(res){
+
+                }
+            });
+            alert('Sale is deleted');
+        }
+    }
+    </script>

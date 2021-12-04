@@ -75,7 +75,7 @@ class sale extends BaseController{
     $Productmodel = new ProductModel();
 
     $data['sales']= $SalesModel->edit($id);
-    $data['product'] = $Productmodel->findall();
+    $data['product'] = $Productmodel->getProduct();
     $data['base']= view('edit-sale', $data);
     return view('Admin/adminTemplate', $data);
    }
@@ -163,14 +163,6 @@ class sale extends BaseController{
        $this->session->setFlashdata('msg', 'Sale deleted');
        return $this->response->redirect(site_url('sale'));
    }
-
-//    function test($id){
-//     $SalesModel = new SalesModel();
-//     $current_sale_quantity = $SalesModel->get_sale_quantity($id);
-
-//     print_r($current_sale_quantity);
-//    }
-
 }
 
 ?>

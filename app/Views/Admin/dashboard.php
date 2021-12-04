@@ -10,12 +10,13 @@
                         <div class="alert alert-success" role="alert"><?php echo session()->get('msg'); ?></div>
                         <?php endif; ?>
                         <div class="card-tools">
-                        <a href="<?php echo site_url('/sale/add');?>" class="btn btn-primary float-right"><i class="fas fa-plus"></i> Add Sale</a>
+                        <a href="<?php echo site_url('/sale');?>" class="btn btn-primary float-right"><i class="fas fa-binoculars"></i> View</a> 
+                       <a href="<?php echo site_url('/sale/add');?>" class="btn btn-primary float-right"><i class="fas fa-plus"></i> Add</a>  &#160; 
                         </div>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive">
-                        <table id="example2" class="table table-head-fixed text-nowrap">
+                        <table id="sale-table" class="table table-head-fixed text-nowrap">
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
@@ -44,8 +45,8 @@
                                             <div class="dropdown-menu" role="menu">
                                                 <a href="<?php echo base_url('sale/edit/'.$sales['sale_id']);?>"
                                                     class="dropdown-item">edit</a>
-                                                <a href="<?php echo base_url('sale/delete/'.$sales['sale_id']);?>"
-                                                    class="dropdown-item">delete</a>
+                                                <!-- <a href="<?php // echo base_url('sale/delete/'.$sales['sale_id']);?>"
+                                                    class="dropdown-item">delete</a> -->
                                             </div>
                                     </td>
                                 </tr>
@@ -76,12 +77,13 @@
                         <div class="alert alert-success" role="alert"><?php echo session()->get('msg'); ?></div>
                         <?php endif; ?>
                         <div class="card-tools">
-                        <a href="<<?php echo site_url('/products/add');?>" class="btn btn-primary float-right"><i class="fas fa-plus"></i> Add Sale</a>
+                        <a href="<?php echo site_url('/product');?>" class="btn btn-primary float-right"><i class="fas fa-binoculars"></i> View </a>
+                        <a href="<?php echo site_url('/product/add');?>" class="btn btn-primary float-right"><i class="fas fa-plus"></i> Add</a>
                         </div>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive">
-                        <table id="example2" class="table table-bordered table-hover">
+                        <table id="product-table" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -107,9 +109,10 @@
                                             </button>    
                                             <div class="dropdown-menu" role="menu">
                                     <a class="btn btn-primary dropdown-item"
-                                            href="<?php echo site_url('product/edit/').$product['ID'];?>">Edit</a> <a
+                                            href="<?php echo site_url('product/edit/').$product['ID'];?>">Edit</a> 
+                                            <!-- <a
                                             class="btn btn-danger dropdown-item"
-                                            href="<?php echo site_url('product/delete/').$product['ID'];?>">Delete</a>
+                                            href="<?php // echo site_url('product/delete/').$product['ID'];?>">Delete</a> -->
                                 </div>
                                     </td>
                                 </tr>

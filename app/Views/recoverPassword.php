@@ -6,15 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AdminLTE 3 | Recover Password</title>
 
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="<?php echo site_url('public/Asset/plugins/fontawesome-free/css/all.min.css');?>">
-    <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="<?php echo site_url('public/Asset/plugins/icheck-bootstrap/icheck-bootstrap.min.css');?>">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="<?php echo site_url('public/Asset/dist/css/adminlte.min.css');?>">
+    <?php echo view('styles/styles-admin'); ?>
 </head>
 
 <body class="hold-transition login-page">
@@ -65,12 +57,8 @@
         </div>
     </div>
     <!-- /.login-box -->
-    <!-- jQuery -->
-    <script src="<?php echo site_url('public/Asset/plugins/jquery/jquery.min.js');?>"></script>
-    <!-- Bootstrap 4 -->
-    <script src="<?php echo site_url('public/Asset/plugins/bootstrap/js/bootstrap.bundle.min.js');?>"></script>
-    <!-- AdminLTE App -->
-    <script src="<?php echo site_url('public/Asset/dist/js/adminlte.min.js');?>"></script>
+<!-- REQUIRED SCRIPTS -->
+<?php echo view('scripts/scripts-admin'); ?>
 </body>
 
 </html>

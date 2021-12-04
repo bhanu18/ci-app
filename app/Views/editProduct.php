@@ -24,6 +24,21 @@
                         value="<?php echo $product['Quantity'];?>">
                 </div>
                 <div class="form-group">
+                    <label for="exampleInputPassword1">Size</label>
+                    <select class="form-control" name="size" id="supplier-select" required>
+                        <option value=""><?php echo $product['Size'];?></option>
+                        <?php if($sizes): ?>
+                            <?php foreach($sizes as $size): ?>
+                                <?php $hide = ''; ?>
+                                <?php if($product['Size'] == $size['size']):?>
+                                    <?php $hide = 'style="display:none"'; ?>
+                                <?php endif; ?> 
+                                <option <?php echo $hide; ?>value="<?php echo $size['id'];?>"><?php echo $size['size'];?></option> 
+                             <?php endforeach; ?>
+                             <?php endif; ?>   
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="exampleInputPassword1">Price</label>
                     <input type="text" class="form-control" id="exampleInputPassword1" name="Price"
                         value="<?php echo $product['Price'];?>">

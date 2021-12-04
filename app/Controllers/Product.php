@@ -31,7 +31,7 @@ class Product extends BaseController
 
 		$role = $userModel->showSingleUser($this->user_id);
 		if($role[0]['role_id'] == 1){
-		$data['products'] = $product->findall();
+		$data['products'] = $product->getProduct();
 		$data['base'] = view('viewProducts',$data);
 		return view('Admin/adminTemplate',$data);
 		}else{
@@ -41,7 +41,7 @@ class Product extends BaseController
 
 	public function load(){
 
-		userAdminCheck($this->user_role); 
+		userAdminCheck($this->user_role , $this->user_id); 
 		 
 		$data['base'] = view('products-view');
 		return view('Admin/adminTemplate',$data);
@@ -66,6 +66,7 @@ class Product extends BaseController
 		$data = [
 			'Name' => $this->request->getVar('name'),
 			'Quantity' => $this->request->getVar('Quantity'),
+			'size_id' => $this->request->getVar('size'),
 			'Price' => $this->request->getVar('Price')
 		];
 		if($data){
@@ -84,7 +85,8 @@ class Product extends BaseController
 			}
 	}else{
 		//echo 'Display add';
-		$data['base'] = view('addProduct');
+		$data['sizes'] = $product->getSize();
+		$data['base'] = view('addProduct',$data);
 		return view('Admin/adminTemplate',$data);
 	}
 	}
@@ -94,7 +96,11 @@ class Product extends BaseController
 
 		$product = new ProductModel();
 
-		$data['product'] = $product->where('ID',$id)->first();
+		$data['product'] = $product->getProductById($id);
+
+		// print_r($product->getProductById($id));
+		// die;
+		$data['sizes'] = $product->getSize();
 		$data['base'] = view('editProduct',$data);
 		return view('Admin/adminTemplate',$data);
 	}
@@ -109,6 +115,7 @@ class Product extends BaseController
 			$data = [
 			'name' => $this->request->getVar('Name'),
 			'Quantity' => $this->request->getVar('Quantity'),
+			'size_id' => $this->request->getVar('size'),
 			'Price' => $this->request->getVar('Price')
 			];
 			$id = $this->request->getVar('ID');

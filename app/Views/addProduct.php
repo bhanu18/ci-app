@@ -23,6 +23,17 @@
                     <label for="exampleInputPassword1">Price</label>
                     <input type="text" class="form-control" id="exampleInputPassword1" name="Price" required>
                 </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Size</label>
+                    <select class="form-control" name="size" id="supplier-select" required>
+                        <option value="">Select a Size </option>
+                        <?php if($sizes): ?>
+                            <?php foreach($sizes as $size): ?>
+                                <option value="<?php echo $size['id'];?>"><?php echo $size['size'];?></option>
+                             <?php endforeach; ?>
+                             <?php endif; ?>   
+                    </select>
+                </div>
                 <!-- <div class="form-group">
                     <label for="exampleInputFile">File input</label>
                     <div class="input-group">
