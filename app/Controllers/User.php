@@ -24,6 +24,15 @@ class User extends BaseController{
 
     }
 
+    private function loginCheck(){
+
+        // print_r(session()->get('logged_in'));
+        // die;
+        if(session()->get('logged_in') == '') {
+            return $this->response->redirect(site_url('/user'));
+        }
+    }
+
     public function index(){
 
         helper(['form']);
@@ -56,7 +65,7 @@ class User extends BaseController{
 						$sessdata = [
 							'user_id'  	=> $user_id,
                             'user_name' => $user_name,
-							'user_email'    => $user_email,
+							'user_email' => $user_email,
                             'user_role' => $user_role,
                             'logged_in' => TRUE
 						];
@@ -205,10 +214,16 @@ class User extends BaseController{
     }
  
     public function register(){
+
+        $this->loginCheck();
         helper(['form']);
         echo view('register');
     }
     public function add(){
+
+        $this->loginCheck();
+        userAdminCheck($this->user_role, $this->user_id);
+
         $user = new UserModel();
         $data = [];
         if ($this->request->getMethod() == 'post') {
@@ -254,6 +269,9 @@ class User extends BaseController{
     }
 
     public function view(){
+
+        $this->loginCheck();
+
         $user = new UserModel();
 
         $data['users'] = $user->displayUser();
@@ -261,6 +279,8 @@ class User extends BaseController{
         return view('Admin/adminTemplate',$data);
     }
     public function profile(){
+
+        $this->loginCheck();
 
         $id = $this->user_id;
         $user = new UserModel();
@@ -280,12 +300,19 @@ class User extends BaseController{
     }
 
     public function delete($id){
+
+        $this->loginCheck();
+        userAdminCheck($this->user_role, $this->user_id);
+
         $user = new UserModel();
        $user->where('user_id',$id)->delete($id);
         return $this->response->redirect(site_url('user/view'));
     }
 
     public function edit($id){
+
+        $this->loginCheck();
+        userAdminCheck($this->user_role, $this->user_id);
 
         $user = new UserModel();
 
@@ -299,6 +326,9 @@ class User extends BaseController{
       }
   
       public function update(){
+
+        $this->loginCheck();
+        userAdminCheck($this->user_role, $this->user_id);
   
           $user = new UserModel();
   
@@ -315,38 +345,25 @@ class User extends BaseController{
           $user->update($id, $data);
           return $this->response->redirect(site_url('dashboard'));
       }
-
-    //   public function emailCheck(){
-    //     $email = new \SendGrid\Mail\Mail(); 
-    //     $email->setSubject("Sending with SendGrid is Fun");
-    //     $email->addTo("test@example.com", "Example User");
-    //     $email->addContent("text/plain", "and easy to do anywhere, even with PHP");
-    //     $email->addContent("text/html", "<strong>and easy to do anywhere, even with PHP</strong>");
-    //     $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
-    //     try {
-    //         $response = $sendgrid->send($email);
-    //         print $response->statusCode() . "\n";
-    //         print_r($response->headers());
-    //         print $response->body() . "\n";
-    //     } catch (Exception $e) {
-    //         echo 'Caught exception: '. $e->getMessage() ."\n";
+    
+    // public function email(){
+    //     $email = \Config\Services::email();
+    //     $email->setFrom('bhanuvidh@windowslive.com', 'Annu');
+    //     $email->setTo('bhanuvidh@rocketmail.com');
+    //     $email->setSubject('Email Test');
+    //     $email->setMessage('Testing the email class.');
+    //     if($email->send()){
+    //         echo "suucess";
+    //     }else{
+    //         echo 'fail';
     //     }
     // }
-    
-    public function email(){
-        $email = \Config\Services::email();
-        $email->setFrom('bhanuvidh@windowslive.com', 'Annu');
-        $email->setTo('bhanuvidh@rocketmail.com');
-        $email->setSubject('Email Test');
-        $email->setMessage('Testing the email class.');
-        if($email->send()){
-            echo "suucess";
-        }else{
-            echo 'fail';
-        }
-    }
 
     public function addGroup(){
+
+        $this->loginCheck();
+        userAdminCheck($this->user_role, $this->user_id);
+
         if($this->request->getMethod() == "Post"){
             $db = \Config\Database::connect();
             $builder = $db->table('Groups');

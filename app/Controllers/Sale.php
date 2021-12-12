@@ -19,10 +19,12 @@ class sale extends BaseController{
 
     $this->user_id = $this->session->get('sess_admin_id');
     $this->user_name = $this->session->get('sess_admin_email');
+    $this->user_role = $this->session->get('user_role');
 
     }
 
     public function index(){
+        if($this->user_role >= 2) return "Unauthorized Access";
         $SalesModel = new SalesModel();
         $data['title'] = 'Sales';
         $data['sale'] = $SalesModel->displaySales();
@@ -32,14 +34,16 @@ class sale extends BaseController{
 
    public function create(){
 
+    if($this->user_role >= 2) return "Unauthorized Access";
        $Productmodel = new ProductModel(); 
-       $data['product'] = $Productmodel->orderby('Id')->findall();
        $data['title'] = 'Add/Edit Sale';
+       $data['product'] = $Productmodel->findAll();
        $data['base'] = view('add-sale', $data);
        return view('Admin/adminTemplate',$data);    
      }
 
    public function add(){
+    if($this->user_role >= 2) return "Unauthorized Access";
        $SalesModel = new SalesModel();
        $Productmodel = new ProductModel();
 
@@ -64,23 +68,25 @@ class sale extends BaseController{
         return redirect()->to('/sale');
        }
 
-       $data['product'] = $Productmodel->findall();
+       $data['product'] = $Productmodel->findAll();
        $data['base'] = view('add-sale',$data);
        return view('Admin/adminTemplate',$data);
    }
 
    public function edit($id){
+    if($this->user_role >= 2) return "Unauthorized Access";
 
     $SalesModel = new SalesModel();
     $Productmodel = new ProductModel();
 
     $data['sales']= $SalesModel->edit($id);
-    $data['product'] = $Productmodel->getProduct();
+    $data['product'] = $Productmodel->findAll();
     $data['base']= view('edit-sale', $data);
     return view('Admin/adminTemplate', $data);
    }
 
    public function update(){ 
+    if($this->user_role >= 2) return "Unauthorized Access";
        $SalesModel = new SalesModel();
        $Productmodel = new ProductModel();
 

@@ -15,12 +15,15 @@
             <div class="card-body">
                 <div class="form-group">
                     <label>Product</label>
-                    <select class="form-control" name="product" id="supplier-select" value="<?php echo $sale['name'];?>" readonly>
-                        <option value="">Current Product -- <?php echo $sale['name'];?></option>
+                    <select class="form-control" name="product" id="supplier-select" readonly>
+                        <option value=""><?php echo $sale['name'];?></option>
                         <?php if($product):?>
                         <?php foreach($product as $products):?>
-                        <option value="<?php echo $products['ID'];?>" name="product"><?php echo $products['Name'];?>
-                        </option>
+                            <?php $hide=""; ?>
+                            <?php if($sale['name'] == $products['Name']): ?>
+                                <?php $hide = "style='display:none;'" ?>
+                                <?php endif; ?>
+                        <option <?php echo $hide; ?>value="<?php echo $products['ID'];?>" name="product"><?php echo $products['Name'];?> </option>
                         <?php endforeach;?>
                         <?php endif;?>
                     </select>

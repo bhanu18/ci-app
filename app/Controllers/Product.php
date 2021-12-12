@@ -31,7 +31,7 @@ class Product extends BaseController
 
 		$role = $userModel->showSingleUser($this->user_id);
 		if($role[0]['role_id'] == 1){
-		$data['products'] = $product->getProduct();
+		$data['products'] = $product->findall();
 		$data['base'] = view('viewProducts',$data);
 		return view('Admin/adminTemplate',$data);
 		}else{
@@ -96,7 +96,7 @@ class Product extends BaseController
 
 		$product = new ProductModel();
 
-		$data['product'] = $product->getProductById($id);
+		$data['product'] = $product->where("ID",$id)->first();
 
 		// print_r($product->getProductById($id));
 		// die;

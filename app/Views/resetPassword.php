@@ -24,7 +24,7 @@
 
       <form action="<?php echo site_url('user/verifyUser');?>" method="post">
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email" name="email">
+          <input type="email" id="email" class="form-control" placeholder="Email" name="email" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -53,5 +53,8 @@
 
 <!-- REQUIRED SCRIPTS -->
 <?php echo view('scripts/scripts-admin'); ?>
+<script>
+
+</script>
 </body>
 </html>

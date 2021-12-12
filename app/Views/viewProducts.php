@@ -17,7 +17,7 @@
                                     <th>ID</th>
                                     <th>Name</th>
                                     <th>Quantity</th>
-                                    <th>Size</th>
+                                    <!-- <th>Size</th> -->
                                     <th>Price</th>
                                     <th>Action</th>
                                 </tr>
@@ -29,7 +29,7 @@
                                     <td><?php echo $product['ID']; ?> </td>
                                     <td><?php echo $product['Name']; ?> </td>
                                     <td><?php echo $product['Quantity']; ?> </td>
-                                    <td><?php echo $product['Size']; ?> </td>
+                                    <!-- <td><?php // echo $product['Size']; ?> </td> -->
                                     <td><?php echo $product['Price']; ?> </td>
                                     <td><a class="btn btn-primary"
                                             href="<?php echo site_url('product/edit/').$product['ID'];?>">Edit</a> <a
@@ -62,6 +62,7 @@
 
                     }
                 });
+                table.ajax.reload();
                 alert('The product is deleted');
             }
         }
