@@ -23,8 +23,8 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
-	//  public $baseURL = 'https://saleninv.herokuapp.com/';
-	public $baseURL = 'http://localhost:8080';
+	 public $baseURL = 'invaa-h58zo.ondigitalocean.app';
+	// public $baseURL = 'http://localhost:8080';
 
 	/**
 	 * --------------------------------------------------------------------------
