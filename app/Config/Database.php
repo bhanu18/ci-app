@@ -32,10 +32,10 @@ class Database extends Config
 	 */
 	public $default = [
 		'DSN'      => '',
-		'hostname' => '',
-		'username' => '',
-		'password' => "",
-		'database' => "",
+		'hostname' => 'db-mysql-sgp1-23765-do-user-10490551-0.b.db.ondigitalocean.com',
+		'username' => 'doadmin',
+		'password' => "NlPH6liuyiPn34a6",
+		'database' => "newapp",
 		'DBDriver' => 'MySQLi',
 		'DBPrefix' => '',
 		'pConnect' => false,
@@ -47,7 +47,7 @@ class Database extends Config
 		'compress' => false,
 		'strictOn' => false,
 		'failover' => [],
-		'port'     => 3306,
+		'port'     => 25060,
 	];
 
 	// /**
