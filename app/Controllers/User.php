@@ -159,16 +159,23 @@ class User extends BaseController{
             $user->update($id, $data);
 
             $email = \Config\Services::email();
-            $email->setFrom('bmansinghani@gmail.com', 'Annu');
+            $email->setFrom('bhanuvidh@windowslive.com', 'Annu');
             $email->setTo($emailID);
             $email->setSubject('Password Reset for forgot Password');
             $email->setMessage('Dear '.$emailID.'</br> To reset you reset your Password click on this link '.site_url('user/changePassword/'.$token));
-            $email->send();
-            // return $this->response->redirect(site_url('user/changePassword/'.$token));
-
+            
+            if($email->send()){
+            
             $this->session = session();
             $this->session->setFlashdata('msg', 'Reset password email is sent');
             return $this->response->redirect(site_url('user'));
+
+            }else{
+                $this->session = session();
+                $this->session->setFlashdata('msg', 'Reset password email is not sent');
+                return $this->response->redirect(site_url('user'));
+            }
+            // return $this->response->redirect(site_url('user/changePassword/'.$token));
         }else{
             $data['errors'] = 'Email not found';
             return view('resetPassword',$data);
@@ -349,7 +356,7 @@ class User extends BaseController{
     // public function email(){
     //     $email = \Config\Services::email();
     //     $email->setFrom('bhanuvidh@windowslive.com', 'Annu');
-    //     $email->setTo('bhanuvidh@rocketmail.com');
+    //     $email->setTo('bmansinghani@gmail.com');
     //     $email->setSubject('Email Test');
     //     $email->setMessage('Testing the email class.');
     //     if($email->send()){

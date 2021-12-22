@@ -92,12 +92,13 @@ class Product extends BaseController
 	}
 
 	public function edit($id){
+		
 		if($this->user_id == '') return $this->response->redirect(site_url("/user"));
 
 		$product = new ProductModel();
 
 		$data['product'] = $product->where("ID",$id)->first();
-
+ 
 		// print_r($product->getProductById($id));
 		// die;
 		$data['sizes'] = $product->getSize();
@@ -146,6 +147,11 @@ class Product extends BaseController
 
 	// 	print_r($role);
 	// }
+
+	private function product_check(){
+
+		
+	}
 
 
 }

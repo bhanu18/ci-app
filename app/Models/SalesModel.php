@@ -46,5 +46,46 @@ class SalesModel extends Model{
         $query = $builder->get();
         return $result = $query->getResultArray();
     }
+
+    public function monthly_sales(){
+
+        $db = \Config\Database::connect();
+        $sql = "SELECT date_format(item_sales.date, '%M') AS Month, sum(item_sales.sale_price) AS Sales from item_sales GROUP BY year(item_sales.date),month(item_sales.date) ORDER BY year(item_sales.date),month(item_sales.date);";
+        $result = $db->query($sql)->getResult();
+        return $result;
+    }
+
+    public function current_month_sales(){
+        $db = \Config\Database::connect();
+        $sql = "SELECT date_format(item_sales.date, '%M') AS Month, sum(item_sales.sale_price) AS sales from item_sales WHERE MONTH(item_sales.date) = MONTH(now()) GROUP BY year(item_sales.date),month(item_sales.date) ORDER BY year(item_sales.date),month(item_sales.date)";
+        $result = $db->query($sql)->getResult();
+        return $result;
+    }
+    public function current_month_pieces(){
+        $db = \Config\Database::connect();
+        $sql = "SELECT date_format(item_sales.date, '%M') AS Month, sum(item_sales.sale_quantity) AS Piece from item_sales WHERE MONTH(item_sales.date) = MONTH(now()) GROUP BY year(item_sales.date),month(item_sales.date) ORDER BY year(item_sales.date),month(item_sales.date)";
+        $result = $db->query($sql)->getResult();
+        return $result;
+    }
+
+    public function avg_month_pieces(){
+        $db = \Config\Database::connect();
+        $sql = "SELECT date_format(item_sales.date, '%M') AS Month, AVG(item_sales.sale_quantity) AS avg_piece from item_sales WHERE MONTH(item_sales.date) = MONTH(now()) GROUP BY year(item_sales.date),month(item_sales.date)";
+        $result = $db->query($sql)->getResult();
+        return $result;
+    }
+    public function avg_month_sale(){
+        $db = \Config\Database::connect();
+        $sql = "SELECT date_format(item_sales.date, '%M') AS Month, AVG(item_sales.sale_price) AS avg_month from item_sales WHERE MONTH(item_sales.date) = MONTH(now()) GROUP BY year(item_sales.date),month(item_sales.date)";
+        $result = $db->query($sql)->getResult();
+        return $result;
+    }
+
+    public function trending_product(){
+        $db = \Config\Database::connect();
+        $sql = "SELECT products.Name AS product, count(products.name) AS Count from item_sales join products on item_sales.prod_id = products.ID GROUP BY products.Name ORDER BY COUNT(products.name) DESC";
+        $result = $db->query($sql)->getResultArray();
+        return $result;
+    }
 }
 ?>

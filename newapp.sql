@@ -2,10 +2,10 @@
 -- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 15, 2021 at 11:43 AM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 7.4.16
+-- Host: 127.0.0.1:3306
+-- Generation Time: Dec 22, 2021 at 04:10 PM
+-- Server version: 5.7.14
+-- PHP Version: 7.4.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,11 +20,14 @@ SET time_zone = "+00:00";
 --
 -- Database: `newapp`
 --
+CREATE DATABASE IF NOT EXISTS `newapp` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE `newapp`;
 
 DELIMITER $$
 --
 -- Procedures
 --
+DROP PROCEDURE IF EXISTS `fill_calendar`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `fill_calendar` (`start_date` DATE, `end_date` DATE)  BEGIN
   DECLARE crt_date DATE;
   SET crt_date=start_date;
@@ -42,13 +45,15 @@ DELIMITER ;
 -- Table structure for table `adminusers`
 --
 
-CREATE TABLE `adminusers` (
-  `id` int(5) NOT NULL,
+DROP TABLE IF EXISTS `adminusers`;
+CREATE TABLE IF NOT EXISTS `adminusers` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
   `firstname` varchar(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `password` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `adminusers`
@@ -63,7 +68,8 @@ INSERT INTO `adminusers` (`id`, `firstname`, `lastname`, `email`, `password`) VA
 -- Table structure for table `calendar`
 --
 
-CREATE TABLE `calendar` (
+DROP TABLE IF EXISTS `calendar`;
+CREATE TABLE IF NOT EXISTS `calendar` (
   `datefield` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -443,10 +449,12 @@ INSERT INTO `calendar` (`datefield`) VALUES
 -- Table structure for table `groups`
 --
 
-CREATE TABLE `groups` (
-  `id` int(5) NOT NULL,
-  `Group_name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `groups`;
+CREATE TABLE IF NOT EXISTS `groups` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `Group_name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `groups`
@@ -461,21 +469,33 @@ INSERT INTO `groups` (`id`, `Group_name`) VALUES
 -- Table structure for table `item_sales`
 --
 
-CREATE TABLE `item_sales` (
-  `sale_id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `item_sales`;
+CREATE TABLE IF NOT EXISTS `item_sales` (
+  `sale_id` int(11) NOT NULL AUTO_INCREMENT,
   `prod_id` int(11) NOT NULL,
-  `date` datetime NOT NULL DEFAULT current_timestamp(),
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `sale_quantity` int(11) NOT NULL,
   `size` int(11) NOT NULL,
-  `sale_price` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+  `sale_price` int(11) NOT NULL,
+  PRIMARY KEY (`sale_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `item_sales`
 --
 
 INSERT INTO `item_sales` (`sale_id`, `prod_id`, `date`, `sale_quantity`, `size`, `sale_price`) VALUES
-(1, 1, '2021-11-15 16:34:43', 2, 12, 230);
+(1, 1, '2021-11-15 16:34:43', 1, 12, 100),
+(2, 1, '2021-11-15 19:49:47', 1, 40, 100),
+(3, 1, '2021-11-15 22:47:45', 1, 0, 100),
+(10, 0, '2021-11-21 18:10:25', 0, 0, 0),
+(6, 3, '2021-11-18 22:25:10', 1, 36, 300),
+(8, 0, '2021-11-20 20:22:05', 1, 36, 300),
+(11, 2, '2021-12-04 15:53:43', 2, 40, 180),
+(12, 4, '2021-12-16 22:41:26', 1, 0, 250),
+(13, 4, '2021-12-16 23:52:12', 1, 40, 250),
+(14, 2, '2021-12-17 23:43:54', 2, 0, 300),
+(15, 4, '2021-12-18 00:14:54', 2, 36, 300);
 
 -- --------------------------------------------------------
 
@@ -483,19 +503,47 @@ INSERT INTO `item_sales` (`sale_id`, `prod_id`, `date`, `sale_quantity`, `size`,
 -- Table structure for table `products`
 --
 
-CREATE TABLE `products` (
-  `ID` int(5) NOT NULL,
+DROP TABLE IF EXISTS `products`;
+CREATE TABLE IF NOT EXISTS `products` (
+  `ID` int(5) NOT NULL AUTO_INCREMENT,
   `Name` varchar(255) NOT NULL,
   `Quantity` int(45) NOT NULL,
-  `Price` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `Price` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`ID`, `Name`, `Quantity`, `Price`) VALUES
-(1, 'Shirt', 10, '350');
+INSERT INTO `products` (`ID`, `Name`, `Quantity`, `Price`, `created_at`, `updated_at`) VALUES
+(1, 'Sport Shoe', 10, '550', '2021-12-05 06:39:26', NULL),
+(2, 'Bg2562', 18, '200', '2021-12-04 10:16:40', '2021-12-17 16:43:54'),
+(3, 'Adda beach', 9, '350', '2021-12-04 10:16:40', '2021-12-04 10:47:34'),
+(4, 'Hwaiian Shirt', 0, '250', '2021-12-04 10:16:40', '2021-12-17 17:14:54');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products_size`
+--
+
+DROP TABLE IF EXISTS `products_size`;
+CREATE TABLE IF NOT EXISTS `products_size` (
+  `product_id` int(11) NOT NULL,
+  `sizes_id` int(11) NOT NULL,
+  PRIMARY KEY (`product_id`,`sizes_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `products_size`
+--
+
+INSERT INTO `products_size` (`product_id`, `sizes_id`) VALUES
+(4, 15),
+(4, 16);
 
 -- --------------------------------------------------------
 
@@ -503,10 +551,12 @@ INSERT INTO `products` (`ID`, `Name`, `Quantity`, `Price`) VALUES
 -- Table structure for table `roles`
 --
 
-CREATE TABLE `roles` (
-  `id` int(5) NOT NULL,
-  `role` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `roles`;
+CREATE TABLE IF NOT EXISTS `roles` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `role` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `roles`
@@ -519,108 +569,69 @@ INSERT INTO `roles` (`id`, `role`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `size`
+--
+
+DROP TABLE IF EXISTS `size`;
+CREATE TABLE IF NOT EXISTS `size` (
+  `id` int(16) NOT NULL AUTO_INCREMENT,
+  `size` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `size`
+--
+
+INSERT INTO `size` (`id`, `size`) VALUES
+(1, '36'),
+(2, '37'),
+(3, '38'),
+(4, '39'),
+(5, '40'),
+(6, '41'),
+(7, '42'),
+(8, '43'),
+(9, '44'),
+(10, '6'),
+(11, '7'),
+(12, '8'),
+(13, '9'),
+(14, '10'),
+(15, '11'),
+(16, 'S'),
+(17, 'M'),
+(18, 'L'),
+(19, 'XL'),
+(20, 'XXL'),
+(21, 'XXL');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
-  `user_id` int(5) NOT NULL,
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `user_id` int(5) NOT NULL AUTO_INCREMENT,
   `firstname` varchar(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `role_id` int(45) NOT NULL,
   `group_id` int(45) NOT NULL,
-  `token` int(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `token` int(45) NOT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `email`, `password`, `role_id`, `group_id`, `token`) VALUES
-(1, 'Bhanu', 'Mansinghani', 'bhanuvidh@skywavetechnologies.com', '30124f67b708b1893c62462a3b906a22', 1, 1, 1719982201),
-(11, 'Arunvidh', 'Mansinghani', 'arun@gmail.com', '30124f67b708b1893c62462a3b906a22', 2, 1, 0),
-(12, 'B', 'M', 'bhanu@skywavetechnologies.com', '30124f67b708b1893c62462a3b906a22', 1, 1, 0);
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `adminusers`
---
-ALTER TABLE `adminusers`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `groups`
---
-ALTER TABLE `groups`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `item_sales`
---
-ALTER TABLE `item_sales`
-  ADD PRIMARY KEY (`sale_id`);
-
---
--- Indexes for table `products`
---
-ALTER TABLE `products`
-  ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `roles`
---
-ALTER TABLE `roles`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`user_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `adminusers`
---
-ALTER TABLE `adminusers`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `groups`
---
-ALTER TABLE `groups`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `item_sales`
---
-ALTER TABLE `item_sales`
-  MODIFY `sale_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `products`
---
-ALTER TABLE `products`
-  MODIFY `ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `roles`
---
-ALTER TABLE `roles`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `user_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+(1, 'Bhanu', 'Mansinghani', 'bmansinghani@gmail.com', '30124f67b708b1893c62462a3b906a22', 1, 1, 1997816118),
+(13, 'Sushil', 'Kumar', 'mytailorpaul@hotmail.com', '30124f67b708b1893c62462a3b906a22', 2, 1, 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

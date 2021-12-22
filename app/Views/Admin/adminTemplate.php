@@ -167,7 +167,7 @@
           <img src="<?php echo site_url('Asset/dist/img/user2-160x160.jpg');?>" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="<?php echo site_url('users/profile'); ?>" class="d-block"><?php echo session()->get('user_name');?></a>
+          <a href="<?php echo site_url('user/profile'); ?>" class="d-block"><?php echo session()->get('user_name');?></a>
         </div>
       </div>
       <!-- SidebarSearch Form -->

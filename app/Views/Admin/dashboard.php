@@ -2,16 +2,91 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row">
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <?php if($current_month_pieces): ?>
+                        <h3><?php echo $current_month_pieces[0]->Piece; ?></h3>
+
+                        <p><?php echo $current_month_pieces[0]->Month; ?> Piece Sold</p>
+                        <?php endif;?>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-bag"></i>
+                    </div>
+                    <!-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <?php if($current_month): ?>
+                        <h3>&#3647; <?php echo $current_month[0]->sales; ?></h3>
+
+                        <p><?php echo $current_month[0]->Month; ?> Sales</p>
+                        <?php endif;?>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-stats-bars"></i>
+                    </div>
+                    <!-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-warning">
+                    <div class="inner">
+                        <?php if($avg_month_sale): ?>
+                        <h3>&#3647; <?php echo $avg_month_sale[0]->avg_month; ?></h3>
+                        <?php endif; ?>
+                        <p>Average Sales this month</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-person-add"></i>
+                    </div>
+                    <!-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <?php if($avg_month_pieces): ?>
+                        <h3><?php echo $avg_month_pieces[0]->avg_piece; ?></h3>
+                        <?php endif; ?>
+                        <p>Average Pieces Sold</p>
+                    </div>
+                    <div class="icon">
+                        <i class="ion ion-pie-graph"></i>
+                    </div>
+                    <!-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
+                </div>
+            </div>
+            <!-- ./col -->
+        </div>
+        <div class="row">
             <div class="col-md-6 col-sm-12">
+                <div class="card card-primary">
+                    <div class="card-body p-0">
+                        <!-- THE CALENDAR -->
+                        <div id="calendar"></div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Sales</h3>
-                        <?php if(session()->get('msg')): ?>
-                        <div class="alert alert-success" role="alert"><?php echo session()->get('msg'); ?></div>
-                        <?php endif; ?>
+                        <h3 class="card-title mt-2">Trending Products</h3>
                         <div class="card-tools">
-                        <a href="<?php echo site_url('/sale');?>" class="btn btn-primary float-right"><i class="fas fa-binoculars"></i> View</a> 
-                       <a href="<?php echo site_url('/sale/add');?>" class="btn btn-primary float-right"><i class="fas fa-plus"></i> Add</a>  &#160; 
+                            <a href="<?php echo site_url('/sale');?>" class="btn btn-primary float-right"><i
+                                    class="fas fa-binoculars"></i> View</a>
+                            <a href="<?php echo site_url('/sale/add');?>" class="btn btn-primary float-right"><i
+                                    class="fas fa-plus"></i> Add</a> &#160;
                         </div>
                     </div>
                     <!-- /.card-header -->
@@ -19,66 +94,65 @@
                         <table id="sale-table" class="table table-head-fixed text-nowrap">
                             <thead>
                                 <tr>
-                                    <th scope="col">ID</th>
+                                    
                                     <th scope="col">Name</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Quantity</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col">Pieces Sold</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php if($sale):?>
                                 <?php foreach($sale as $sales):?>
                                 <tr>
-                                    <td><?php echo $sales['sale_id'];?></td>
-                                    <td><?php echo $sales['name'];?></td>
-                                    <td><?php echo $sales['date'];?></td>
-                                    <td><?php echo $sales['sale_quantity'];?></td>
-                                    <td><?php echo $sales['sale_price'];?></td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-default dropdown-toggle dropdown-icon"
-                                                data-toggle="dropdown">
-                                                <span class="sr-only">Toggle Dropdown</span>
-                                            </button>
-                                            <div class="dropdown-menu" role="menu">
-                                                <a href="<?php echo base_url('sale/edit/'.$sales['sale_id']);?>"
-                                                    class="dropdown-item">edit</a>
-                                                <!-- <a href="<?php // echo base_url('sale/delete/'.$sales['sale_id']);?>"
-                                                    class="dropdown-item">delete</a> -->
-                                            </div>
-                                    </td>
+                                   
+                                    <td><?php echo $sales['product'];?></td>
+                                    <td><?php echo $sales['Count'];?></td>
                                 </tr>
                                 <?php endforeach;?>
                                 <?php endif;?>
                             </tbody>
-                            <!-- <tfoot>
-                                <tr>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Email</th>
-                                    <th>Role</th>
-                                    <th>Group name</th>
-                                    <th>Action</th>
-                                </tr>
-                            </tfoot> -->
                         </table>
                     </div>
                     <!-- /.card-body -->
                 </div>
-
             </div>
-            <div class="col-md-6 col-sm-12">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header border-0 ui-sortable-handle" style="cursor: move;">
+                        <h3 class="card-title">
+                            <i class="fas fa-th mr-1"></i>
+                            Monthly Sales
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart">
+                            <canvas id="lineChart"
+                                style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header border-0 ui-sortable-handle" style="cursor: move;">
+                        <h3 class="card-title">
+                            <i class="fas fa-th mr-1"></i>
+                            Daily Sales
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart">
+                            <canvas id="barChart"
+                                style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Products</h3>
-                        <?php if(session()->get('msg')): ?>
-                        <div class="alert alert-success" role="alert"><?php echo session()->get('msg'); ?></div>
-                        <?php endif; ?>
+                        <h3 class="card-title mt-2">Products</h3>
                         <div class="card-tools">
-                        <a href="<?php echo site_url('/product');?>" class="btn btn-primary float-right"><i class="fas fa-binoculars"></i> View </a>
-                        <a href="<?php echo site_url('/product/add');?>" class="btn btn-primary float-right"><i class="fas fa-plus"></i> Add</a>
+                            <a href="<?php echo site_url('/product');?>" class="btn btn-primary float-right"><i
+                                    class="fas fa-binoculars"></i> View </a>
+                            <a href="<?php echo site_url('/product/add');?>" class="btn btn-primary float-right"><i
+                                    class="fas fa-plus"></i> Add</a>
                         </div>
                     </div>
                     <!-- /.card-header -->
@@ -102,55 +176,37 @@
                                     <td><?php echo $product['Quantity']; ?> </td>
                                     <td><?php echo $product['Price']; ?> </td>
                                     <td>
-                                    <div class="btn-group">
+                                        <div class="btn-group">
                                             <button type="button" class="btn btn-default dropdown-toggle dropdown-icon"
                                                 data-toggle="dropdown">
                                                 <span class="sr-only">Toggle Dropdown</span>
-                                            </button>    
+                                            </button>
                                             <div class="dropdown-menu" role="menu">
-                                    <a class="btn btn-primary dropdown-item"
-                                            href="<?php echo site_url('product/edit/').$product['ID'];?>">Edit</a> 
-                                            <!-- <a
-                                            class="btn btn-danger dropdown-item"
-                                            href="<?php // echo site_url('product/delete/').$product['ID'];?>">Delete</a> -->
-                                </div>
+                                                <a class="btn btn-primary dropdown-item"
+                                                    href="<?php echo site_url('product/edit/').$product['ID'];?>">Edit</a>
+                                            </div>
                                     </td>
                                 </tr>
                                 <?php endforeach;?>
                                 <?php endif; ?>
                             </tbody>
-                            <!-- <tfoot>
-                                <tr>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Email</th>
-                                    <th>Role</th>
-                                    <th>Group name</th>
-                                    <th>Action</th>
-                                </tr>
-                            </tfoot> -->
                         </table>
                     </div>
                     <!-- /.card-body -->
                 </div>
             </div>
-            <!-- row ending -->
-        </div>
-        <!-- /.col -->
-        <div class="row justify-content-center">
-            <div class="col-md-8 col-sm-12">
-                <div class="card card-primary">
-                    <div class="card-body p-0">
-                        <!-- THE CALENDAR -->
-                        <div id="calendar"></div>
-                    </div>
-                    <!-- /.card-body -->
-                </div>
-                <!-- /.card -->
+            <div class="col-md-6 col-sm-12">
             </div>
         </div>
+        <!-- /.col -->
     </div>
     <!-- /.row -->
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+
+        </div>
+    </div>
+    <!-- row ending -->
     </div>
     <!-- /.container-fluid -->
 
@@ -231,18 +287,17 @@ $(function() {
         //Random default events
         events: [
             <?php if($calendar):
-                foreach ($calendar as $sale):?>
-                {
-                title:'<?php echo $sale->total_sales; ?>',
+                foreach ($calendar as $sale):?> {
+                title: '<?php echo $sale->total_sales; ?>',
                 start: '<?php echo $sale->date; ?>',
                 backgroundColor: '#f56954', //red
                 borderColor: '#f56954', //red
                 allDay: true
 
-                },
-                <?php endforeach;?>
-                <?php endif; ?>
-                // {
+            },
+            <?php endforeach;?>
+            <?php endif; ?>
+            // {
             //     title: 'All Day Event',
             //     start: new Date(y, m, 1),
             //     backgroundColor: '#f56954', //red
@@ -339,5 +394,98 @@ $(function() {
     //     // Remove event from text input
     //     $('#new-event').val('')
     // })
+})
+$(function() {
+    var areaChartData = {
+        labels: [
+            <?php if($calendar) {foreach($calendar as $sale): echo " '".$sale->date."',"; endforeach;}?>
+        ],
+        datasets: [{
+            label: 'Daily Sale',
+            backgroundColor: 'rgba(60,141,188,0.9)',
+            borderColor: 'rgba(60,141,188,0.8)',
+            pointRadius: true,
+            pointColor: '#3b8bba',
+            pointStrokeColor: 'rgba(60,141,188,1)',
+            pointHighlightFill: '#fff',
+            pointHighlightStroke: 'rgba(60,141,188,1)',
+            data: [
+                <?php if($calendar) {foreach ($calendar as $sale):?><?php echo $sale->total_sales.","; endforeach;}?>
+            ]
+        }]
+    }
+    var lineChartData = {
+        labels: [<?php foreach($monthly_sales as $sale): echo " '".$sale->Month."',"; endforeach;?>],
+        datasets: [{
+            label: 'Monthly Sale',
+            backgroundColor: 'rgba(60,141,188,0.9)',
+            borderColor: 'rgba(60,141,188,0.8)',
+            pointRadius: true,
+            pointColor: '#3b8bba',
+            pointStrokeColor: 'rgba(60,141,188,1)',
+            pointHighlightFill: '#fff',
+            pointHighlightStroke: 'rgba(60,141,188,1)',
+            data: [
+                <?php foreach ($monthly_sales as $sale):?><?php echo $sale->Sales.","; endforeach;?>
+            ]
+        }]
+    }
+
+    var areaChartOptions = {
+        maintainAspectRatio: false,
+        responsive: true,
+        legend: {
+            display: false
+        },
+        scales: {
+            xAxes: [{
+                gridLines: {
+                    display: true,
+                }
+            }],
+            yAxes: [{
+                gridLines: {
+                    display: true,
+                }
+            }]
+        }
+    }
+    //-------------
+    //- LINE CHART -
+    //--------------
+    var lineChartCanvas = $('#lineChart').get(0).getContext('2d')
+    var lineChartOptions = $.extend(true, {}, areaChartOptions)
+    var lineChartData = $.extend(true, {}, lineChartData)
+    lineChartData.datasets[0].fill = false;
+    lineChartOptions.datasetFill = true
+
+    var lineChart = new Chart(lineChartCanvas, {
+        type: 'line',
+        data: lineChartData,
+        options: lineChartOptions
+    })
+
+    //-------------
+    //- BAR CHART -
+    //-------------
+    var barChartCanvas = $('#barChart').get(0).getContext('2d')
+    var barChartData = $.extend(true, {}, areaChartData)
+    var temp0 = areaChartData.datasets[0]
+    // var temp1 = areaChartData.datasets[1]
+    // barChartData.datasets[0] = temp1
+    barChartData.datasets[0] = temp0
+
+    var barChartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        datasetFill: false,
+        legend: false
+    }
+
+    new Chart(barChartCanvas, {
+        type: 'bar',
+        data: barChartData,
+        options: barChartOptions
+    })
 })
 </script>

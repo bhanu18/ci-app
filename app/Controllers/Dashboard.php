@@ -34,9 +34,14 @@ class Dashboard extends BaseController{
         $row = $userModel->VerifyUserRole($this->user_id);
         if($row[0]['role_id'] == '1'){
         $userModel = new UserModel();
-        $data['sale'] = $SalesModel->displaySales();
+        $data['sale'] = $SalesModel->trending_product();
         $data['products'] = $Productmodel->findall();
         $data['calendar'] = $calendarModel->DailySales();
+        $data['monthly_sales'] = $SalesModel->monthly_sales();
+        $data['current_month'] = $SalesModel->current_month_sales();
+        $data['current_month_pieces'] = $SalesModel->current_month_pieces();
+        $data['avg_month_pieces'] = $SalesModel->avg_month_pieces();
+        $data['avg_month_sale'] = $SalesModel->avg_month_sale();
         $data['title'] = 'Dashboard';
         $data['base'] = view('Admin/dashboard',$data);
         return view('Admin/adminTemplate',$data);

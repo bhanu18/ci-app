@@ -11,3 +11,5 @@
 <!-- fullCalendar 2.2.5 -->
 <script src="<?php echo site_url('/Asset/plugins/moment/moment.min.js'); ?>"></script>
 <script src="<?php echo site_url('/Asset/plugins/fullcalendar/main.js'); ?>"></script>
+
+<script src="<?php echo site_url('Asset/plugins/chart.js/Chart.min.js'); ?>"></script>

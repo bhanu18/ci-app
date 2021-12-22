@@ -42,5 +42,12 @@ class ProductModel extends Model{
         return $query->getRowArray();
         
     }
+
+    function reminder(){
+        $db = \Config\Database::connect();
+        $builder = $db->table('products');
+        $builder->select('Name, Quantity');
+        $builder->where('Quantity', "<=2");
+    }
 }
 ?>

@@ -17,7 +17,7 @@
                         <option value="">Select a Product </option>
                         <?php if($product):?>
                         <?php foreach($product as $products):?>
-                        <option value="<?php echo $products['ID'];?>"><?php echo $products['Name']." ".$products['Size'];?></option>
+                        <option value="<?php echo $products['ID'];?>"><?php echo $products['Name']; ?></option>
                         <?php endforeach;?>
                         <?php endif;?>
                     </select>
