@@ -10,7 +10,7 @@
                             <div class="card-tools"><a class="btn btn-primary" href="<?php echo site_url('/product/add');?>">Add Product</a></div>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body">
+                    <div class="card-body table-responsive">
                         <table id="product-table" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
@@ -52,6 +52,7 @@
     <!-- /.container-fluid -->
     <script>
 
+        $(re)
         function doDelete(id){
             if(confirm('Do you want to delete this product?')){
                 $.ajax({

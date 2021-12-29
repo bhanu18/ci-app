@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Registration Page</title>
+    <title>A&A Collection | Registration Page</title>
 
     <?php echo view('styles/styles-admin'); ?>
     
@@ -13,7 +13,7 @@
 <body class="hold-transition register-page">
     <div class="register-box">
         <div class="register-logo">
-            <a href="../../index2.html"><b>Admin</b>LTE</a>
+        <a href="<?php echo site_url('user');?>"><b>A&A</b> Collection</a>
         </div>
 
         <div class="card">

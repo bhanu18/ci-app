@@ -83,8 +83,8 @@ class SalesModel extends Model{
 
     public function trending_product(){
         $db = \Config\Database::connect();
-        $sql = "SELECT products.Name AS product, count(products.name) AS Count from item_sales join products on item_sales.prod_id = products.ID GROUP BY products.Name ORDER BY COUNT(products.name) DESC";
-        $result = $db->query($sql)->getResultArray();
+        $sql = "SELECT products.Name AS products, count(products.name) AS Count from item_sales join products on item_sales.prod_id = products.ID GROUP BY products.Name ORDER BY COUNT(products.name) DESC";
+        $result = $db->query($sql)->getResult();
         return $result;
     }
 }

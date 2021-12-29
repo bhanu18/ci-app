@@ -346,7 +346,9 @@
 <script>
 
   $(document).ready(function (){
-    $("#product-table").DataTable();
+    $("#product-table").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+    });
     $("#sale-table").DataTable();
   })
   </script>

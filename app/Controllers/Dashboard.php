@@ -34,7 +34,7 @@ class Dashboard extends BaseController{
         $row = $userModel->VerifyUserRole($this->user_id);
         if($row[0]['role_id'] == '1'){
         $userModel = new UserModel();
-        $data['sale'] = $SalesModel->trending_product();
+        $data['trend_sale'] = $SalesModel->trending_product();
         $data['products'] = $Productmodel->findall();
         $data['calendar'] = $calendarModel->DailySales();
         $data['monthly_sales'] = $SalesModel->monthly_sales();
