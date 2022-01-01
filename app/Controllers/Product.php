@@ -66,7 +66,6 @@ class Product extends BaseController
 		$data = [
 			'Name' => $this->request->getVar('name'),
 			'Quantity' => $this->request->getVar('Quantity'),
-			'size_id' => $this->request->getVar('size'),
 			'Price' => $this->request->getVar('Price')
 		];
 		if($data){
@@ -101,7 +100,7 @@ class Product extends BaseController
  
 		// print_r($product->getProductById($id));
 		// die;
-		$data['sizes'] = $product->getSize();
+		// $data['sizes'] = $product->getSize();
 		$data['base'] = view('editProduct',$data);
 		return view('Admin/adminTemplate',$data);
 	}
@@ -116,7 +115,6 @@ class Product extends BaseController
 			$data = [
 			'name' => $this->request->getVar('Name'),
 			'Quantity' => $this->request->getVar('Quantity'),
-			'size_id' => $this->request->getVar('size'),
 			'Price' => $this->request->getVar('Price')
 			];
 			$id = $this->request->getVar('ID');
@@ -139,19 +137,4 @@ class Product extends BaseController
 		$product->delete($id);
 		return redirect()->to('product');
 	}
-      
-	// public function check(){
-
-	// 	$userModel = new UserModel();
-	// 	$role = $userModel->showSingleUser($this->user_id);
-
-	// 	print_r($role);
-	// }
-
-	private function product_check(){
-
-		
-	}
-
-
 }
