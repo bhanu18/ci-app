@@ -229,7 +229,7 @@ class User extends BaseController{
     public function add(){
 
         $this->loginCheck();
-        userAdminCheck($this->user_role, $this->user_id);
+        // userAdminCheck($this->user_role, $this->user_id);
 
         $user = new UserModel();
         $data = [];
@@ -309,17 +309,17 @@ class User extends BaseController{
     public function delete($id){
 
         $this->loginCheck();
-        userAdminCheck($this->user_role, $this->user_id);
+        // userAdminCheck($this->user_role, $this->user_id);
 
         $user = new UserModel();
-       $user->where('user_id',$id)->delete($id);
+        $user->where('user_id',$id)->delete($id);
         return $this->response->redirect(site_url('user/view'));
     }
 
     public function edit($id){
 
         $this->loginCheck();
-        userAdminCheck($this->user_role, $this->user_id);
+        // userAdminCheck($this->user_role, $this->user_id);
 
         $user = new UserModel();
 
@@ -335,7 +335,7 @@ class User extends BaseController{
       public function update(){
 
         $this->loginCheck();
-        userAdminCheck($this->user_role, $this->user_id);
+        // userAdminCheck($this->user_role, $this->user_id);
   
           $user = new UserModel();
   
@@ -369,7 +369,7 @@ class User extends BaseController{
     public function addGroup(){
 
         $this->loginCheck();
-        userAdminCheck($this->user_role, $this->user_id);
+        // userAdminCheck($this->user_role, $this->user_id);
 
         if($this->request->getMethod() == "Post"){
             $db = \Config\Database::connect();
@@ -388,14 +388,14 @@ class User extends BaseController{
             return view('Admin/adminTemplate',$data);
         }
     }
-    public function test($token){
+    // public function test($token){
 
-        $user = new UserModel();
+    //     $user = new UserModel();
 
-        $id = $user->get_token($token);
+    //     $id = $user->get_token($token);
 
-        print_r($id);
-        die;
-    }
+    //     print_r($id);
+    //     die;
+    // }
 }
 ?>
