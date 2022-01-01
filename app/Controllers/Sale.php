@@ -94,15 +94,12 @@ class sale extends BaseController{
 
        if($this->request->getMethod() == "post"){
 
-       $data = [
-           'sale_quantity' => $this->request->getVar('quantity'),
-           'sale_price' => $this->request->getVar('price'),
-       ];
+        $data = [
+            'sale_quantity' => $this->request->getVar('quantity'),
+            'sale_price' => $this->request->getVar('sale_price'),
+        ];
 
        $current_sale_quantity = $SalesModel->get_sale_quantity($id);
-
-    //    print_r($current_sale_quantity);
-    //    die;
 
        if($this->request->getVar('quantity') > $current_sale_quantity[0]['sale_quantity']){
 
@@ -111,8 +108,7 @@ class sale extends BaseController{
            $quantity = $Productmodel->find($current_sale_quantity[0]['prod_id']);
            $current_product_quantity = $quantity['Quantity']; 
            $current_product_quantity += $difference; // minus the diff to current product quantity
-        //    echo $current_product_quantity;
-        //    die;
+      
            $prod_data = [
             'Quantity' => $current_product_quantity,
            ];
@@ -130,9 +126,6 @@ class sale extends BaseController{
         $current_prod_quantity = $prod_quantity['Quantity'];
         $current_prod_quantity -= $minus_diff; // plus the diff to current product quantity
 
-        // echo $current_prod_quantity;
-        // die;
-
         $product_update_data = [
             'Quantity' => $current_prod_quantity,
         ];
@@ -140,6 +133,14 @@ class sale extends BaseController{
         $Productmodel->update($current_sale_quantity[0]['prod_id'], $product_update_data);
         $this->session = session();
         $this->session->setFlashdata('msg', 'Sale updated');
+        return $this->response->redirect(site_url('sale'));
+
+    }
+    elseif($this->request->getVar('quantity') == $current_sale_quantity[0]['sale_quantity']){
+
+        $SalesModel->update($id,$data);
+        $this->session = session();
+        $this->session->setFlashdata('msg', 'Sale updated', 300);
         return $this->response->redirect(site_url('sale'));
     }
        else{

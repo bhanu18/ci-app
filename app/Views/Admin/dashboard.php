@@ -109,11 +109,9 @@
                             Trending Products
                         </h3>
                     </div>
-                    <div class="card-body">
                         <div class="card-body">
                             <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                         </div>
-                    </div>
                     <!-- /.card-body -->
                 </div>
             </div>
@@ -272,7 +270,7 @@ $(function() {
         datasets: [{
             data: [
                 <?php if($trend_sale) foreach($trend_sale as $sales): echo $sales->Count.","; endforeach;?>],
-            backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+            backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de','#f56954', '#00a65e', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de','#d2d6de'],
         }]
     }
 

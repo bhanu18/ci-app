@@ -39,14 +39,6 @@ class Product extends BaseController
 		}
 	}
 
-	public function load(){
-
-		userAdminCheck($this->user_role , $this->user_id); 
-		 
-		$data['base'] = view('products-view');
-		return view('Admin/adminTemplate',$data);
-	}
-
 	public function view(){
 		$product = new ProductModel();
 
@@ -66,6 +58,7 @@ class Product extends BaseController
 		$data = [
 			'Name' => $this->request->getVar('name'),
 			'Quantity' => $this->request->getVar('Quantity'),
+			'Cost_Price' => $this->request->getVar('Cost_Price'),
 			'Price' => $this->request->getVar('Price')
 		];
 		if($data){
@@ -113,8 +106,9 @@ class Product extends BaseController
 
 		if($this->request->getMethod() == 'post'){
 			$data = [
-			'name' => $this->request->getVar('Name'),
+			'Name' => $this->request->getVar('Name'),
 			'Quantity' => $this->request->getVar('Quantity'),
+			'Cost_Price' => $this->request->getVar('Cost_Price'),
 			'Price' => $this->request->getVar('Price')
 			];
 			$id = $this->request->getVar('ID');

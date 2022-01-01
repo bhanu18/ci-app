@@ -43,7 +43,7 @@
                 </div>
                 <div class="form-group">
                     <label>Sale Price</label>
-                    <input type="text" name="price" class="form-control" id=""  value="<?php echo $sale['sale_price'];?>">
+                    <input type="text" name="sale_price" class="form-control" id=""  value="<?php echo $sale['sale_price'];?>">
                 </div>
                 <!-- <div class="form-group">
                     <label for="exampleInputFile">File input</label>

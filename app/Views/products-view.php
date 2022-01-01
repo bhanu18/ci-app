@@ -16,6 +16,7 @@
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Quantity</th>
+                                <th>Cost Price</th>
                                 <th>Price</th>
                                 <th>Action</th>
                             </tr>

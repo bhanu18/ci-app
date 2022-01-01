@@ -63,8 +63,8 @@
 
                     }
                 });
-                table.ajax.reload();
                 alert('The product is deleted');
+                table.ajax.reload();
             }
         }
     </script>

@@ -20,6 +20,10 @@
                     <input type="number" class="form-control" id="exampleInputPassword1" name="Quantity" required>
                 </div>
                 <div class="form-group">
+                    <label for="exampleInputPassword1">Cost Price</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" name="Cost_Price" required>
+                </div>
+                <div class="form-group">
                     <label for="exampleInputPassword1">Price</label>
                     <input type="text" class="form-control" id="exampleInputPassword1" name="Price" required>
                 </div>

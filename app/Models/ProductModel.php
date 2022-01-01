@@ -10,7 +10,7 @@ class ProductModel extends Model{
 
     protected $primaryKey = "ID";
 
-    protected $allowedFields = ['Name', 'Quantity', 'size_id','Price'];
+    protected $allowedFields = ['Name', 'Quantity', 'size_id', 'Cost_Price', 'Price'];
 
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';

@@ -15,7 +15,7 @@
             <div class="card-body">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Product Name</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" name="name"
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="Name"
                         value="<?php echo $product['Name'];?>">
                 </div>
                 <div class="form-group">
@@ -23,21 +23,11 @@
                     <input type="number" class="form-control" id="exampleInputPassword1" name="Quantity"
                         value="<?php echo $product['Quantity'];?>">
                 </div>
-                <!-- <div class="form-group">
-                    <label for="exampleInputPassword1">Size</label>
-                    <select class="form-control" name="size" id="supplier-select" required>
-                        <option value=""><?php // echo $product['Size'];?></option>
-                        <?php // if($sizes): ?>
-                            <?php // foreach($sizes as $size): ?>
-                                <?php // $hide = ''; ?>
-                                <?php // if($product['Size'] == $size['size']):?>
-                                    <?php //$hide = 'style="display:none"'; ?>
-                                <?php // endif; ?> 
-                                <option <?php // echo $hide; ?>value="<?php //echo $size['id'];?>"><?php //echo $size['size'];?></option> 
-                             <?php // endforeach; ?>
-                             <?php // endif; ?>   
-                    </select>
-                </div> -->
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Cost Price</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" name="Cost_Price"
+                        value="<?php echo $product['Cost_Price'];?>">
+                </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Price</label>
                     <input type="text" class="form-control" id="exampleInputPassword1" name="Price"
