@@ -10,6 +10,9 @@
                         <h3><?php echo $current_month_pieces[0]->Piece; ?></h3>
 
                         <p><?php echo $current_month_pieces[0]->Month; ?> Piece Sold</p>
+                        <?php else: ?>
+                        <h3>0</h3>
+                        <p><?php echo Date("M"); ?> Piece Sold</p>
                         <?php endif;?>
                     </div>
                     <div class="icon">
@@ -27,6 +30,9 @@
                         <h3>&#3647; <?php echo $current_month[0]->sales; ?></h3>
 
                         <p><?php echo $current_month[0]->Month; ?> Sales</p>
+                        <?php else: ?>
+                        <h3>0</h3>
+                        <p><?php echo Date("M"); ?> Sales</p>
                         <?php endif;?>
                     </div>
                     <div class="icon">
@@ -42,6 +48,8 @@
                     <div class="inner">
                         <?php if($avg_month_sale): ?>
                         <h3>&#3647; <?php echo $avg_month_sale[0]->avg_month; ?></h3>
+                        <?php else: ?>
+                        <h3>0</h3>
                         <?php endif; ?>
                         <p>Average Sales this month</p>
                     </div>
@@ -58,6 +66,8 @@
                     <div class="inner">
                         <?php if($avg_month_pieces): ?>
                         <h3><?php echo $avg_month_pieces[0]->avg_piece; ?></h3>
+                        <?php else: ?>
+                        <h3>0</h3>
                         <?php endif; ?>
                         <p>Average Pieces Sold</p>
                     </div>
@@ -85,42 +95,27 @@
                     <div class="card-header border-0 ui-sortable-handle" style="cursor: move;">
                         <h3 class="card-title">
                             <i class="fas fa-th mr-1"></i>
-                            Monthly Sales
+                            Daily Sales
                         </h3>
                     </div>
-                    <div class="card-body">
-                <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-              </div>
+                    <div class="chart">
+                        <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                    </div>
                 </div>
                 <div class="card">
                     <div class="card-header border-0 ui-sortable-handle" style="cursor: move;">
                         <h3 class="card-title">
                             <i class="fas fa-th mr-1"></i>
-                            Daily Sales
+                            Trending Products
                         </h3>
                     </div>
                     <div class="card-body">
-                        <div class="chart">
-                            <canvas id="barChart"
-                                style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                        <div class="card-body">
+                            <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                         </div>
                     </div>
                     <!-- /.card-body -->
                 </div>
-                     <!-- PIE CHART -->
-            <div class="card card-danger">
-              <div class="card-header">
-                <h3 class="card-title">Monthly Sales</h3>
-              </div>
-              <div class="card-body">
-                        <div class="chart">
-                            <canvas id="lineChart"
-                                style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                        </div>
-                    </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
             </div>
             <div class="col-md-6 col-sm-12">
             </div>
@@ -205,7 +200,7 @@ $(function() {
     });
 
     calendar.render();
-    
+
 })
 $(function() {
     var areaChartData = {
@@ -223,22 +218,6 @@ $(function() {
             pointHighlightStroke: 'rgba(60,141,188,1)',
             data: [
                 <?php if($calendar) {foreach ($calendar as $sale):?><?php echo $sale->total_sales.","; endforeach;}?>
-            ]
-        }]
-    }
-    var lineChartData = {
-        labels: [<?php foreach($monthly_sales as $sale): echo " '".$sale->Month."',"; endforeach;?>],
-        datasets: [{
-            label: 'Monthly Sale',
-            backgroundColor: 'rgba(60,141,188,0.9)',
-            borderColor: 'rgba(60,141,188,0.8)',
-            pointRadius: true,
-            pointColor: '#3b8bba',
-            pointStrokeColor: 'rgba(60,141,188,1)',
-            pointHighlightFill: '#fff',
-            pointHighlightStroke: 'rgba(60,141,188,1)',
-            data: [
-                <?php foreach ($monthly_sales as $sale):?><?php echo $sale->Sales.","; endforeach;?>
             ]
         }]
     }
@@ -262,20 +241,6 @@ $(function() {
             }]
         }
     }
-    //-------------
-    //- LINE CHART -
-    //--------------
-    var lineChartCanvas = $('#lineChart').get(0).getContext('2d')
-    var lineChartOptions = $.extend(true, {}, areaChartOptions)
-    var lineChartData = $.extend(true, {}, lineChartData)
-    lineChartData.datasets[0].fill = false;
-    lineChartOptions.datasetFill = true
-
-    var lineChart = new Chart(lineChartCanvas, {
-        type: 'line',
-        data: lineChartData,
-        options: lineChartOptions
-    })
 
     //-------------
     //- BAR CHART -
@@ -300,32 +265,33 @@ $(function() {
         options: barChartOptions
     })
 
-    var donutData        = {
-      labels: [<?php if($trend_sale) foreach($trend_sale as $sales): echo "'".$sales->products."',"; endforeach;?> ],
-      datasets: [
-        {
-          data: [<?php if($trend_sale) foreach($trend_sale as $sales): echo $sales->Count.","; endforeach;?>],
-          backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
-        }
-      ]
+    var donutData = {
+        labels: [
+            <?php if($trend_sale) foreach($trend_sale as $sales): echo "'".$sales->products."',"; endforeach;?>
+        ],
+        datasets: [{
+            data: [
+                <?php if($trend_sale) foreach($trend_sale as $sales): echo $sales->Count.","; endforeach;?>],
+            backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+        }]
     }
 
-        //-------------
+    //-------------
     //- PIE CHART -
     //-------------
     // Get context with jQuery - using jQuery's .get() method.
     var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
-    var pieData        = donutData;
-    var pieOptions     = {
-      maintainAspectRatio : false,
-      responsive : true,
+    var pieData = donutData;
+    var pieOptions = {
+        maintainAspectRatio: false,
+        responsive: true,
     }
     //Create pie or douhnut chart
     // You can switch between pie and douhnut using the method below.
     new Chart(pieChartCanvas, {
-      type: 'pie',
-      data: pieData,
-      options: pieOptions
+        type: 'pie',
+        data: pieData,
+        options: pieOptions
     })
 })
 </script>

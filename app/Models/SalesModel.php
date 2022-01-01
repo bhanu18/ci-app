@@ -82,9 +82,18 @@ class SalesModel extends Model{
     }
 
     public function trending_product(){
+
+        // $month = date("m");
         $db = \Config\Database::connect();
-        $sql = "SELECT products.Name AS products, count(products.name) AS Count from item_sales join products on item_sales.prod_id = products.ID GROUP BY products.Name ORDER BY COUNT(products.name) DESC";
-        $result = $db->query($sql)->getResult();
+        $builder = $db->table('item_sales');
+        $builder->select("products.Name AS products, count(products.name) AS Count,  MONTH(item_sales.date)");
+        $builder->join("products", "item_sales.prod_id = products.ID");
+        $builder->where("MONTH(item_sales.date)", "MONTH(now())");
+        $builder->groupBy("products.Name");
+        $builder->orderBy('COUNT(products.name) DESC');
+        //$sql = "SELECT products.Name AS products, count(products.name) AS Count from item_sales join products on item_sales.prod_id = products.ID GROUP BY products.Name ORDER BY COUNT(products.name) DESC";
+        $query = $builder->get();
+        $result = $query->getResult();
         return $result;
     }
 }

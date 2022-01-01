@@ -93,7 +93,7 @@ class UserModel extends Model{
         public function Login($username = '',$password=''){
             $db = \Config\Database::connect();
     
-            $sql = "SELECT * FROM Users WHERE email = '".$username."'";
+            $sql = "SELECT * FROM users WHERE email = '".$username."'";
             $result = $db->query($sql)->getRowArray();
     
             return $result;
