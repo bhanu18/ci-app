@@ -15,16 +15,16 @@
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
-      <?php if(current_url() != site_url('Admin/dashboard')):?>
+      <?php if(current_url() != site_url('dashboard')):?>
                 <li class="nav-item d-none d-sm-inline-block">
-                <a href="<?php echo site_url('Admin/dashboard');?>" class="nav-link">Home</a>
+                <a href="<?php echo site_url('dashboard');?>" class="nav-link">Home</a>
               </li>
               <?php endif; ?>
       <!-- <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
       </li> -->
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="<?php echo site_url('/admin/user/logout');?>" class="nav-link">Logout</a>
+        <a href="<?php if(isset($admin)){echo site_url('/admin/logout');} else {echo site_url('/user/logout');}?>" class="nav-link">Logout</a>
       </li>
     </ul>
 
@@ -70,7 +70,7 @@
           <img src="<?php echo site_url('/Asset/dist/img/user2-160x160.jpg');?>" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="<?php  echo site_url('Admin/profile') ?>" class="d-block"><?php echo session()->get('sess_admin_user_name');?></a>
+          <a href="<?php echo site_url('user/profile')?>" class="d-block"><?php echo session()->get('user_name');?></a>
         </div>
       </div>
       <!-- SidebarSearch Form -->
@@ -100,47 +100,17 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo site_url('Admin/dashboard');?>" class="nav-link">
+                <a href="<?php echo site_url('dashboard');?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dashboard</p>
                 </a>
               </li>
              <li class="nav-item">
-                <a href="<?php  site_url('Admin/user/profile'); ?>" class="nav-link">
+                <a href="<?php echo site_url('user/profile')?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>View Profile</p>
                 </a>
               </li> 
-            </ul>
-          </li>
-          <!-- user -->
-          <li class="nav-item">
-            <a href="" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Users
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="<?php echo site_url('admin/user/view');?>" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>View Users</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="<?php echo site_url('/admin/user/add');?>" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Add User</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="<?php echo site_url('/admin/user/addGroup');?>" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Add Group</p>
-                </a>
-              </li>
             </ul>
           </li>
           <!-- Products -->
@@ -154,13 +124,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo site_url('/admin/product/add');?>" class="nav-link">
+                <a href="<?php echo site_url('product/add');?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Product</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo site_url('/admin//product');?>" class="nav-link">
+                <a href="<?php echo site_url('/product');?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>View Product</p>
                 </a>
@@ -178,13 +148,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo site_url('/admin/sale/add');?>" class="nav-link">
+                <a href="<?php echo site_url('sale/add');?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Sale</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo site_url('/admin/sale');?>" class="nav-link">
+                <a href="<?php echo site_url('/sale');?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>View Sale</p>
                 </a>
@@ -229,7 +199,7 @@
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.1.0
     </div>
-    <strong>Copyright &copy; 2014-2021 <a href="#">AdminLTE.io</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->

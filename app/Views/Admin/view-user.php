@@ -32,24 +32,14 @@
                                     <td><?php echo $user['role']; ?> </td>
                                     <td><?php echo $user['Group_name']; ?> </td>
                                     <td><a class="btn btn-primary"
-                                            href="<?php echo site_url('user/edit/').$user['user_id'];?>">Edit</a> <a
+                                            href="<?php echo site_url('admin/edit/').$user['user_id'];?>">Edit</a> <a
                                             class="btn btn-danger"
-                                            href="<?php echo site_url('user/delete/').$user['user_id'];?>">Delete</a>
+                                            href="<?php echo site_url('admin/delete/').$user['user_id'];?>">Delete</a>
                                     </td>
                                 </tr>
                                 <?php endforeach;?>
                                 <?php endif; ?>
                             </tbody>
-                            <!-- <tfoot>
-                                <tr>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>Email</th>
-                                    <th>Role</th>
-                                    <th>Group name</th>
-                                    <th>Action</th>
-                                </tr>
-                            </tfoot> -->
                         </table>
                     </div>
                     <!-- /.card-body -->

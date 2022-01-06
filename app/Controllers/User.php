@@ -26,9 +26,9 @@ class User extends BaseController{
 
     private function loginCheck(){
 
-        // print_r(session()->get('logged_in'));
-        // die;
-        if(session()->get('logged_in') == '') {
+        $logged_in = session()->get('logged_in');
+
+        if(!isset($logged_in) || $logged_in != TRUE) {
             return $this->response->redirect(site_url('/user'));
         }
     }
@@ -70,11 +70,8 @@ class User extends BaseController{
                             'logged_in' => TRUE
 						];
 						$this->session->set($sessdata);
-                        if($row['role_id'] == 1){
 						return $this->response->redirect(site_url('dashboard'));
-                        }else{
-                            return $this->response->redirect(site_url('Home'));
-                        }
+
                     }else{
 						$data['errors'] = 'Your password wrong. Please try again.';
                         return view('login',$data);
@@ -219,72 +216,7 @@ class User extends BaseController{
         return view('recoverPassword',$data);
     }
     }
- 
-    public function register(){
 
-        $this->loginCheck();
-        helper(['form']);
-        echo view('register');
-    }
-    public function add(){
-
-        $this->loginCheck();
-        // userAdminCheck($this->user_role, $this->user_id);
-
-        $user = new UserModel();
-        $data = [];
-        if ($this->request->getMethod() == 'post') {
-
-        $rules = [
-            'firstname' => 'required',
-            'lastname' => 'required',
-            'email' => 'required',
-            'password' => 'required|min_length[8]|max_length[255]',
-            // 'passConf' => 'matches[password]',
-        ];
-
-        if($this->validate($rules)){
-
-            $role_id = 2;
-            $group_id = 1;
-
-            $data = [ 
-                'firstname'=> $this->request->getVar('firstname'),
-                'lastname'=> $this->request->getVar('lastname'),
-                'email'=> $this->request->getVar('email'),
-                'password'=> md5($this->request->getVar('password')),
-                'role_id' => $role_id,
-                'group_id' => $group_id,
-            ];
-
-            $user->insert($data);
-            $this->session = session();
-            $this->session->setFlashdata('msg', 'User is added');
-            return redirect()->to('/user/view');
-        }
-        else{
-            $data['validation'] = $this->validator;
-            echo view('register',$data);
-        }
-    }else{
-        $data['roles'] = $user->showRoles();
-        $data['groups'] = $user->showGroup();
-        $data['title'] = 'Add User';
-        $data['base'] = view('Admin/adduser',$data);
-        return view('Admin/adminTemplate',$data);
-    }
-    }
-
-    public function view(){
-
-        $this->loginCheck();
-
-        $user = new UserModel();
-
-        $data['users'] = $user->displayUser();
-        $data['base'] = view('Admin/view-user',$data);
-        return view('Admin/adminTemplate',$data);
-    }
     public function profile(){
 
         $this->loginCheck();
@@ -293,109 +225,12 @@ class User extends BaseController{
         $user = new UserModel();
 
         $row = $user->showSingleUser($id);
-        if($row[0]['role_id'] == '2'){
+
         $data['profile'] = $user->showProfile($id);
-        $data['base'] = view('userProfile',$data);
         $data['title'] = 'Profile';
-        return view('usertemplate',$data);
-        }else{
-         $data['profile'] = $user->showProfile($id);
-         $data['title'] = 'Profile';
-        $data['base'] = view('Admin/profile',$data);
+        $data['base'] = view('profile',$data);
         return view('Admin/adminTemplate',$data);
-        }
     }
 
-    public function delete($id){
-
-        $this->loginCheck();
-        // userAdminCheck($this->user_role, $this->user_id);
-
-        $user = new UserModel();
-        $user->where('user_id',$id)->delete($id);
-        return $this->response->redirect(site_url('user/view'));
-    }
-
-    public function edit($id){
-
-        $this->loginCheck();
-        // userAdminCheck($this->user_role, $this->user_id);
-
-        $user = new UserModel();
-
-         $data['user'] = $user->displayUser();
-         $data['users'] = $user->showSingleUser($id);
-         $data['roles'] = $user->showRoles();
-         $data['groups'] = $user->showGroup();
-         $data['base'] = view('Admin/edit',$data);
-         return view('Admin/adminTemplate',$data);
-  
-      }
-  
-      public function update(){
-
-        $this->loginCheck();
-        // userAdminCheck($this->user_role, $this->user_id);
-  
-          $user = new UserModel();
-  
-          $id = $this->request->getvar('user_id');
-  
-          $data = [
-              'firstname' => $this->request->getVar('firstname'),
-              'lastname' => $this->request->getVar('lastname'),
-              'email' => $this->request->getVar('email'),
-              'role_id'=> $this->request->getVar('role_id'),
-              'group_id'=> $this->request->getVar('group_id'),
-          ];
-  
-          $user->update($id, $data);
-          return $this->response->redirect(site_url('dashboard'));
-      }
-    
-    // public function email(){
-    //     $email = \Config\Services::email();
-    //     $email->setFrom('bhanuvidh@windowslive.com', 'Annu');
-    //     $email->setTo('bmansinghani@gmail.com');
-    //     $email->setSubject('Email Test');
-    //     $email->setMessage('Testing the email class.');
-    //     if($email->send()){
-    //         echo "suucess";
-    //     }else{
-    //         echo 'fail';
-    //     }
-    // }
-
-    public function addGroup(){
-
-        $this->loginCheck();
-        // userAdminCheck($this->user_role, $this->user_id);
-
-        if($this->request->getMethod() == "Post"){
-            $db = \Config\Database::connect();
-            $builder = $db->table('Groups');
-            $data = [
-                'Group_name' => $this->request->getVar('Group_name'),
-            ];
-
-            $this->session = session();
-            $this->session->setFlashdata('msg', 'Group is added');
-            $builder->insert($data);
-            return redirect()->to('dashboard');
-
-        }else{
-            $data['base'] = view('Admin/addGroup');
-            return view('Admin/adminTemplate',$data);
-        }
-    }
-    // public function test($token){
-
-    //     $user = new UserModel();
-
-    //     $id = $user->get_token($token);
-
-    //     print_r($id);
-    //     die;
-    // }
 }
 ?>

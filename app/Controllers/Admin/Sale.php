@@ -1,6 +1,6 @@
 <?php 
 
-namespace App\Controllers;
+namespace App\Controllers\Admin;
 
 use Controller\Codeigniter;
 use App\Models\SalesModel;
@@ -28,7 +28,7 @@ class sale extends BaseController{
         $logged_in = session()->get('logged_in');
 
         if(!isset($logged_in) || $logged_in != TRUE) {
-            return $this->response->redirect(site_url('/user'));
+            return $this->response->redirect(site_url('Admin/user'));
         }
     }
 
@@ -40,7 +40,7 @@ class sale extends BaseController{
         $data['title'] = 'Sales';
         $data['sale'] = $SalesModel->displaySales();
         $data['base'] = view('viewSales',$data);
-        return view('template',$data);
+        return view('Admin/adminTemplate',$data);
    }
 
    public function create(){
@@ -51,7 +51,7 @@ class sale extends BaseController{
        $data['title'] = 'Add/Edit Sale';
        $data['product'] = $Productmodel->findAll();
        $data['base'] = view('add-sale', $data);
-       return view('template',$data);    
+       return view('Admin/adminTemplate',$data);  
      }
 
    public function add(){
@@ -79,12 +79,12 @@ class sale extends BaseController{
         $Productmodel->update($this->request->getVar('product'),$data);
         $this->session = session();
         $this->session->setFlashdata('msg', 'Sale Added');
-        return redirect()->to('/sale');
+        return redirect()->to('Admin/sale');
        }
 
        $data['product'] = $Productmodel->findAll();
        $data['base'] = view('add-sale',$data);
-       return view('template',$data);
+       return view('Admin/adminTemplate',$data);
    }
 
    public function edit($id){
@@ -97,7 +97,7 @@ class sale extends BaseController{
     $data['sales']= $SalesModel->edit($id);
     $data['product'] = $Productmodel->findAll();
     $data['base']= view('edit-sale', $data);
-    return view('template', $data);
+    return view('Admin/adminTemplate',$data);
    }
 
    public function update(){ 
@@ -133,7 +133,7 @@ class sale extends BaseController{
            $Productmodel->update($current_sale_quantity[0]['prod_id'], $prod_data);
            $this->session = session();
            $this->session->setFlashdata('msg', 'Sale updated');
-           return $this->response->redirect(site_url('sale'));
+           return $this->response->redirect(site_url('Admin/sale'));
        }
        elseif($this->request->getVar('quantity') < $current_sale_quantity[0]['sale_quantity']){
 
@@ -150,7 +150,7 @@ class sale extends BaseController{
         $Productmodel->update($current_sale_quantity[0]['prod_id'], $product_update_data);
         $this->session = session();
         $this->session->setFlashdata('msg', 'Sale updated');
-        return $this->response->redirect(site_url('sale'));
+        return $this->response->redirect(site_url('Admin/sale'));
 
     }
     elseif($this->request->getVar('quantity') == $current_sale_quantity[0]['sale_quantity']){
@@ -158,12 +158,12 @@ class sale extends BaseController{
         $SalesModel->update($id,$data);
         $this->session = session();
         $this->session->setFlashdata('msg', 'Sale updated', 300);
-        return $this->response->redirect(site_url('sale'));
+        return $this->response->redirect(site_url('Admin/sale'));
     }
        else{
            $this->session = session();
            $this->session->setFlashdata('msg', 'Sale not updated');
-           return $this->response->redirect(site_url('sale'));
+           return $this->response->redirect(site_url('Admin/sale'));
        }
 
     }
@@ -188,7 +188,7 @@ class sale extends BaseController{
        $SalesModel->deleteSale($id);
        $this->session = session();
        $this->session->setFlashdata('msg', 'Sale deleted');
-       return $this->response->redirect(site_url('sale'));
+       return $this->response->redirect(site_url('Admin/sale'));
    }
 }
 

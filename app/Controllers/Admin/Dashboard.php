@@ -1,6 +1,6 @@
 <?php 
 
-namespace App\Controllers;
+namespace App\Controllers\Admin;
 
 use App\Models\AdminModel;
 use App\Models\UserModel;
@@ -21,15 +21,14 @@ class Dashboard extends BaseController{
 
     $this->user_id = $this->session->get('user_id');
     $this->user_name = $this->session->get('user_email');
-    $this->admin = $this->session->get('admin');
 
     }
     private function loginCheck(){
 
         $logged_in = session()->get('logged_in');
 
-        if(!isset($logged_in) || $logged_in != TRUE) {
-            return $this->response->redirect(site_url('/user'));
+        if(!isset($logged_in) || $logged_in != 1) {
+            return $this->response->redirect(site_url('Admin/user'));
         }
     }
 
@@ -43,7 +42,6 @@ class Dashboard extends BaseController{
         $calendarModel = new CalendarModel();
 
         $userModel = new UserModel();
-        $data['admin'] =  $this->admin;
         $data['trend_sale'] = $SalesModel->trending_product();
         $data['products'] = $Productmodel->findall();
         $data['calendar'] = $calendarModel->DailySales();
@@ -53,7 +51,7 @@ class Dashboard extends BaseController{
         $data['avg_month_pieces'] = $SalesModel->avg_month_pieces();
         $data['avg_month_sale'] = $SalesModel->avg_month_sale();
         $data['title'] = 'Dashboard';
-        $data['base'] = view('dashboard',$data);
-        return view('template',$data);
+        $data['base'] = view('Admin/dashboard',$data);
+        return view('Admin/adminTemplate',$data);
     }
 }

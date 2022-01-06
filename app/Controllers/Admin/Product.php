@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Admin;
+
 use App\Models\UserModel;
 use App\Models\ProductModel;
 
@@ -26,7 +27,7 @@ class Product extends BaseController
         $logged_in = session()->get('logged_in');
 
         if(!isset($logged_in) || $logged_in != TRUE) {
-            return $this->response->redirect(site_url('/user'));
+            return $this->response->redirect(site_url('Admin/user'));
         }
     }
 
@@ -39,13 +40,10 @@ class Product extends BaseController
 		$product = new ProductModel();
 
 		$role = $userModel->showSingleUser($this->user_id);
-		if($role[0]['role_id'] == 1){
 		$data['products'] = $product->findall();
 		$data['base'] = view('viewProducts',$data);
-		return view('template',$data);
-		}else{
-			echo '<div class="alert alert-danger"> Unauthorize Access</div>';
-		}
+		return view('Admin/adminTemplate',$data);
+
 	}
 
 	public function view(){
@@ -76,20 +74,20 @@ class Product extends BaseController
 			$product->insert($data);
 			$this->session = session();
 			$this->session->setFlashdata('msg', 'Product is Added');
-			return redirect()->to('product');
+			return redirect()->to('Admin/product');
 		}
 		else{
 			//echo 'P in not D';
 			$this->session = session();
 			$this->session->setFlashdata('msg', 'Product is not Added');
 			$data['base'] = view('addProduct');
-			return view('template',$data);
+			return view('Admin/adminTemplate',$data);
 			}
 	}else{
 		//echo 'Display add';
 		$data['sizes'] = $product->getSize();
 		$data['base'] = view('addProduct',$data);
-		return view('template',$data);
+		return view('Admin/adminTemplate',$data);
 	}
 	}
 
@@ -105,7 +103,7 @@ class Product extends BaseController
 		// die;
 		// $data['sizes'] = $product->getSize();
 		$data['base'] = view('editProduct',$data);
-		return view('template',$data);
+		return view('Admin/adminTemplate',$data);
 	}
 
 	public function update(){
@@ -125,11 +123,11 @@ class Product extends BaseController
 			$product->update($id, $data);
 			$this->session = session();
             $this->session->setFlashdata('msg', 'Product is Updated');
-			return redirect()->to('/product');
+			return redirect()->to('Admin/product');
 		}else{
 		$this->session = session();
         $this->session->setFlashdata('msg', 'Product is not Updated');
-		return redirect()->to('/product');
+		return redirect()->to('Admin/product');
 		}
 	}
 
@@ -140,6 +138,21 @@ class Product extends BaseController
 		$product = new ProductModel();
 
 		$product->delete($id);
-		return redirect()->to('product');
+		return redirect()->to('Admin/product');
 	}
+
+    public function reminder(){
+
+        $product = new ProductModel();
+
+        $rows = $product->findAll();
+
+        foreach ($rows as $row){
+            if($row['Quantity'] <= 2){
+                print_r($row['Name'].$row['Quantity']);
+            }
+        }
+
+
+    }
 }

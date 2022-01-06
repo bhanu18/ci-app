@@ -6,7 +6,7 @@
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form action="<?php echo site_url('user/update');?>" method="Post">
+            <form action="<?php echo site_url('admin/update');?>" method="Post">
                 <div class="card-body">
                     <?php if(isset($users)):?>
                     <?php foreach($users as $user):?>

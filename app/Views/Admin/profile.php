@@ -9,7 +9,7 @@
                         <img class="profile-user-img img-fluid img-circle" src="/Asset/dist/img/user4-128x128.jpg"
                             alt="User profile picture">
                     </div>
-                    <?php if($profile): ?>
+                    <?php if(isset($profile)): ?>
                     <?php foreach($profile as $user): ?>
                     <h3 class="profile-username text-center"><?php echo $user['firstname']; ?></h3>
 
