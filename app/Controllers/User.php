@@ -226,9 +226,31 @@ class User extends BaseController{
 
         $row = $user->showSingleUser($id);
 
-        $data['profile'] = $user->showProfile($id);
+        $data['pro'] = $user->showProfile($id);
         $data['title'] = 'Profile';
         $data['base'] = view('profile',$data);
+
+
+        if($this->request->getMethod() == 'post'){
+
+            $image = null;
+            if($this->request->getFile('proimage')){
+                
+                $imageFile = $this->request->getFile('proimage');
+                $imageFile->move(WRITEPATH . 'uploads/profile');
+                $image = $imageFile->getName();
+            }
+
+            $upadatedata = [
+                "firstname" => $this->request->getVar("firstname"),
+                "lastname" => $this->request->getVar("lastname"),
+                "password" => md5($this->request->getVar('password')),
+                "image" => $image
+            ];
+
+            print_r($upadatedata);
+            $user->update($this->request->getVar('user_id'), $upadatedata);
+        }
         return view('template',$data);
     }
 

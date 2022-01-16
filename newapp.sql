@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `adminusers` (
 --
 
 INSERT INTO `adminusers` (`id`, `firstname`, `lastname`, `email`, `password`) VALUES
-(1, 'Bhanuvidh', 'Mansinghani', 'bhanuvidh@skywavetechnologies.com', '05aa5cc7ee3ecd9397ce35edc7b4b3d3');
+(1, 'Bhanuvidh', 'Mansinghani', 'bmansinghani@gmail.com', '05aa5cc7ee3ecd9397ce35edc7b4b3d3');
 
 -- --------------------------------------------------------
 
@@ -478,7 +478,7 @@ CREATE TABLE IF NOT EXISTS `item_sales` (
   `size` int(11) NOT NULL,
   `sale_price` int(11) NOT NULL,
   PRIMARY KEY (`sale_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `item_sales`

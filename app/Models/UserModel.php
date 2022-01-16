@@ -12,7 +12,7 @@ class UserModel extends Model{
 
     protected $useAutoIncrement = true;
 
-    protected $allowedFields = ['firstname', 'lastname', 'email', 'password','role_id', 'group_id', 'token'];
+    protected $allowedFields = ['firstname', 'lastname', 'email', 'password', 'image', 'role_id', 'group_id', 'token'];
 
     protected $validationMessages = [
         'email'        => [
@@ -44,7 +44,7 @@ class UserModel extends Model{
     public function showSingleUser($id){
         $db = \Config\Database::connect();
         $builder = $db->table('users');
-        $builder->select('user_id,firstname, lastname, email, role_id, group_id' );
+        $builder->select('image, user_id, firstname, lastname, email, role_id, group_id' );
         $builder->where('user_id',$id);
         $query = $builder->get();
         $result = $query->getResultArray();
@@ -102,7 +102,7 @@ class UserModel extends Model{
         public function showProfile($id){
             $db = \Config\Database::connect();
         $builder = $db->table('users');
-        $builder->select('user_id,firstname, lastname, email, role, Group_name' );
+        $builder->select('user_id,firstname, lastname, email, image, role, Group_name' );
         $builder->join('roles','role_id = roles.id');
         $builder->join('groups', 'group_id = groups.id');
         $builder->where('user_id',$id);
