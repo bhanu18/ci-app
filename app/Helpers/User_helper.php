@@ -1,4 +1,5 @@
 <?php 
+use App\Models\UserModel;
 
 	function userAdminCheck($user_role , $user_id){
 		if($user_id != ''){
@@ -9,6 +10,16 @@
 			echo view('errors/html/error_404');
 			die;
 		}
+	}
+
+	function getUserProfile($id){
+
+
+		$user = new UserModel();
+
+		$image = $user->showProfile($id);
+
+		echo site_url("/uploads/profile/".$image[0]['image']);
 	}
 
 ?>

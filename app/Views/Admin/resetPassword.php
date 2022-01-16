@@ -46,7 +46,7 @@
         <a href="<?php echo site_url('user');?>">Login</a>
       </p> -->
       <p class="mb-0 mt-3">
-        <a href="<?php echo site_url('dashboard');?>" class="text-center">Back to Dashboard</a>
+        <a href="<?php echo site_url('user/profile');?>" class="text-center">Back to Profile</a>
       </p>
     </div>
     <!-- /.login-card-body -->

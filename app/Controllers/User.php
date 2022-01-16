@@ -234,22 +234,37 @@ class User extends BaseController{
         if($this->request->getMethod() == 'post'){
 
             $image = null;
+
             if($this->request->getFile('proimage')){
-                
-                $imageFile = $this->request->getFile('proimage');
-                $imageFile->move(WRITEPATH . 'uploads/profile');
-                $image = $imageFile->getName();
+
+                // $rules = [
+                //     'proimage' => 'is_image[proimage]|mime_in[proimage,image/jpg,image/jpeg,image/png]|max_size[proimage,100]|max_dims[proimage,1024,768]',
+                // ];
+
+                // if(!$this->validate($rules)){ // validated file type and size
+
+                //    $dat['errors'] = $this->validator->getErrors();
+
+                // }else{
+
+                    $imageFile = $this->request->getFile('proimage');
+                    $new_name = "image-".$this->request->getVar('user_id').".".$imageFile->getClientExtension();
+                    $imageFile->move(ROOTPATH. 'public/uploads/profile', $new_name);
+                    $image = $imageFile->getName();
+                    
+                // }
             }
 
             $upadatedata = [
+
                 "firstname" => $this->request->getVar("firstname"),
                 "lastname" => $this->request->getVar("lastname"),
-                "password" => md5($this->request->getVar('password')),
                 "image" => $image
+
             ];
 
-            print_r($upadatedata);
             $user->update($this->request->getVar('user_id'), $upadatedata);
+            session()->setFlashdata('msg',"Profile updated");
         }
         return view('template',$data);
     }

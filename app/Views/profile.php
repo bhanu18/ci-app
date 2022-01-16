@@ -6,7 +6,8 @@
             <div class="card card-primary card-outline">
                 <div class="card-body box-profile">
                     <div class="text-center">
-                        <img class="profile-user-img img-fluid img-circle" src="<?php echo site_url()."uploads/profile/".$pro[0]['image'];?>" alt="User profile picture">
+                        <img class="profile-user-img img-fluid img-circle" style="height:128px;"
+                            src="<?php getUserProfile(session()->get('user_id')) ?>" alt="User profile picture">
                     </div>
                     <?php if(isset($pro)): ?>
                     <h3 class="profile-username text-center"><?php echo $pro[0]['firstname']; ?></h3>
@@ -32,14 +33,20 @@
         </div>
         <!-- /.col -->
         <div class="col-md-9">
+            <?php if(session()->get('msg')): ?>
+            <div class="alert alert-success alert-dismissible" role="alert"><?php echo session()->get('msg'); ?></div>
+            <?php endif;?>
+            <?php if(isset($errors)): ?>
+            <div class="alert alert-danger mb-2" role="alert"><?php echo $errors; ?></div>
+            <?php endif;?>
             <div class="card card-primary card-outline">
                 <!-- <div class="card-header p-2">
                     <ul class="nav nav-pills"> -->
-                        <!-- <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Activity</a>
+                <!-- <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Activity</a>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li> -->
-                        <!-- <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li> -->
-                    <!-- </ul>
+                <!-- <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li> -->
+                <!-- </ul>
                 </div> -->
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -60,35 +67,33 @@
                         <div class="form-group row">
                             <label for="inputName" class="col-sm-2 col-form-label">First Name - Last Name</label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" id="inputName" name="firstname" placeholder="First Name"
-                                    value="<?php echo $pro[0]['firstname']; ?>">
+                                <input type="text" class="form-control" id="inputName" name="firstname"
+                                    placeholder="First Name" value="<?php echo $pro[0]['firstname']; ?>">
                             </div>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" id="inputName" name="lastname"placeholder="Last Name"
-                                    value="<?php echo $pro[0]['lastname']; ?>">
+                                <input type="text" class="form-control" id="inputName" name="lastname"
+                                    placeholder="Last Name" value="<?php echo $pro[0]['lastname']; ?>">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputEmail" readonly placeholder="Email" value="<?php echo $pro[0]['email']; ?>">
+                                <input type="email" class="form-control" id="inputEmail" readonly placeholder="Email"
+                                    value="<?php echo $pro[0]['email']; ?>">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="inputName2" class="col-sm-2 col-form-label">Password</label>
+                            <label for="exampleInputFile" class="col-sm-2 col-form-label">Upload Profile image</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputName2" placeholder="Password" value="">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="exampleInputFile" class="col-sm-2 col-form-label" >Upload Profile image</label>
-                            <div class="input-group col-sm-10">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="exampleInputFile" name="proimage">
-                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                </div>
-                                <div class="input-group-append">
-                                    <span class="input-group-text">Upload</span>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="InputFile" name="proimage"
+                                            onchange="return fileValidation()">
+                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">Upload</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -135,3 +140,35 @@
 </section>
 <!-- /.content -->
 </div>
+
+<script>
+function fileValidation() {
+    var fileInput = document.getElementById('InputFile');
+
+    var filePath = fileInput.value;
+
+    // Allowing file type
+    var allowedExtensions =
+        /(\.jpg|\.jpeg|\.png)$/i;
+
+    if (!allowedExtensions.exec(filePath)) {
+        alert('Invalid file type');
+        fileInput.value = '';
+        return false;
+    } else {
+
+        // Image preview
+        if (fileInput.files && fileInput.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById(
+                        'imagePreview').innerHTML =
+                    '<img src="' + e.target.result +
+                    '"/>';
+            };
+
+            reader.readAsDataURL(fileInput.files[0]);
+        }
+    }
+}
+</script>
