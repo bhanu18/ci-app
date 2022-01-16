@@ -229,7 +229,7 @@ class User extends BaseController{
         $data['profile'] = $user->showProfile($id);
         $data['title'] = 'Profile';
         $data['base'] = view('profile',$data);
-        return view('Admin/adminTemplate',$data);
+        return view('template',$data);
     }
 
 }
