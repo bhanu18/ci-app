@@ -40,29 +40,8 @@
             <div class="alert alert-danger mb-2" role="alert"><?php echo $errors; ?></div>
             <?php endif;?>
             <div class="card card-primary card-outline">
-                <!-- <div class="card-header p-2">
-                    <ul class="nav nav-pills"> -->
-                <!-- <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Activity</a>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li> -->
-                <!-- <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li> -->
-                <!-- </ul>
-                </div> -->
-                <!-- /.card-header -->
                 <div class="card-body">
-                    <div class="tab-content">
-                        <!-- <div class="active tab-pane" id="activity">
-                            
-                        </div> -->
-                        <!-- /.tab-pane -->
-                        <!-- <div class="tab-pane" id="timeline">
-
-                        </div> -->
-                    </div>
-                    <!-- /.tab-pane -->
-
-                    <!-- <div class="tab-pane" id="settings"> -->
-                    <form class="form-horizontal" method="post" enctype="multipart/form-data">
+                    <form class="form-horizontal" method="post" enctype="multipart/form-data" onsubmit="comfirm_update()">
                         <input type="hidden" name="user_id" value="<?php echo $pro[0]['user_id']; ?>">
                         <div class="form-group row">
                             <label for="inputName" class="col-sm-2 col-form-label">First Name - Last Name</label>
@@ -87,14 +66,14 @@
                             <div class="col-sm-10">
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="InputFile" name="proimage"
-                                            onchange="return fileValidation()">
+                                        <input type="file" class="custom-file-input" id="InputFile" name="proimage" onchange="return fileValidation()">
                                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                     </div>
                                     <div class="input-group-append">
                                         <span class="input-group-text">Upload</span>
                                     </div>
                                 </div>
+                                <div id="imagePreview"></div>
                             </div>
                         </div>
                         <!-- <div class="form-group row">
@@ -125,8 +104,6 @@
                                 Password</a>
                         </div>
                     </div>
-                    <!-- </div> -->
-                    <!-- /.tab-pane -->
                 </div>
                 <!-- /.tab-content -->
             </div><!-- /.card-body -->
@@ -164,11 +141,16 @@ function fileValidation() {
                 document.getElementById(
                         'imagePreview').innerHTML =
                     '<img src="' + e.target.result +
-                    '"/>';
+                    '" style=height:250px;"/>';
             };
 
             reader.readAsDataURL(fileInput.files[0]);
         }
     }
 }
+
+function comfirm_update(){
+        confirm("Do you want to submit the form?");
+
+    }
 </script>

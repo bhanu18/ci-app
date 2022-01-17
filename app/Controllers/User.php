@@ -226,6 +226,7 @@ class User extends BaseController{
 
         $row = $user->showSingleUser($id);
 
+
         $data['pro'] = $user->showProfile($id);
         $data['title'] = 'Profile';
         $data['base'] = view('profile',$data);
@@ -233,26 +234,15 @@ class User extends BaseController{
 
         if($this->request->getMethod() == 'post'){
 
-            $image = null;
+            $image = $row[0]['image'];
 
-            if($this->request->getFile('proimage')){
-
-                // $rules = [
-                //     'proimage' => 'is_image[proimage]|mime_in[proimage,image/jpg,image/jpeg,image/png]|max_size[proimage,100]|max_dims[proimage,1024,768]',
-                // ];
-
-                // if(!$this->validate($rules)){ // validated file type and size
-
-                //    $dat['errors'] = $this->validator->getErrors();
-
-                // }else{
+            if($this->request->getFile('proimage')->isValid()){
 
                     $imageFile = $this->request->getFile('proimage');
                     $new_name = "image-".$this->request->getVar('user_id').".".$imageFile->getClientExtension();
                     $imageFile->move(ROOTPATH. 'public/uploads/profile', $new_name);
                     $image = $imageFile->getName();
-                    
-                // }
+
             }
 
             $upadatedata = [
@@ -265,9 +255,9 @@ class User extends BaseController{
 
             $user->update($this->request->getVar('user_id'), $upadatedata);
             session()->setFlashdata('msg',"Profile updated");
+            return redirect()->to('/user/profile');
         }
         return view('template',$data);
     }
-
 }
 ?>

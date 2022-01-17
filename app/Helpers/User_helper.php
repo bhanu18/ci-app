@@ -13,13 +13,14 @@ use App\Models\UserModel;
 	}
 
 	function getUserProfile($id){
-
-
+		
 		$user = new UserModel();
 
 		$image = $user->showProfile($id);
 
-		echo site_url("/uploads/profile/".$image[0]['image']);
+		$image_name = isset($image[0]['image'])? $image[0]['image']: "";
+		
+		echo site_url("/uploads/profile/".$image_name);
 	}
 
 ?>
