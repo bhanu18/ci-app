@@ -19,6 +19,10 @@ use App\Models\UserModel;
 		$image = $user->showProfile($id);
 
 		$image_name = isset($image[0]['image'])? $image[0]['image']: "";
+
+		if($image[0]['image'] == ""){
+			$image_name = "temp-image.png";
+		}
 		
 		echo site_url("/uploads/profile/".$image_name);
 	}
