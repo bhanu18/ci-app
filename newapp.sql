@@ -634,6 +634,10 @@ INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `email`, `password`, `r
 (13, 'Sushil', 'Kumar', 'mytailorpaul@hotmail.com', '30124f67b708b1893c62462a3b906a22', 2, 1, 0);
 COMMIT;
 
+
+ALTER TABLE `users` ADD `image` VARCHAR(255) NULL AFTER `lastname`;
+
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

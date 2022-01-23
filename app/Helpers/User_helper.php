@@ -16,12 +16,12 @@ use App\Models\UserModel;
 		
 		$user = new UserModel();
 
-		$image = $user->showProfile($id);
+		$image = $user->get_all($id);
 
-		$image_name = isset($image[0]['image'])? $image[0]['image']: "";
+		$image_name = "temp-image.png";
 
-		if($image[0]['image'] == ""){
-			$image_name = "temp-image.png";
+		if($image['image']){
+			$image_name = isset($image['image'])? $image['image']: "";
 		}
 		
 		echo site_url("/uploads/profile/".$image_name);

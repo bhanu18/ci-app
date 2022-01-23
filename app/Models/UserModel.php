@@ -102,7 +102,7 @@ class UserModel extends Model{
         public function showProfile($id){
             $db = \Config\Database::connect();
         $builder = $db->table('users');
-        $builder->select('user_id,firstname, lastname, email, image, role, Group_name' );
+        $builder->select('user_id, firstname, lastname, email, image, role, Group_name' );
         $builder->join('roles','role_id = roles.id');
         $builder->join('groups', 'group_id = groups.id');
         $builder->where('user_id',$id);
@@ -120,6 +120,18 @@ class UserModel extends Model{
         $result = $query->getResultArray();
         return $result;
 
+        }
+
+        function get_all($id){
+        $db = \Config\Database::connect();
+        $builder = $db->table('users');
+        $builder->select('user_id, firstname, lastname, email, image, role, Group_name' );
+        $builder->join('roles','role_id = roles.id');
+        $builder->join('groups', 'group_id = groups.id');
+        $builder->where('user_id',$id);
+        $query = $builder->get()->getResultArray();
+        print_r($query);
+        die;
         }
 
 
