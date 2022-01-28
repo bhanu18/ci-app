@@ -16,11 +16,11 @@ use App\Models\UserModel;
 		
 		$user = new UserModel();
 
-		$image = $user->get_all($id);
+		//$image = $user->get_all($id);
 
 		$image_name = "temp-image.png";
 
-		if($image['image']){
+		if(isset($image['image'])){
 			$image_name = isset($image['image'])? $image['image']: "";
 		}
 		
