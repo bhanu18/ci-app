@@ -142,7 +142,7 @@ class User extends BaseController{
 
         $emailID = $this->request->getVar('email');
 
-        $row = $user->getEmail($emailID);
+        $row = $user->get_by_email($emailID);
 
         $id = $row[0]['user_id'];
 
@@ -155,11 +155,14 @@ class User extends BaseController{
             ];
             $user->update($id, $data);
 
+            $link = '<a href="'.site_url('user/changePassword?token='.$token).'"> link</a>';
+            $html = "Dear".$row[0]['firstname']." ".$row[0]['lastname']."<br><p>This is the ".$link." to change your password.<br>Regards";
+
             $email = \Config\Services::email();
             $email->setFrom('bhanuvidh@windowslive.com', 'Annu');
-            $email->setTo($emailID);
+            $email->setTo($row[0]['email']);
             $email->setSubject('Password Reset for forgot Password');
-            $email->setMessage('Dear '.$emailID.'</br> To reset you reset your Password click on this link '.site_url('user/changePassword/'.$token));
+            $email->setMessage($html);
             
             if($email->send()){
             
@@ -180,41 +183,49 @@ class User extends BaseController{
 
     }
 
-    public function changePassword($token){
+    public function changePassword(){
 
-        $data = [];
-        // helper(['form', 'url']);
+        $token = $this->request->getVar('token');
 
         $user = new UserModel();
 
-       $id = $user->get_token($token);
+        $id = $user->get_token($token);
+
+        $data['user'] = $user->get_token($token);
 
 
-        if($this->request->getMethod() == 'post'){
+        if(!empty($this->request->getVar('password'))){
             $rules = [
-            'password' => 'required|min_length[8]|max_length[255]',
-            'passConf' => 'matches[password]',
-        ];
-        if($this->validate($rules)){
-            $user = new UserModel();
-
-            $data = [
-                'password' => md5($this->request->getVar('password')),
+                'password' => 'required|min_length[8]|max_length[255]',
+                'passConf' => 'matches[password]',
             ];
-            if($user->update($id[0]['user_id'],$data)){
-            session()->setFlashdata('msg',"password change");
-            return redirect()->to('/user');
+
+            if($this->validate($rules)){
+
+                if($token == $id[0]->token){
+
+                    $data = [
+                    'password' => md5($this->request->getVar('password')),
+                    'token' => null
+                     ];
+                
+                     $user->update($id[0]->user_id ,$data);
+                     session()->setFlashdata('msg',"password change");
+                     return redirect()->to('/user');
+                }else{
+                     session()->setFlashdata('msg',"password not changed");
+                     return redirect()->to('/user');
+                }
+    
             }else{
-                $data['errors'] = 'Could not change password';
+    
+                $data['validation'] = $this->validator;
                 return view('login', $data);
+                
             }
-        }else{
-            $data['validation'] = $this->validator;
-            return view('login', $data);
         }
-    }else{
-        return view('recoverPassword',$data);
-    }
+        
+    return view('recoverPassword', $data);
     }
 
     public function profile(){
@@ -224,7 +235,7 @@ class User extends BaseController{
         $id = $this->user_id;
         $user = new UserModel();
 
-        $row = $user->showSingleUser($id);
+        $row = $user->get_single_user($id);
 
 
         $data['pro'] = $user->showProfile($id);

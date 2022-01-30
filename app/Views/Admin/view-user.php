@@ -32,9 +32,9 @@
                                     <td><?php echo $user['role']; ?> </td>
                                     <td><?php echo $user['Group_name']; ?> </td>
                                     <td><a class="btn btn-primary"
-                                            href="<?php echo site_url('admin/edit/').$user['user_id'];?>">Edit</a> <a
+                                            href="<?php echo site_url('admin/user/edit/').$user['user_id'];?>">Edit</a> <a
                                             class="btn btn-danger"
-                                            href="<?php echo site_url('admin/delete/').$user['user_id'];?>">Delete</a>
+                                            href="<?php echo site_url('admin/user/delete/').$user['user_id'];?>">Delete</a>
                                     </td>
                                 </tr>
                                 <?php endforeach;?>

@@ -25,7 +25,9 @@
             <div class="card-body login-card-body">
                 <p class="login-box-msg">You are only one step a way from your new password, recover your password now.
                 </p>
-                <form action="<?php echo site_url('user/changePassword');?>" method="post">
+                <?php if(isset($user[0]->token)){?>
+                <form method="post">
+                    <input type="hidden" name="token" value="<?php echo $user[0]->token; ?>">
                     <div class="input-group mb-3">
                         <input type="password" class="form-control" placeholder="Password" name="password">
                         <div class="input-group-append">
@@ -49,6 +51,9 @@
                         <!-- /.col -->
                     </div>
                 </form>
+                <?php }else{?>
+                    <div class="alert alert-danger">This link has expired</div>
+                <?php }?>
                 <p class="mt-3 mb-1">
                     <a href="<?php echo site_url('user');?>">Login</a>
                 </p>

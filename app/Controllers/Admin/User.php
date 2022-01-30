@@ -95,17 +95,58 @@ class User extends BaseController
         return view('Admin/adminTemplate',$data);
     }
 
-    public function edit($id){
+    public function edit($id = null){
 
       $user = new UserModel();
       
       $data['admin'] =  $this->admin;
-      $data['users'] = $user->showSingleUser($id);
+      $data['users'] = $user->get_single_user($id);
       $data['roles'] = $user->showRoles();
       $data['groups'] =$user->showGroup();
       $data['base'] = view('Admin/edit',$data);
+
+      if($this->request->getMethod() == 'post'){
+        
+        $id = $this->request->getvar('user_id');
+  
+        $data = [
+            'firstname' => $this->request->getVar('firstname'),
+            'lastname' => $this->request->getVar('lastname'),
+            'email' => $this->request->getVar('email'),
+            'role_id'=> $this->request->getVar('role_id'),
+            'group_id'=> $this->request->getVar('group_id'),
+        ];
+
+        $user->update($id, $data);
+        session()->setFlashdata('msg',"User Updated");
+        return $this->response->redirect(site_url('admin/view'));
+      }else{
+        session()->setFlashdata('msg',"User not updated");
+        return $this->response->redirect(site_url('admin/user/view'));
+      }
       return view('Admin/adminTemplate',$data);
 
+    }
+    public function update(){
+        if($this->request->getMethod() == 'post'){
+        
+            $id = $this->request->getvar('user_id');
+      
+            $data = [
+                'firstname' => $this->request->getVar('firstname'),
+                'lastname' => $this->request->getVar('lastname'),
+                'email' => $this->request->getVar('email'),
+                'role_id'=> $this->request->getVar('role_id'),
+                'group_id'=> $this->request->getVar('group_id'),
+            ];
+    
+            $user->update($id, $data);
+            session()->setFlashdata('msg',"User Updated");
+            return $this->response->redirect(site_url('admin/view'));
+          }else{
+            session()->setFlashdata('msg',"User not updated");
+            return $this->response->redirect(site_url('admin/user/view'));
+          }
     }
 
     public function forgotPassword(){
@@ -222,7 +263,7 @@ class User extends BaseController
         $user = new UserModel();
 
         $data['admin'] =  $this->admin;
-        $data['users'] = $user->displayUser();
+        $data['users'] = $user->get_all_user();
         $data['base'] = view('Admin/view-user',$data);
         return view('Admin/adminTemplate',$data);
     }
@@ -236,39 +277,6 @@ class User extends BaseController
         $user->where('user_id',$id)->delete($id);
         return $this->response->redirect(site_url('admin/view'));
     }
-  
-      public function update(){
-
-        $this->loginCheck();
- 
-          $user = new UserModel();
-  
-          $id = $this->request->getvar('user_id');
-  
-          $data = [
-              'firstname' => $this->request->getVar('firstname'),
-              'lastname' => $this->request->getVar('lastname'),
-              'email' => $this->request->getVar('email'),
-              'role_id'=> $this->request->getVar('role_id'),
-              'group_id'=> $this->request->getVar('group_id'),
-          ];
-  
-          $user->update($id, $data);
-          return $this->response->redirect(site_url('admin/view'));
-      }
-    
-    // public function email(){
-    //     $email = \Config\Services::email();
-    //     $email->setFrom('bhanuvidh@windowslive.com', 'Annu');
-    //     $email->setTo('bmansinghani@gmail.com');
-    //     $email->setSubject('Email Test');
-    //     $email->setMessage('Testing the email class.');
-    //     if($email->send()){
-    //         echo "suucess";
-    //     }else{
-    //         echo 'fail';
-    //     }
-    // }
 
     public function addGroup(){
 

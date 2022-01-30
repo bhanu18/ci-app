@@ -6,7 +6,7 @@
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form action="<?php echo site_url('admin/update');?>" method="Post">
+            <form action="<?php site_url('admin/user/update');?>" method="post">
                 <div class="card-body">
                     <?php if(isset($users)):?>
                     <?php foreach($users as $user):?>
@@ -55,7 +55,7 @@
         <!-- /.card-body -->
 
         <div class="card-footer">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" name="action" class="btn btn-primary">Submit</button>
         </div>
         </form>
     </div>

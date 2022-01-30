@@ -38,14 +38,10 @@ class Product extends BaseController
         $userModel = new UserModel();
 		$product = new ProductModel();
 
-		$role = $userModel->showSingleUser($this->user_id);
-		if($role[0]['role_id'] == 1){
 		$data['products'] = $product->findall();
 		$data['base'] = view('viewProducts',$data);
+		
 		return view('template',$data);
-		}else{
-			echo '<div class="alert alert-danger"> Unauthorize Access</div>';
-		}
 	}
 
 	public function view(){

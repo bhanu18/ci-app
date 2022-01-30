@@ -38,8 +38,7 @@ class Product extends BaseController
 
         $userModel = new UserModel();
 		$product = new ProductModel();
-
-		$role = $userModel->showSingleUser($this->user_id);
+		
 		$data['products'] = $product->findall();
 		$data['base'] = view('viewProducts',$data);
 		return view('Admin/adminTemplate',$data);

@@ -35,13 +35,11 @@ class Dashboard extends BaseController{
     public function index(){
 
         $this->loginCheck();
-
-        $userModel = new UserModel();
+        
         $SalesModel = new SalesModel();
         $Productmodel = new ProductModel();
         $calendarModel = new CalendarModel();
-
-        $userModel = new UserModel();
+        
         $data['trend_sale'] = $SalesModel->trending_product();
         $data['products'] = $Productmodel->findall();
         $data['calendar'] = $calendarModel->DailySales();

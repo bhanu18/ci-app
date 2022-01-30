@@ -20,7 +20,7 @@ class UserModel extends Model{
         ]
     ];
 
-    public function displayUser(){
+    public function get_all_user(){
         $db = \Config\Database::connect();
         $builder = $db->table('users');
         $builder->select('user_id,firstname, lastname, email, role, Group_name' );
@@ -41,7 +41,7 @@ class UserModel extends Model{
         return $query;
 
     }
-    public function showSingleUser($id){
+    public function get_single_user($id){
         $db = \Config\Database::connect();
         $builder = $db->table('users');
         $builder->select('image, user_id, firstname, lastname, email, role_id, group_id' );
@@ -79,11 +79,11 @@ class UserModel extends Model{
             return false;
         }
         }
-        public function getEmail($email){
+        public function get_by_email($email){
 
         $db = \Config\Database::connect();
         $builder = $db->table('users');
-        $builder->select('user_id, email');
+        $builder->select('user_id, firstname, lastname, email');
         $builder->where('email', $email);
         $query = $builder->get();
         $result = $query->getResultArray();
@@ -114,12 +114,10 @@ class UserModel extends Model{
         function get_token($token){
         $db = \Config\Database::connect();
         $builder = $db->table('users');
-        $builder->select("user_id");
+        $builder->select("user_id, token");
         $builder->where('token', $token);
-        $query = $builder->get();
-        $result = $query->getResultArray();
-        return $result;
-
+        $query = $builder->get()->getResult();
+        return $query;
         }
 
         function get_all($id){
