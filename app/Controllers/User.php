@@ -156,7 +156,7 @@ class User extends BaseController{
             $user->update($id, $data);
 
             $link = '<a href="'.site_url('user/changePassword?token='.$token).'"> link</a>';
-            $html = "Dear".$row[0]['firstname']." ".$row[0]['lastname']."<br><p>This is the ".$link." to change your password.<br>Regards";
+            $html = "Dear ".$row[0]['firstname']." ".$row[0]['lastname']."<br><p>This is the ".$link." to change your password.<br><p>Regards</p>";
 
             $email = \Config\Services::email();
             $email->setFrom('bhanuvidh@windowslive.com', 'Annu');
