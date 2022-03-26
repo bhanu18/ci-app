@@ -127,6 +127,7 @@ class User extends BaseController
       return view('Admin/adminTemplate',$data);
 
     }
+    
     public function update(){
         if($this->request->getMethod() == 'post'){
         
@@ -154,6 +155,7 @@ class User extends BaseController
         echo view('Admin/resetPassword');
         
     }
+
     public function verifyUser(){
 
         $user = new UserModel();
@@ -206,6 +208,7 @@ class User extends BaseController
         helper(['form']);
         echo view('register');
     }
+    
     public function add(){
 
         $this->loginCheck();
@@ -261,9 +264,11 @@ class User extends BaseController
         $this->loginCheck();
 
         $user = new UserModel();
+        $admin_users = new AdminModel();
 
         $data['admin'] =  $this->admin;
         $data['users'] = $user->get_all_user();
+        $data['admin_users'] = $admin_users->findall();
         $data['base'] = view('Admin/view-user',$data);
         return view('Admin/adminTemplate',$data);
     }

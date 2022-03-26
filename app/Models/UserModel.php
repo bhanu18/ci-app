@@ -128,8 +128,8 @@ class UserModel extends Model{
         $builder->join('groups', 'group_id = groups.id');
         $builder->where('user_id',$id);
         $query = $builder->get()->getResultArray();
-        print_r($query);
-        die;
+        return $query;
+        
         }
 
 

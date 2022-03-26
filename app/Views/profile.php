@@ -6,8 +6,8 @@
             <div class="card card-primary card-outline">
                 <div class="card-body box-profile">
                     <div class="text-center">
-                        <img class="profile-user-img img-fluid img-circle" style="height:128px;"
-                            src="<?php getUserProfile(session()->get('user_id')) ?>" alt="User profile picture">
+                        <img class="profile-user-img img-fluid img-circle"
+                            src="<?php echo site_url('uploads/profile/'.$pro[0]['image']); ?>" alt="User profile picture">
                     </div>
                     <?php if(isset($pro)): ?>
                     <h3 class="profile-username text-center"><?php echo $pro[0]['firstname']; ?></h3>

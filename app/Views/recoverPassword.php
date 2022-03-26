@@ -27,7 +27,6 @@
                 </p>
                 <?php if(isset($user[0]->token)){?>
                 <form method="post">
-                    <input type="hidden" name="token" value="<?php echo $user[0]->token; ?>">
                     <div class="input-group mb-3">
                         <input type="password" class="form-control" placeholder="Password" name="password" required>
                         <div class="input-group-append">

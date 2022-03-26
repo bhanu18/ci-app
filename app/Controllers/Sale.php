@@ -6,6 +6,8 @@ use Controller\Codeigniter;
 use App\Models\SalesModel;
 use App\Models\ProductModel;
 
+use CodeIgniter\API\ResponseTrait;
+
 class sale extends BaseController{
 
     protected $session;
@@ -189,6 +191,22 @@ class sale extends BaseController{
        $this->session = session();
        $this->session->setFlashdata('msg', 'Sale deleted');
        return $this->response->redirect(site_url('sale'));
+   }
+
+   public function add_via_post(){
+
+       $sale_model = new SalesModel();
+
+       $data = [
+        'prod_id' => $this->request->getVar('product'),
+        'sale_quantity' => $this->request->getVar('quantity'),
+        'size' => $this->request->getVar('size'),
+        'sale_price' => $this->request->getVar('price'),
+       ];
+
+       $sale_model->insert($data);
+
+       return $this->http_response_code(200);
    }
 }
 

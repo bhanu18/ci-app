@@ -1,22 +1,28 @@
 <?php 
-function image_crop($image, $width, $height){
-
-    imagepng(imagecreatefromstring($image), $png_image);
-
-    $im = imagecreatefromjpeg($png_image);
-          
-        // find the size of image
-        $size = min(imagesx($im), imagesy($im));
-          
-        // Set the crop image size 
-        $im2 = imagecrop($im, ['x' => 0, 'y' => 0, 'width' => $width, 'height' => $height]);
-        if ($im2 !== FALSE) {
-            header("Content-type: image/png");
-               imagepng($im2);
-            imagedestroy($im2);
+function resize_image($file, $w, $h, $crop=FALSE) {
+    list($width, $height) = getimagesize($file);
+    $r = $width / $height;
+    if ($crop) {
+        if ($width > $height) {
+            $width = ceil($width-($width*abs($r-$w/$h)));
+        } else {
+            $height = ceil($height-($height*abs($r-$w/$h)));
         }
-        imagedestroy($im);
+        $newwidth = $w;
+        $newheight = $h;
+    } else {
+        if ($w/$h > $r) {
+            $newwidth = $h*$r;
+            $newheight = $h;
+        } else {
+            $newheight = $w/$r;
+            $newwidth = $w;
+        }
+    }
+    $src = imagecreatefromjpeg($file);
+    $dst = imagecreatetruecolor($newwidth, $newheight);
+    imagecopyresampled($dst, $src, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
 
-        return $im2;
+    return $dst;
 }
 ?>

@@ -148,7 +148,7 @@ class User extends BaseController{
 
         if($user->verifyEmail($emailID) == 1){
 
-            $token = mt_rand();
+            $token = bin2hex(random_bytes(16));
 
             $data = [
                 'token' => $token,
@@ -250,7 +250,7 @@ class User extends BaseController{
             if($this->request->getFile('proimage')->isValid()){
 
                     $imageFile = $this->request->getFile('proimage');
-                    $new_name = "image-".$this->request->getVar('user_id').".".$imageFile->getClientExtension();
+                    $new_name = "image-".$imageFile->getClientExtension();
                     $imageFile->move(ROOTPATH. 'public/uploads/profile', $new_name);
                     $image = $imageFile->getName();
 
