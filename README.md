@@ -10,7 +10,7 @@ menu view
 
 to access it 
 
-download wamp server
-clone repo in htdocs
-configure database with newapp.sql file
-php spark serve to start the app
+1. download wamp server
+2. clone repo in htdocs
+3. configure database with newapp.sql file
+4. php spark serve to start the app
