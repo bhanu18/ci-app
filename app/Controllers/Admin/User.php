@@ -129,6 +129,8 @@ class User extends BaseController
     }
     
     public function update(){
+        $user = new UserModel();
+
         if($this->request->getMethod() == 'post'){
         
             $id = $this->request->getvar('user_id');
@@ -176,7 +178,6 @@ class User extends BaseController
     public function changePassword($id){
 
         if($this->request->getMethod() == 'post'){
-
         $rules = [
             'password' => 'required|min_length[8]|max_length[255]',
             'passConf' => 'matches[password]',
@@ -198,7 +199,7 @@ class User extends BaseController
 
         }
     }else{
-        return view('recoverPassword',$data);
+        return view('recoverPassword');
     }
     }
     
