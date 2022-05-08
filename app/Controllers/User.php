@@ -271,4 +271,3 @@ class User extends BaseController{
         return view('template',$data);
     }
 }
-?>

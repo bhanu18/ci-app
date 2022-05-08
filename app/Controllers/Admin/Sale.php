@@ -191,5 +191,3 @@ class sale extends BaseController{
        return $this->response->redirect(site_url('Admin/sale'));
    }
 }
-
-?>

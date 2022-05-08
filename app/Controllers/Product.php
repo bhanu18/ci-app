@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+
 use App\Models\UserModel;
 use App\Models\ProductModel;
 
@@ -11,40 +12,42 @@ class Product extends BaseController
 	protected $user_name;
 	protected $user_role;
 
-	public function __construct(){
+	public function __construct()
+	{
 
-    $this->session = session();
-    $this->session->start();
+		$this->session = session();
+		$this->session->start();
 
-    $this->user_id = $this->session->get('user_id');
-    $this->user_name = $this->session->get('user_email');
-	$this->user_role = $this->session->get('user_role');
+		$this->user_id = $this->session->get('user_id');
+		$this->user_name = $this->session->get('user_email');
+		$this->user_role = $this->session->get('user_role');
+	}
+	private function loginCheck()
+	{
 
-    }
-    private function loginCheck(){
+		$logged_in = session()->get('logged_in');
 
-        $logged_in = session()->get('logged_in');
-
-        if(!isset($logged_in) || $logged_in != TRUE) {
-            return $this->response->redirect(site_url('/user'));
-        }
-    }
+		if (!isset($logged_in) || $logged_in != TRUE) {
+			return $this->response->redirect(site_url('/user'));
+		}
+	}
 
 	public function index()
 	{
 
 		$this->loginCheck();
 
-        $userModel = new UserModel();
+		$userModel = new UserModel();
 		$product = new ProductModel();
 
 		$data['products'] = $product->findall();
-		$data['base'] = view('viewProducts',$data);
-		
-		return view('template',$data);
+		$data['base'] = view('viewProducts', $data);
+
+		return view('template', $data);
 	}
 
-	public function view(){
+	public function view()
+	{
 		$product = new ProductModel();
 
 		$product_data = $product->findall();
@@ -53,83 +56,86 @@ class Product extends BaseController
 	}
 
 
-	public function add(){
+	public function add()
+	{
 
 
 		$this->loginCheck();
 
 		$product = new ProductModel();
 
-		if($this->request->getMethod() == 'post'){
-		$data = [
-			'Name' => $this->request->getVar('name'),
-			'Quantity' => $this->request->getVar('Quantity'),
-			'Cost_Price' => $this->request->getVar('Cost_Price'),
-			'Price' => $this->request->getVar('Price')
-		];
-		if($data){
-			//echo 'P in D';
-			$product->insert($data);
-			$this->session = session();
-			$this->session->setFlashdata('msg', 'Product is Added');
-			return redirect()->to('product');
-		}
-		else{
-			//echo 'P in not D';
-			$this->session = session();
-			$this->session->setFlashdata('msg', 'Product is not Added');
-			$data['base'] = view('addProduct');
-			return view('template',$data);
+		if ($this->request->getMethod() == 'post') {
+			$data = [
+				'Name' => $this->request->getVar('name'),
+				'Quantity' => $this->request->getVar('Quantity'),
+				'Cost_Price' => $this->request->getVar('Cost_Price'),
+				'Price' => $this->request->getVar('Price')
+			];
+			if ($data) {
+				//echo 'P in D';
+				$product->insert($data);
+				$this->session = session();
+				$this->session->setFlashdata('msg', 'Product is Added');
+				return redirect()->to('product');
+			} else {
+				//echo 'P in not D';
+				$this->session = session();
+				$this->session->setFlashdata('msg', 'Product is not Added');
+				$data['base'] = view('addProduct');
+				return view('template', $data);
 			}
-	}else{
-		//echo 'Display add';
-		$data['sizes'] = $product->getSize();
-		$data['base'] = view('addProduct',$data);
-		return view('template',$data);
-	}
+		} else {
+			//echo 'Display add';
+			$data['sizes'] = $product->getSize();
+			$data['base'] = view('addProduct', $data);
+			return view('template', $data);
+		}
 	}
 
-	public function edit($id){
+	public function edit($id)
+	{
 
 		$this->loginCheck();
 
 		$product = new ProductModel();
 
-		$data['product'] = $product->where("ID",$id)->first();
- 
+		$data['product'] = $product->where("ID", $id)->first();
+
 		// print_r($product->getProductById($id));
 		// die;
 		// $data['sizes'] = $product->getSize();
-		$data['base'] = view('editProduct',$data);
-		return view('template',$data);
+		$data['base'] = view('editProduct', $data);
+		return view('template', $data);
 	}
 
-	public function update(){
+	public function update()
+	{
 
 		$this->loginCheck();
 
 		$product = new ProductModel();
 
-		if($this->request->getMethod() == 'post'){
+		if ($this->request->getMethod() == 'post') {
 			$data = [
-			'Name' => $this->request->getVar('Name'),
-			'Quantity' => $this->request->getVar('Quantity'),
-			'Cost_Price' => $this->request->getVar('Cost_Price'),
-			'Price' => $this->request->getVar('Price')
+				'Name' => $this->request->getVar('Name'),
+				'Quantity' => $this->request->getVar('Quantity'),
+				'Cost_Price' => $this->request->getVar('Cost_Price'),
+				'Price' => $this->request->getVar('Price')
 			];
 			$id = $this->request->getVar('ID');
 			$product->update($id, $data);
 			$this->session = session();
-            $this->session->setFlashdata('msg', 'Product is Updated');
+			$this->session->setFlashdata('msg', 'Product is Updated');
 			return redirect()->to('/product');
-		}else{
-		$this->session = session();
-        $this->session->setFlashdata('msg', 'Product is not Updated');
-		return redirect()->to('/product');
+		} else {
+			$this->session = session();
+			$this->session->setFlashdata('msg', 'Product is not Updated');
+			return redirect()->to('/product');
 		}
 	}
 
-	public function delete($id = ''){
+	public function delete($id = '')
+	{
 
 		$this->loginCheck();
 
