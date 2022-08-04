@@ -5,6 +5,8 @@ namespace App\Controllers;
 use Controller\Codeigniter;
 use App\Models\SalesModel;
 use App\Models\ProductModel;
+use App\Models\OrderModel;
+use App\Models\CartModel;
 
 use CodeIgniter\API\ResponseTrait;
 
@@ -210,5 +212,50 @@ class sale extends BaseController
         $sale_model->insert($data);
 
         return http_response_code(200);
+    }
+
+    public function insert()
+    {
+
+        $orderModel = new OrderModel;
+        $cartModel = new CartModel;
+
+        if ($this->request->getMethod() == 'post') {
+
+            $order_data = [
+                'customer_id' => $this->request->getVar('customer_id'),
+                'total_price' => $this->request->getVar('total_price')
+            ];
+            foreach ($_POST['product'] as $k => $val) {
+
+                $cart_data = [
+                    'product_id' => $_POST['product'][$k],
+                    'quantity' => $_POST['quantity'][$k],
+                    'price' => $_POST['price'][$k]
+                ];
+
+                $cartModel->insert($cart_data);
+            }
+
+            $id = $cartModel->getInsertID();
+
+            $order_data['id_cart'] = $id;
+
+            $orderModel->insert($order_data);
+
+           return $this->response->redirect(site_url('sale'));
+        }
+    }
+
+    public function view($id){
+
+        $orderModel = new OrderModel;
+
+        $data['order'] = $orderModel->find()->where('customer_id', $id);
+
+        $data['base'] = view('edit-sale', $data);
+        return view('template', $data);
+
+
     }
 }
